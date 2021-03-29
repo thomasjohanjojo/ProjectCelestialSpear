@@ -41,8 +41,12 @@ public class MainCharacterBasicMovement : MonoBehaviour
     void Update()
     {
         obtainMovementInputFromPlayer();
-        flipPlayerFacingDirectionAccordingToDirectionOfInput();
-        movePlayerHorizontally();
+        if (canMove == true)
+        {
+            flipPlayerFacingDirectionAccordingToDirectionOfInput();
+            movePlayerHorizontally();
+        }
+        checkIfPlayerIsMoving();
 
         
     }
@@ -96,4 +100,28 @@ public class MainCharacterBasicMovement : MonoBehaviour
         }
 
     }
+
+    void checkIfPlayerIsMoving()
+    {
+        if ((maincharacterRigidbody.velocity.x) != 0)
+        {
+            isMoving = true;
+        }
+
+        else
+        {
+            isMoving = false;
+        }
+    }
+
+
+    //Functions to be used only in the future
+
+    void changeCanMoveToAlternateBooleanValue()
+    {
+        canMove = !canMove;
+    }
+
+    
+
 }
