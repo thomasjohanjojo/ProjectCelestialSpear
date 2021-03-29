@@ -17,7 +17,10 @@ public class MainCharacterBasicMovement : MonoBehaviour
     Rigidbody2D maincharacterRigidbody;
 
 
+    //Booleans for communicating with update and fixed update. The input from player will be recieved in update and it will be implemented in physics engine through fixed update. Therefore, whenever an input is recieved in update, a signal is given through a boolean and the fixed update will implement the funcitonality
 
+    bool doFlipPlayerFacingDirectionAccordingToDirectionOfInputFunctionInFixedUpdate;
+    bool doMovePlayerHorizontallyFunctionInFixedUpdate;
 
 
 
@@ -43,12 +46,27 @@ public class MainCharacterBasicMovement : MonoBehaviour
         obtainMovementInputFromPlayer();
         if (canMove == true)
         {
-            flipPlayerFacingDirectionAccordingToDirectionOfInput();
-            movePlayerHorizontally();
+            doFlipPlayerFacingDirectionAccordingToDirectionOfInputFunctionInFixedUpdate = true;
+            doMovePlayerHorizontallyFunctionInFixedUpdate = true;
         }
         checkIfPlayerIsMoving();
 
         
+    }
+
+    private void FixedUpdate()
+    {
+        if (doFlipPlayerFacingDirectionAccordingToDirectionOfInputFunctionInFixedUpdate == true)
+        {
+            flipPlayerFacingDirectionAccordingToDirectionOfInput();
+            doFlipPlayerFacingDirectionAccordingToDirectionOfInputFunctionInFixedUpdate = false;
+        }
+
+        if (doMovePlayerHorizontallyFunctionInFixedUpdate == true)
+        {
+            movePlayerHorizontally();
+            doMovePlayerHorizontallyFunctionInFixedUpdate = false;
+        }
     }
 
     void obtainMovementInputFromPlayer()
