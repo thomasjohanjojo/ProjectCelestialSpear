@@ -12,7 +12,9 @@ public class MainCharacterBasicMovement : MonoBehaviour
     public float playerSpeed;
     public bool canMove;
     public bool isMoving;
-    private float playerInputValue; 
+    private float playerHorizontalInputValue;
+
+    Rigidbody2D maincharacterRigidbody;
 
 
 
@@ -28,13 +30,34 @@ public class MainCharacterBasicMovement : MonoBehaviour
         playerSpeed = 5;
         canMove = true;
         isMoving = false;
-        playerInputValue = 0;
+        playerHorizontalInputValue = 0;
+
+        //Obtaining references to rigidbody
+        maincharacterRigidbody = gameObject.GetComponent<Rigidbody2D>(); 
         
     }
 
     // Update is called once per frame
     void Update()
     {
+        obtainMovementInputFromPlayer();
+        movePlayerHorizontally();
         
+    }
+
+    void obtainMovementInputFromPlayer()
+    {
+        playerHorizontalInputValue = Input.GetAxisRaw("Horizontal");
+    }
+
+    void movePlayerHorizontally()
+    {
+        Vector2 forceToAddWhenMoving = new Vector2(playerHorizontalInputValue * playerSpeed, 0f);
+        maincharacterRigidbody.AddForce(forceToAddWhenMoving, ForceMode2D.Impulse);
+
+        if(playerHorizontalInputValue == 0)
+        {
+            maincharacterRigidbody.velocity = new Vector3(0f, maincharacterRigidbody.velocity.y, 0f);
+        }
     }
 }
