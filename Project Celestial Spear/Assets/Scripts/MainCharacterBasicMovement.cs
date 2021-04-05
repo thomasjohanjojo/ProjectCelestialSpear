@@ -17,7 +17,10 @@ public class MainCharacterBasicMovement : MonoBehaviour
     Rigidbody2D maincharacterRigidbody;
 
 
+    //Booleans for communicating with update and fixed update. The input from player will be recieved in update and it will be implemented in physics engine through fixed update. Therefore, whenever an input is recieved in update, a signal is given through a boolean and the fixed update will implement the funcitonality
 
+    bool doFlipPlayerFacingDirectionAccordingToDirectionOfInputFunctionInFixedUpdate;
+    bool doMovePlayerHorizontallyFunctionInFixedUpdate;
 
 
 
@@ -40,19 +43,38 @@ public class MainCharacterBasicMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        obtainMovementInputFromPlayer();
-        flipPlayerFacingDirectionAccordingToDirectionOfInput();
-        movePlayerHorizontally();
+        ObtainMovementInputFromPlayer();
+        if (canMove == true)
+        {
+            doFlipPlayerFacingDirectionAccordingToDirectionOfInputFunctionInFixedUpdate = true;
+            doMovePlayerHorizontallyFunctionInFixedUpdate = true;
+        }
+        CheckIfPlayerIsMoving();
 
         
     }
 
-    void obtainMovementInputFromPlayer()
+    private void FixedUpdate()
+    {
+        if (doFlipPlayerFacingDirectionAccordingToDirectionOfInputFunctionInFixedUpdate == true)
+        {
+            FlipPlayerFacingDirectionAccordingToDirectionOfInput();
+            doFlipPlayerFacingDirectionAccordingToDirectionOfInputFunctionInFixedUpdate = false;
+        }
+
+        if (doMovePlayerHorizontallyFunctionInFixedUpdate == true)
+        {
+            MovePlayerHorizontally();
+            doMovePlayerHorizontallyFunctionInFixedUpdate = false;
+        }
+    }
+
+    void ObtainMovementInputFromPlayer()
     {
         playerHorizontalInputValue = Input.GetAxisRaw("Horizontal");
     }
 
-    void movePlayerHorizontally()
+    void MovePlayerHorizontally()
     {
         Vector2 forceToAddWhenMoving = new Vector2(playerHorizontalInputValue * playerSpeed, 0f);
         maincharacterRigidbody.AddForce(forceToAddWhenMoving, ForceMode2D.Impulse);
@@ -76,7 +98,7 @@ public class MainCharacterBasicMovement : MonoBehaviour
         }
     }
 
-    void flipPlayerFacingDirectionAccordingToDirectionOfInput()
+    void FlipPlayerFacingDirectionAccordingToDirectionOfInput()
     {
         
         if (Input.GetAxisRaw("Horizontal") > 0)
@@ -96,4 +118,28 @@ public class MainCharacterBasicMovement : MonoBehaviour
         }
 
     }
+
+    void CheckIfPlayerIsMoving()
+    {
+        if ((maincharacterRigidbody.velocity.x) != 0)
+        {
+            isMoving = true;
+        }
+
+        else
+        {
+            isMoving = false;
+        }
+    }
+
+
+    //Functions to be used only in the future
+
+    void ChangeCanMoveToAlternateBooleanValue()
+    {
+        canMove = !canMove;
+    }
+
+    
+
 }
