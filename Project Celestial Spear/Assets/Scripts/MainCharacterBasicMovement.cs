@@ -43,13 +43,13 @@ public class MainCharacterBasicMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        obtainMovementInputFromPlayer();
+        ObtainMovementInputFromPlayer();
         if (canMove == true)
         {
             doFlipPlayerFacingDirectionAccordingToDirectionOfInputFunctionInFixedUpdate = true;
             doMovePlayerHorizontallyFunctionInFixedUpdate = true;
         }
-        checkIfPlayerIsMoving();
+        CheckIfPlayerIsMoving();
 
         
     }
@@ -58,23 +58,23 @@ public class MainCharacterBasicMovement : MonoBehaviour
     {
         if (doFlipPlayerFacingDirectionAccordingToDirectionOfInputFunctionInFixedUpdate == true)
         {
-            flipPlayerFacingDirectionAccordingToDirectionOfInput();
+            FlipPlayerFacingDirectionAccordingToDirectionOfInput();
             doFlipPlayerFacingDirectionAccordingToDirectionOfInputFunctionInFixedUpdate = false;
         }
 
         if (doMovePlayerHorizontallyFunctionInFixedUpdate == true)
         {
-            movePlayerHorizontally();
+            MovePlayerHorizontally();
             doMovePlayerHorizontallyFunctionInFixedUpdate = false;
         }
     }
 
-    void obtainMovementInputFromPlayer()
+    void ObtainMovementInputFromPlayer()
     {
         playerHorizontalInputValue = Input.GetAxisRaw("Horizontal");
     }
 
-    void movePlayerHorizontally()
+    void MovePlayerHorizontally()
     {
         Vector2 forceToAddWhenMoving = new Vector2(playerHorizontalInputValue * playerSpeed, 0f);
         maincharacterRigidbody.AddForce(forceToAddWhenMoving, ForceMode2D.Impulse);
@@ -98,7 +98,7 @@ public class MainCharacterBasicMovement : MonoBehaviour
         }
     }
 
-    void flipPlayerFacingDirectionAccordingToDirectionOfInput()
+    void FlipPlayerFacingDirectionAccordingToDirectionOfInput()
     {
         
         if (Input.GetAxisRaw("Horizontal") > 0)
@@ -119,7 +119,7 @@ public class MainCharacterBasicMovement : MonoBehaviour
 
     }
 
-    void checkIfPlayerIsMoving()
+    void CheckIfPlayerIsMoving()
     {
         if ((maincharacterRigidbody.velocity.x) != 0)
         {
@@ -135,7 +135,7 @@ public class MainCharacterBasicMovement : MonoBehaviour
 
     //Functions to be used only in the future
 
-    void changeCanMoveToAlternateBooleanValue()
+    void ChangeCanMoveToAlternateBooleanValue()
     {
         canMove = !canMove;
     }
