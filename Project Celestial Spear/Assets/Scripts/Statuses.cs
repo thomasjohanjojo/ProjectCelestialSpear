@@ -9,7 +9,7 @@ public class Statuses : MonoBehaviour
     /// </summary>
 
 
-    // The statuses and their respective functions
+    // The statuses and their respective functions, in that order for each status-functions group
     public int health = 100;
 
     public void DecreaseHealthByTheNumber(int healthToBeDecreased)
@@ -20,7 +20,7 @@ public class Statuses : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        DecreaseHealthByTheNumber(10);        
+        DecreaseHealthByTheNumber(10); // simply for testing    
     }
 
     // Update is called once per frame
