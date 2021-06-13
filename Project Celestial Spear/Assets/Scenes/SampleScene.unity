@@ -375,6 +375,7 @@ MonoBehaviour:
   playerSpeed: 5
   canMove: 0
   playerAnimationControllerReference: {fileID: 1103692428}
+  playerAttackScriptReference: {fileID: 1103692430}
 --- !u!61 &1103692426
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -481,6 +482,7 @@ MonoBehaviour:
   playerControllerReferenceWhichHasATurnOnAndTurnOffBoolean: {fileID: 1103692425}
   playerAnimationControllerReference: {fileID: 1103692428}
   myAtackBoxCollider: {fileID: 1103692429}
+  maximumAllowedDelayBetweenAttackButtonPresses: 1
   pushBackForceOfFirstAttack: 0
   damageOfFirstAttack: 0
   windingUpTimeOfFirstAttack: 0.5

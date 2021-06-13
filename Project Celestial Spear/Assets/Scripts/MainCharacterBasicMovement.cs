@@ -13,8 +13,11 @@ public class MainCharacterBasicMovement : MonoBehaviour
     public bool canMove;
     private bool isMoving;
     private float playerHorizontalInputValue;
+    private int lastFacingDirection = 1;
+    private int currentFacingDirection = 1;
 
     public PlayerAnimationController playerAnimationControllerReference;
+    public PlayerAttack playerAttackScriptReference;
     Rigidbody2D maincharacterRigidbody;
    
 
@@ -107,12 +110,20 @@ public class MainCharacterBasicMovement : MonoBehaviour
         if (Input.GetAxisRaw("Horizontal") > 0)
         {
             gameObject.transform.rotation = Quaternion.Euler(transform.rotation.x, 0f, transform.rotation.z);
+            currentFacingDirection = 1;
+            ResetTheAttackIfThePlayerHasTrulyBeenFlippedBasedOnTheCurrentFacingDirectionAndTheLastFacingDirection();
+
+            
             
         }
 
         else if (Input.GetAxisRaw("Horizontal") < 0)
         {
             gameObject.transform.rotation = Quaternion.Euler(transform.rotation.x, 180f, transform.rotation.z);
+            currentFacingDirection = -1;
+            ResetTheAttackIfThePlayerHasTrulyBeenFlippedBasedOnTheCurrentFacingDirectionAndTheLastFacingDirection();
+
+            
            
         }
         else if (Input.GetAxisRaw("Horizontal") == 0)
@@ -141,7 +152,15 @@ public class MainCharacterBasicMovement : MonoBehaviour
     }
 
 
-    //Functions to be used only in the future
+    void ResetTheAttackIfThePlayerHasTrulyBeenFlippedBasedOnTheCurrentFacingDirectionAndTheLastFacingDirection()
+    {
+        if(currentFacingDirection != lastFacingDirection)
+        {
+            currentFacingDirection = lastFacingDirection;
+            playerAttackScriptReference.ResetAttackIDCounterToRightBeforeZeroWheneverRequired();
+            
+        }
+    }
 
     void ChangeCanMoveToAlternateBooleanValue()
     {

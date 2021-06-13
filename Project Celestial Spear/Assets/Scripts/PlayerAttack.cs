@@ -219,6 +219,11 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
+   public void ResetAttackIDCounterToRightBeforeZeroWheneverRequired()
+    {
+        attackIDCounterWhichIsUsedToControlWhichAttackIsToBeExecuted = 10; 
+    }
+
     void SetMainCharacterVelocityToZeroToStopTheLeftOverMovementWhenCanMoveIsTurnedOff()
     {
         playerControllerReferenceWhichHasATurnOnAndTurnOffBoolean.SetMainCharacterVelocityToZeroWhenCalled();
