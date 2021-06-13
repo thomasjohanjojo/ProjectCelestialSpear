@@ -121,7 +121,7 @@ public class MainCharacterBasicMovement : MonoBehaviour
 
     void CheckIfPlayerIsMoving()
     {
-        if ((maincharacterRigidbody.velocity.x) != 0)
+        if ((maincharacterRigidbody.velocity.x) != 0 && (Input.GetAxisRaw("Horizontal") != 0))
         {
             isMoving = true;
         }
