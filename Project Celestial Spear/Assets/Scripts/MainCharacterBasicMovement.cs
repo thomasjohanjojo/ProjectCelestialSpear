@@ -148,6 +148,9 @@ public class MainCharacterBasicMovement : MonoBehaviour
         canMove = !canMove;
     }
 
-    
+    public void SetMainCharacterVelocityToZeroWhenCalled()
+    {
+        maincharacterRigidbody.velocity = new Vector3(0f, maincharacterRigidbody.velocity.y, 0f);
+    }
 
 }

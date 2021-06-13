@@ -138,6 +138,7 @@ public class PlayerAttack : MonoBehaviour
 
             if (attackIDCounterWhichIsUsedToControlWhichAttackIsToBeExecuted == 0)
             {
+                SetMainCharacterVelocityToZeroToStopTheLeftOverMovementWhenCanMoveIsTurnedOff();
                 playerControllerReferenceWhichHasATurnOnAndTurnOffBoolean.canMove = false;
                 canAttack = false;
 
@@ -158,6 +159,7 @@ public class PlayerAttack : MonoBehaviour
 
             if (attackIDCounterWhichIsUsedToControlWhichAttackIsToBeExecuted == 1)
             {
+                SetMainCharacterVelocityToZeroToStopTheLeftOverMovementWhenCanMoveIsTurnedOff();
                 canAttack = false;
                 playerControllerReferenceWhichHasATurnOnAndTurnOffBoolean.canMove = false;
 
@@ -178,6 +180,7 @@ public class PlayerAttack : MonoBehaviour
 
             if (attackIDCounterWhichIsUsedToControlWhichAttackIsToBeExecuted == 2)
             {
+                SetMainCharacterVelocityToZeroToStopTheLeftOverMovementWhenCanMoveIsTurnedOff();
                 canAttack = false;
                 playerControllerReferenceWhichHasATurnOnAndTurnOffBoolean.canMove = false;
 
@@ -199,5 +202,10 @@ public class PlayerAttack : MonoBehaviour
 
         }
 
+    }
+
+    void SetMainCharacterVelocityToZeroToStopTheLeftOverMovementWhenCanMoveIsTurnedOff()
+    {
+        playerControllerReferenceWhichHasATurnOnAndTurnOffBoolean.SetMainCharacterVelocityToZeroWhenCalled();
     }
 }
