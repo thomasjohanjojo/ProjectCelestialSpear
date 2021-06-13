@@ -16,7 +16,8 @@ public class PlayerAttack : MonoBehaviour
     private float playerFacingDirection;
 
 
-
+    public float maximumAllowedDelayBetweenAttackButtonPresses = 1f;
+    private float timeStampWhenAttackButtonWasLastPressed = 0f;
    
 
     public float pushBackForceOfFirstAttack;
@@ -129,6 +130,8 @@ public class PlayerAttack : MonoBehaviour
 
             attackIDCounterWhichIsUsedToControlWhichAttackIsToBeExecuted += 1;
 
+            ResetAttackIDCounterToZeroIfTooMuchDelayBetweenButtonPresses();
+
 
             if (attackIDCounterWhichIsUsedToControlWhichAttackIsToBeExecuted > 2)
             {
@@ -152,6 +155,8 @@ public class PlayerAttack : MonoBehaviour
                     statusSciptOfEnemy.DecreaseHealthByTheNumber(damageOfFirstAttack);
                 }
 
+                timeStampWhenAttackButtonWasLastPressed = Time.time;
+
                 statusSciptOfEnemy = null;
                 playerControllerReferenceWhichHasATurnOnAndTurnOffBoolean.canMove = true;
                 canAttack = true;
@@ -171,7 +176,7 @@ public class PlayerAttack : MonoBehaviour
                     statusSciptOfEnemy.DecreaseHealthByTheNumber(damageOfSecondAttack);
                 }
 
-                
+                timeStampWhenAttackButtonWasLastPressed = Time.time;                
 
                 statusSciptOfEnemy = null;
                 playerControllerReferenceWhichHasATurnOnAndTurnOffBoolean.canMove = true;
@@ -192,7 +197,9 @@ public class PlayerAttack : MonoBehaviour
                     statusSciptOfEnemy.DecreaseHealthByTheNumber(damageOfThirdAttack);
                 }
 
-                
+                timeStampWhenAttackButtonWasLastPressed = Time.time;
+
+
 
                 statusSciptOfEnemy = null;
                 playerControllerReferenceWhichHasATurnOnAndTurnOffBoolean.canMove = true;
@@ -202,6 +209,14 @@ public class PlayerAttack : MonoBehaviour
 
         }
 
+    }
+
+    private void ResetAttackIDCounterToZeroIfTooMuchDelayBetweenButtonPresses()
+    {
+        if(Time.time - timeStampWhenAttackButtonWasLastPressed > maximumAllowedDelayBetweenAttackButtonPresses)
+        {
+            attackIDCounterWhichIsUsedToControlWhichAttackIsToBeExecuted = 0;
+        }
     }
 
     void SetMainCharacterVelocityToZeroToStopTheLeftOverMovementWhenCanMoveIsTurnedOff()
