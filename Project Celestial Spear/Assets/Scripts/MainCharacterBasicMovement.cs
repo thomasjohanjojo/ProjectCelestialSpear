@@ -11,7 +11,7 @@ public class MainCharacterBasicMovement : MonoBehaviour
     //Fields
     public float playerSpeed;
     public bool canMove;
-    public bool isMoving;
+    private bool isMoving;
     private float playerHorizontalInputValue;
 
     Rigidbody2D maincharacterRigidbody;
