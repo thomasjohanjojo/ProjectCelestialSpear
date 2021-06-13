@@ -1,0 +1,420 @@
+fileFormatVersion: 2
+guid: 631e12a458d472f4790dfe41eb49f436
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -8116496353544307312
+    second: Side Slash-Sheet_0
+  - first:
+      213: 6203604187088359275
+    second: Side Slash-Sheet_1
+  - first:
+      213: 4974362056709060391
+    second: Side Slash-Sheet_2
+  - first:
+      213: -2046007705917081716
+    second: Side Slash-Sheet_4
+  - first:
+      213: -446064889121832440
+    second: Side Slash-Sheet_6
+  - first:
+      213: 5563836819474039940
+    second: Side Slash-Sheet_7
+  - first:
+      213: -4355211257076849591
+    second: Side Slash-Sheet_8
+  - first:
+      213: 2837881122429476242
+    second: Side Slash-Sheet_9
+  - first:
+      213: -9003440727972380373
+    second: Side Slash-Sheet_10
+  - first:
+      213: 509877668173047232
+    second: Side Slash-Sheet_11
+  - first:
+      213: -2323444809052497639
+    second: Side Slash-Sheet_12
+  - first:
+      213: 6483268536558981431
+    second: Side Slash-Sheet_13
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 8
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Side Slash-Sheet_0
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 20
+        height: 32
+      alignment: 9
+      pivot: {x: 0.54346675, y: 0.5349277}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 09dfc3ac1996c5f80800000000000000
+      internalID: -8116496353544307312
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Side Slash-Sheet_1
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 0
+        width: 22
+        height: 32
+      alignment: 9
+      pivot: {x: 0.52257955, y: 0.5426894}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b6f078ad321a71650800000000000000
+      internalID: 6203604187088359275
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Side Slash-Sheet_2
+      rect:
+        serializedVersion: 2
+        x: 249
+        y: 0
+        width: 29
+        height: 32
+      alignment: 9
+      pivot: {x: 0.6027748, y: 0.54657024}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 727335e6feb780540800000000000000
+      internalID: 4974362056709060391
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Side Slash-Sheet_4
+      rect:
+        serializedVersion: 2
+        x: 343
+        y: 0
+        width: 47
+        height: 46
+      alignment: 9
+      pivot: {x: 0.76158565, y: 0.3812122}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c87b919e4de1b93e0800000000000000
+      internalID: -2046007705917081716
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Side Slash-Sheet_6
+      rect:
+        serializedVersion: 2
+        x: 459
+        y: 0
+        width: 43
+        height: 46
+      alignment: 9
+      pivot: {x: 0.7397099, y: 0.37851247}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8028e11c8524fc9f0800000000000000
+      internalID: -446064889121832440
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Side Slash-Sheet_7
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 0
+        width: 52
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5405989, y: 0.5504511}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4844dfcdb18b63d40800000000000000
+      internalID: 5563836819474039940
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Side Slash-Sheet_8
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 0
+        width: 39
+        height: 32
+      alignment: 9
+      pivot: {x: 0.2770996, y: 0.54657024}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 944e624cf6e2f83c0800000000000000
+      internalID: -4355211257076849591
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Side Slash-Sheet_9
+      rect:
+        serializedVersion: 2
+        x: 796
+        y: 0
+        width: 55
+        height: 32
+      alignment: 9
+      pivot: {x: 0.57677, y: 0.56597453}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 29d123958dd226720800000000000000
+      internalID: 2837881122429476242
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Side Slash-Sheet_10
+      rect:
+        serializedVersion: 2
+        x: 917
+        y: 0
+        width: 34
+        height: 38
+      alignment: 9
+      pivot: {x: 0.6570596, y: 0.47712347}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b210ce43c5a5d0380800000000000000
+      internalID: -9003440727972380373
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Side Slash-Sheet_11
+      rect:
+        serializedVersion: 2
+        x: 1033
+        y: 0
+        width: 34
+        height: 39
+      alignment: 9
+      pivot: {x: 0.5474818, y: 0.46815714}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0c5eb5aa903731700800000000000000
+      internalID: 509877668173047232
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Side Slash-Sheet_12
+      rect:
+        serializedVersion: 2
+        x: 1144
+        y: 0
+        width: 37
+        height: 40
+      alignment: 9
+      pivot: {x: 0.5234936, y: 0.45342976}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 919533d914771cfd0800000000000000
+      internalID: -2323444809052497639
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Side Slash-Sheet_13
+      rect:
+        serializedVersion: 2
+        x: 1258
+        y: 0
+        width: 55
+        height: 46
+      alignment: 9
+      pivot: {x: 0.31559837, y: 0.38013235}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7319019526239f950800000000000000
+      internalID: 6483268536558981431
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
