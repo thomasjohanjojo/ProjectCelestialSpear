@@ -156,7 +156,7 @@ public class MainCharacterBasicMovement : MonoBehaviour
     {
         if(currentFacingDirection != lastFacingDirection)
         {
-            currentFacingDirection = lastFacingDirection;
+            lastFacingDirection = currentFacingDirection;
             playerAttackScriptReference.ResetAttackIDCounterToRightBeforeZeroWheneverRequired();
             
         }
