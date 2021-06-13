@@ -4,11 +4,19 @@ using UnityEngine;
 
 public class PlayerAnimationController : MonoBehaviour
 {
-    public Rigidbody2D myRigidbody2D;
+    
 
     public Animator myAnimator;
 
     private string currentState;
+
+    
+
+    public  string IDLE_ANIMATION = "Idle";
+    public  string RUNNING_ANIMATION = "Running";
+    public string PUNCH_AND_PUSH_ANIMATION = "PunchAndPush";
+    public string PLAYER_ATTACK_ONE_ANIMATION = "PlayerAttackOne";
+    public string PLAYER_ATTACK_TWO_ANIMATION = "PlayerAttackTwo";
 
 
     // Start is called before the first frame update
@@ -20,10 +28,14 @@ public class PlayerAnimationController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        
 
 
     }
+
+    
+
+
 
     public void ChangeAnimationState(string newState)
     {

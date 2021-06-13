@@ -14,7 +14,9 @@ public class MainCharacterBasicMovement : MonoBehaviour
     private bool isMoving;
     private float playerHorizontalInputValue;
 
+    public PlayerAnimationController playerAnimationControllerReference;
     Rigidbody2D maincharacterRigidbody;
+   
 
 
     //Booleans for communicating with update and fixed update. The input from player will be recieved in update and it will be implemented in physics engine through fixed update. Therefore, whenever an input is recieved in update, a signal is given through a boolean and the fixed update will implement the funcitonality
@@ -48,8 +50,9 @@ public class MainCharacterBasicMovement : MonoBehaviour
         {
             doFlipPlayerFacingDirectionAccordingToDirectionOfInputFunctionInFixedUpdate = true;
             doMovePlayerHorizontallyFunctionInFixedUpdate = true;
+            CheckIfPlayerIsMovingAndCallTheAppropriateMovementAnimation();
         }
-        CheckIfPlayerIsMoving();
+        
 
         
     }
@@ -119,16 +122,21 @@ public class MainCharacterBasicMovement : MonoBehaviour
 
     }
 
-    void CheckIfPlayerIsMoving()
+    void CheckIfPlayerIsMovingAndCallTheAppropriateMovementAnimation()
     {
         if ((maincharacterRigidbody.velocity.x) != 0 && (Input.GetAxisRaw("Horizontal") != 0))
         {
             isMoving = true;
+            playerAnimationControllerReference.ChangeAnimationState(playerAnimationControllerReference.RUNNING_ANIMATION);
+            
         }
 
         else
         {
             isMoving = false;
+            playerAnimationControllerReference.ChangeAnimationState(playerAnimationControllerReference.IDLE_ANIMATION);
+            
+            
         }
     }
 
