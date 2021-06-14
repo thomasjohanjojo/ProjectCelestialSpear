@@ -11,10 +11,15 @@ public class MainCharacterBasicMovement : MonoBehaviour
     //Fields
     public float playerSpeed;
     public bool canMove;
-    public bool isMoving;
+    private bool isMoving;
     private float playerHorizontalInputValue;
+    private int lastFacingDirection = 1;
+    private int currentFacingDirection = 1;
 
+    public PlayerAnimationController playerAnimationControllerReference;
+    public PlayerAttack playerAttackScriptReference;
     Rigidbody2D maincharacterRigidbody;
+   
 
 
     //Booleans for communicating with update and fixed update. The input from player will be recieved in update and it will be implemented in physics engine through fixed update. Therefore, whenever an input is recieved in update, a signal is given through a boolean and the fixed update will implement the funcitonality
@@ -48,8 +53,9 @@ public class MainCharacterBasicMovement : MonoBehaviour
         {
             doFlipPlayerFacingDirectionAccordingToDirectionOfInputFunctionInFixedUpdate = true;
             doMovePlayerHorizontallyFunctionInFixedUpdate = true;
+            CheckIfPlayerIsMovingAndCallTheAppropriateMovementAnimation();
         }
-        CheckIfPlayerIsMoving();
+        
 
         
     }
@@ -104,12 +110,20 @@ public class MainCharacterBasicMovement : MonoBehaviour
         if (Input.GetAxisRaw("Horizontal") > 0)
         {
             gameObject.transform.rotation = Quaternion.Euler(transform.rotation.x, 0f, transform.rotation.z);
+            currentFacingDirection = 1;
+            ResetTheAttackIfThePlayerHasTrulyBeenFlippedBasedOnTheCurrentFacingDirectionAndTheLastFacingDirection();
+
+            
             
         }
 
         else if (Input.GetAxisRaw("Horizontal") < 0)
         {
             gameObject.transform.rotation = Quaternion.Euler(transform.rotation.x, 180f, transform.rotation.z);
+            currentFacingDirection = -1;
+            ResetTheAttackIfThePlayerHasTrulyBeenFlippedBasedOnTheCurrentFacingDirectionAndTheLastFacingDirection();
+
+            
            
         }
         else if (Input.GetAxisRaw("Horizontal") == 0)
@@ -119,27 +133,43 @@ public class MainCharacterBasicMovement : MonoBehaviour
 
     }
 
-    void CheckIfPlayerIsMoving()
+    void CheckIfPlayerIsMovingAndCallTheAppropriateMovementAnimation()
     {
-        if ((maincharacterRigidbody.velocity.x) != 0)
+        if ((maincharacterRigidbody.velocity.x) != 0 && (Input.GetAxisRaw("Horizontal") != 0))
         {
             isMoving = true;
+            playerAnimationControllerReference.ChangeAnimationState(playerAnimationControllerReference.RUNNING_ANIMATION);
+            
         }
 
         else
         {
             isMoving = false;
+            playerAnimationControllerReference.ChangeAnimationState(playerAnimationControllerReference.IDLE_ANIMATION);
+            
+            
         }
     }
 
 
-    //Functions to be used only in the future
+    void ResetTheAttackIfThePlayerHasTrulyBeenFlippedBasedOnTheCurrentFacingDirectionAndTheLastFacingDirection()
+    {
+        if(currentFacingDirection != lastFacingDirection)
+        {
+            lastFacingDirection = currentFacingDirection;
+            playerAttackScriptReference.ResetAttackIDCounterToRightBeforeZeroWheneverRequired();
+            
+        }
+    }
 
     void ChangeCanMoveToAlternateBooleanValue()
     {
         canMove = !canMove;
     }
 
-    
+    public void SetMainCharacterVelocityToZeroWhenCalled()
+    {
+        maincharacterRigidbody.velocity = new Vector3(0f, maincharacterRigidbody.velocity.y, 0f);
+    }
 
 }
