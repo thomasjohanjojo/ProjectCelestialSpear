@@ -30,7 +30,10 @@ public class AxeThrowScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        goBackToThePlayerAfterAttack = false;
+        goToTheEnemyToAttack = false;
+        pressingTheRangedAttackButtonIsPossibleAndCanThrowAxe = true;
+        axeThrowHasBeenPressedOnceBeforeReturnJourney = false;
     }
 
     // Update is called once per frame
@@ -88,6 +91,9 @@ public class AxeThrowScript : MonoBehaviour
         if(Input.GetButtonDown("Fire2"))
         {
             transform.position = transformOfThePlayer.position;
+            axeThrowHasBeenPressedOnceBeforeReturnJourney = false;
+            goBackToThePlayerAfterAttack = false;
+            goToTheEnemyToAttack = false;
         }
     }
 
@@ -104,6 +110,7 @@ public class AxeThrowScript : MonoBehaviour
             pressingTheRangedAttackButtonIsPossibleAndCanThrowAxe = true;
             axeThrowHasBeenPressedOnceBeforeReturnJourney = false;
             goBackToThePlayerAfterAttack = false;
+            goToTheEnemyToAttack = false;
             
         }
     }
