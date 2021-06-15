@@ -102,6 +102,8 @@ public class AxeThrowScript : MonoBehaviour
         if(directionToThePlayerWithMagnitude.magnitude < 0.5)
         {
             pressingTheRangedAttackButtonIsPossibleAndCanThrowAxe = true;
+            axeThrowHasBeenPressedOnceBeforeReturnJourney = false;
+            goBackToThePlayerAfterAttack = false;
             
         }
     }
