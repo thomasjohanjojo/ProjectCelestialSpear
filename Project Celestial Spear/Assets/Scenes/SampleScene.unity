@@ -368,8 +368,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   transformOfThePlayer: {fileID: 1103692424}
-  directionToThePlayer: {x: 0, y: 0}
+  directionToThePlayer: {x: 0, y: 0, z: 0}
   transformOfThisAxe: {fileID: 937093686}
+  positionOfTheMouseClick: {x: 0, y: 0, z: 0}
+  maxDistanceOfAxeTravel: 10
+  goBackToThePlayerAfterAttack: 1
+  goToTheEnemyToAttack: 0
 --- !u!1 &1103692421
 GameObject:
   m_ObjectHideFlags: 0
