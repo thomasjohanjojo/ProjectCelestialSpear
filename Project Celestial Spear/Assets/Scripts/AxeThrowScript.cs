@@ -15,10 +15,15 @@ public class AxeThrowScript : MonoBehaviour
 
     public float maxDistanceOfAxeTravel;
 
+    public float speedOfAxeThrow;
+
     private Vector3 directionToThePlayerWithMagnitude;
 
-    public bool goBackToThePlayerAfterAttack = true;
+    public bool goBackToThePlayerAfterAttack = false;
     public bool goToTheEnemyToAttack = false;
+    public bool pressingTheRangedAttackButtonIsPossibleAndCanThrowAxe = true;
+
+    public bool axeThrowHasBeenPressedOnceBeforeReturnJourney = false;
 
 
 
@@ -35,7 +40,7 @@ public class AxeThrowScript : MonoBehaviour
 
         if(goToTheEnemyToAttack == true)
         {
-            transform.Translate(positionOfTheMouseClick * Time.deltaTime);
+            transform.Translate(positionOfTheMouseClick * Time.deltaTime * speedOfAxeThrow);
             CheckIfAxeHasTravelledMaximumDistanceAndIfSoThenGoBackToPlayer();
             
         }
@@ -43,10 +48,23 @@ public class AxeThrowScript : MonoBehaviour
         else if(goBackToThePlayerAfterAttack == true)
         {
             GoBackToThePlayer();
+            pressingTheRangedAttackButtonIsPossibleAndCanThrowAxe = false;
+            CheckIfDistanceToPlayerHasReachedZeroAndIfSoThenReEnableAxeThrow();
+
         }
 
-        DetectMousePositionWheneverFire2ButtonIsPressed();
+        if (pressingTheRangedAttackButtonIsPossibleAndCanThrowAxe == true)
+        {
+            if (axeThrowHasBeenPressedOnceBeforeReturnJourney == false && goBackToThePlayerAfterAttack == false)
+            {
+                DetectMousePositionWheneverFire2ButtonIsPressed();
+            }
 
+            else if(axeThrowHasBeenPressedOnceBeforeReturnJourney == true && goBackToThePlayerAfterAttack == false)
+            {
+                DetectRangedAttackButtonPressAndInstantlyTransportTheAxeBackToThePlayer();
+            }
+        }
     }
 
     public void DetectMousePositionWheneverFire2ButtonIsPressed()
@@ -59,7 +77,17 @@ public class AxeThrowScript : MonoBehaviour
             positionOfTheMouseClick.Normalize();
             goBackToThePlayerAfterAttack = false;
             goToTheEnemyToAttack = true;
+
+            axeThrowHasBeenPressedOnceBeforeReturnJourney = true;
             
+        }
+    }
+
+    public void DetectRangedAttackButtonPressAndInstantlyTransportTheAxeBackToThePlayer()
+    {
+        if(Input.GetButtonDown("Fire2"))
+        {
+            transform.position = transformOfThePlayer.position;
         }
     }
 
@@ -69,11 +97,20 @@ public class AxeThrowScript : MonoBehaviour
         directionToThePlayerWithMagnitude = directionToThePlayer;
     }
 
+    public void CheckIfDistanceToPlayerHasReachedZeroAndIfSoThenReEnableAxeThrow()
+    {
+        if(directionToThePlayerWithMagnitude.magnitude < 0.5)
+        {
+            pressingTheRangedAttackButtonIsPossibleAndCanThrowAxe = true;
+            
+        }
+    }
+
     public void GoBackToThePlayer()
     {
         
         directionToThePlayer.Normalize();
-        transform.Translate(directionToThePlayer * Time.deltaTime);
+        transform.Translate(directionToThePlayer * Time.deltaTime * speedOfAxeThrow);
     }
 
     public void CheckIfAxeHasTravelledMaximumDistanceAndIfSoThenGoBackToPlayer()
