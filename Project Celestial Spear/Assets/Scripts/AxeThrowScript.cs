@@ -17,9 +17,15 @@ public class AxeThrowScript : MonoBehaviour
 
     public float speedOfAxeThrow;
 
+    public int damageOfTheAxeThrow;
+
     public BoxCollider2D colliderOfTheAxe;
 
     private Vector3 directionToThePlayerWithMagnitude;
+
+    private Statuses statusScriptOfTheEnemy;
+
+    private Rigidbody2D enemyRigidBody;
 
     public bool goBackToThePlayerAfterAttack = false;
     public bool goToTheEnemyToAttack = false;
@@ -148,7 +154,11 @@ public class AxeThrowScript : MonoBehaviour
 
         else if(collision.tag == "Enemy")
         {
-            // Deal Damage
+            enemyRigidBody = collision.GetComponent<Rigidbody2D>();
+            statusScriptOfTheEnemy = collision.GetComponent<Statuses>();
+            statusScriptOfTheEnemy.DecreaseHealthByTheNumber(damageOfTheAxeThrow);
+            statusScriptOfTheEnemy = null;
+            enemyRigidBody = null;
         }
     }
 
