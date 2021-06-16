@@ -374,6 +374,7 @@ MonoBehaviour:
   positionOfTheMouseClick: {x: 0, y: 0, z: 0}
   maxDistanceOfAxeTravel: 10
   speedOfAxeThrow: 10
+  damageOfTheAxeThrow: 0
   colliderOfTheAxe: {fileID: 937093688}
   goBackToThePlayerAfterAttack: 0
   goToTheEnemyToAttack: 0

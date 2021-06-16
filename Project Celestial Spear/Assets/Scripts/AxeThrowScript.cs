@@ -25,6 +25,8 @@ public class AxeThrowScript : MonoBehaviour
 
     private Statuses statusScriptOfTheEnemy;
 
+    public PlayerAnimationController animationControllerOfThePlayer;
+
     private Rigidbody2D enemyRigidBody;
 
     public bool goBackToThePlayerAfterAttack = false;
@@ -32,6 +34,8 @@ public class AxeThrowScript : MonoBehaviour
     public bool pressingTheRangedAttackButtonIsPossibleAndCanThrowAxe = true;
 
     public bool axeThrowHasBeenPressedOnceBeforeReturnJourney = false;
+
+    public bool canPlayAxeReapppearAnimationJustOnce = false;
 
 
 
@@ -106,6 +110,8 @@ public class AxeThrowScript : MonoBehaviour
             goBackToThePlayerAfterAttack = false;
             goToTheEnemyToAttack = false;
             colliderOfTheAxe.enabled = false;
+
+            canPlayAxeReapppearAnimationJustOnce = true;
         }
     }
 
@@ -125,7 +131,20 @@ public class AxeThrowScript : MonoBehaviour
             goToTheEnemyToAttack = false;
 
             colliderOfTheAxe.enabled = false;
+
+            PlayAxeReappearToHandAnimationOnlyOnce();
+
             
+            
+        }
+    }
+
+    public void PlayAxeReappearToHandAnimationOnlyOnce()
+    {
+        if (canPlayAxeReapppearAnimationJustOnce)
+        {
+            animationControllerOfThePlayer.ChangeAnimationState(animationControllerOfThePlayer.AXE_REAPPEAR_TO_HAND_ANIMATION);
+            canPlayAxeReapppearAnimationJustOnce = false;
         }
     }
 
@@ -134,6 +153,8 @@ public class AxeThrowScript : MonoBehaviour
         
         directionToThePlayer.Normalize();
         transform.Translate(directionToThePlayer * Time.deltaTime * speedOfAxeThrow);
+
+        canPlayAxeReapppearAnimationJustOnce = true;
     }
 
     public void CheckIfAxeHasTravelledMaximumDistanceAndIfSoThenGoBackToPlayer()
@@ -169,5 +190,7 @@ public class AxeThrowScript : MonoBehaviour
         goBackToThePlayerAfterAttack = false;
         goToTheEnemyToAttack = false;
         colliderOfTheAxe.enabled = false;
+
+        canPlayAxeReapppearAnimationJustOnce = true;
     }
 }
