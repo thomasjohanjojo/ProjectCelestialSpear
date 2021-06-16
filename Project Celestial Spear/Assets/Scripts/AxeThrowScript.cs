@@ -17,6 +17,8 @@ public class AxeThrowScript : MonoBehaviour
 
     public float speedOfAxeThrow;
 
+    public BoxCollider2D colliderOfTheAxe;
+
     private Vector3 directionToThePlayerWithMagnitude;
 
     public bool goBackToThePlayerAfterAttack = false;
@@ -34,6 +36,7 @@ public class AxeThrowScript : MonoBehaviour
         goToTheEnemyToAttack = false;
         pressingTheRangedAttackButtonIsPossibleAndCanThrowAxe = true;
         axeThrowHasBeenPressedOnceBeforeReturnJourney = false;
+        colliderOfTheAxe.enabled = false;
     }
 
     // Update is called once per frame
@@ -82,6 +85,8 @@ public class AxeThrowScript : MonoBehaviour
             goToTheEnemyToAttack = true;
 
             axeThrowHasBeenPressedOnceBeforeReturnJourney = true;
+
+            colliderOfTheAxe.enabled = true;
             
         }
     }
@@ -94,6 +99,7 @@ public class AxeThrowScript : MonoBehaviour
             axeThrowHasBeenPressedOnceBeforeReturnJourney = false;
             goBackToThePlayerAfterAttack = false;
             goToTheEnemyToAttack = false;
+            colliderOfTheAxe.enabled = false;
         }
     }
 
@@ -111,6 +117,8 @@ public class AxeThrowScript : MonoBehaviour
             axeThrowHasBeenPressedOnceBeforeReturnJourney = false;
             goBackToThePlayerAfterAttack = false;
             goToTheEnemyToAttack = false;
+
+            colliderOfTheAxe.enabled = false;
             
         }
     }
@@ -130,5 +138,26 @@ public class AxeThrowScript : MonoBehaviour
             goBackToThePlayerAfterAttack = true;
         }
     }
-    
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Ground")
+        {
+            GoBackToThePlayerIntantlySinceTheAxeHasTouchedGroundLayer();
+        }
+
+        else if(collision.tag == "Enemy")
+        {
+            // Deal Damage
+        }
+    }
+
+    public void GoBackToThePlayerIntantlySinceTheAxeHasTouchedGroundLayer()
+    {
+        transform.position = transformOfThePlayer.position;
+        axeThrowHasBeenPressedOnceBeforeReturnJourney = false;
+        goBackToThePlayerAfterAttack = false;
+        goToTheEnemyToAttack = false;
+        colliderOfTheAxe.enabled = false;
+    }
 }
