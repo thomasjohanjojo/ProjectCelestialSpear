@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class Trap : MonoBehaviour
 {
+
+    public TrapAnimationController trapAnimationControllerScriptReference;
+
+    public ProximityDetectionColliderScript proximityDetectionColliderScriptReference;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -13,6 +18,6 @@ public class Trap : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+       
     }
 }
