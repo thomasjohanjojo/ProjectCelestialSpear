@@ -15,22 +15,22 @@ public class ProximityDetectionColliderScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
-    public void OnCollisionStay2D(Collision2D collision)
+    public void OnTriggerStay2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player")
         {
             isVictimInProximity = true;
         }
     }
 
-    public void OnCollisionExit2D(Collision2D collision)
+    public void OnTriggerExit2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player")
         {
-            isVictimInProximity = false;
+            isVictimInProximity = true;
         }
     }
 }

@@ -736,12 +736,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1244033750}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 2.4, y: -5.46, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1569398833}
-  m_RootOrder: 0
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1569398829
 GameObject:
@@ -781,7 +781,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 4.125, y: 2.125}
+    oldSize: {x: 4.125, y: 2}
     newSize: {x: 4.125, y: 2.125}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -871,8 +871,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.4, y: -5.46, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1244033753}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -890,6 +889,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trapAnimationControllerScriptReference: {fileID: 1569398835}
   proximityDetectionColliderScriptReference: {fileID: 1244033751}
+  durationOfTheComingOutAnimation: 0
+  durationOfTheWaitTimeBetweenAnimation: 0
+  durationOfTheGoingInAnimation: 0
+  damageToBeGivenToPlayer: 0
+  victimIsInDamageArea: 0
+  statusScriptOfThePlayer: {fileID: 0}
+  statusScriptOfTheEnemy: {fileID: 0}
+  gameObjectOfThePlayer: {fileID: 0}
 --- !u!114 &1569398835
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -903,6 +910,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animatorOfTheTrap: {fileID: 1569398831}
+  TRAP_IDLE_ANIMATION: TrapIdle
+  TRAP_COMING_OUT_ANIMATION: TrapcomingOut
+  TRAP_COMING_IN_ANIMATION: TrapComingIn
 --- !u!1 &1897888116
 GameObject:
   m_ObjectHideFlags: 0
