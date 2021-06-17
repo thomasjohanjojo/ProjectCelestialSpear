@@ -264,6 +264,7 @@ GameObject:
   - component: {fileID: 937093684}
   - component: {fileID: 937093687}
   - component: {fileID: 937093688}
+  - component: {fileID: 937093689}
   m_Layer: 0
   m_Name: Axe
   m_TagString: Untagged
@@ -350,11 +351,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 937093683}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.66, y: -4.8199997, z: 0}
+  m_LocalPosition: {x: -0.40015292, y: -1.0199997, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_Father: {fileID: 1103692424}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &937093687
 MonoBehaviour:
@@ -376,6 +377,7 @@ MonoBehaviour:
   speedOfAxeThrow: 10
   damageOfTheAxeThrow: 0
   colliderOfTheAxe: {fileID: 937093688}
+  spriteRendererOfTheAxe: {fileID: 937093685}
   animationControllerOfThePlayer: {fileID: 1103692428}
   mainCharacterBasicMovementScriptReference: {fileID: 1103692425}
   playerAttackScriptReference: {fileID: 1103692430}
@@ -413,6 +415,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.0656176, y: 1.5623517}
   m_EdgeRadius: 0
+--- !u!114 &937093689
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 937093683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f10ff08cbf663dc4781532c129f9b7a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animatorOfTheAxe: {fileID: 937093684}
+  axeThrowScriptReference: {fileID: 937093687}
 --- !u!1 &1103692421
 GameObject:
   m_ObjectHideFlags: 0
@@ -515,10 +531,11 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1103692421}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -2.2598472, y: -3.8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 937093686}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
