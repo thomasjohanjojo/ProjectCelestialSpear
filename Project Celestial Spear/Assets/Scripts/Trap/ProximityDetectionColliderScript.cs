@@ -30,7 +30,7 @@ public class ProximityDetectionColliderScript : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            isVictimInProximity = true;
+            isVictimInProximity = false;
         }
     }
 }
