@@ -27,6 +27,9 @@ public class AxeThrowScript : MonoBehaviour
 
     public PlayerAnimationController animationControllerOfThePlayer;
 
+    public MainCharacterBasicMovement mainCharacterBasicMovementScriptReference;
+    public PlayerAttack playerAttackScriptReference;
+
     
 
     private Rigidbody2D enemyRigidBody;
@@ -90,6 +93,21 @@ public class AxeThrowScript : MonoBehaviour
         }
     }
 
+
+   
+
+    public void TurnOnOtherPlayerStates()
+    {
+        playerAttackScriptReference.SetCanAttackBooleanToTrueWhichShouldOnlyBeDoneThroughAxeThrowScript();
+        mainCharacterBasicMovementScriptReference.canMove = true;
+    }
+
+    public void TurnOffOtherPlayerStates()
+    {
+        playerAttackScriptReference.SetCanAttackBooleanToFalseWhichShouldOnlyBeDoneThroughAxeThrowScript();
+        mainCharacterBasicMovementScriptReference.canMove = false;
+    }
+
     public void DetectMousePositionWheneverFire2ButtonIsPressed()
     {
         if(Input.GetButtonDown("Fire2"))
@@ -105,6 +123,7 @@ public class AxeThrowScript : MonoBehaviour
 
             axeHasReachedThePlayerOnce = false;
             axeThrowHasBeenPressedOnceBeforeReturnJourney = true;
+            TurnOffOtherPlayerStates();
 
             colliderOfTheAxe.enabled = true;
             
@@ -123,6 +142,7 @@ public class AxeThrowScript : MonoBehaviour
 
             isAxeThowing = false;
             axeHasReachedThePlayerOnce = true;
+            TurnOnOtherPlayerStates();
 
             
         }
@@ -150,6 +170,7 @@ public class AxeThrowScript : MonoBehaviour
                 colliderOfTheAxe.enabled = false;
 
                 axeHasReachedThePlayerOnce = true;
+                TurnOnOtherPlayerStates();
 
             }
 

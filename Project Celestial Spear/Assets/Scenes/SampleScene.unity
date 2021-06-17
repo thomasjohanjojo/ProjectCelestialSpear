@@ -376,10 +376,16 @@ MonoBehaviour:
   speedOfAxeThrow: 10
   damageOfTheAxeThrow: 0
   colliderOfTheAxe: {fileID: 937093688}
+  animationControllerOfThePlayer: {fileID: 1103692428}
+  mainCharacterBasicMovementScriptReference: {fileID: 1103692425}
+  playerAttackScriptReference: {fileID: 1103692430}
+  isAxeThowing: 0
   goBackToThePlayerAfterAttack: 0
   goToTheEnemyToAttack: 0
   pressingTheRangedAttackButtonIsPossibleAndCanThrowAxe: 0
   axeThrowHasBeenPressedOnceBeforeReturnJourney: 0
+  canPlayAxeReapppearAnimationJustOnce: 0
+  axeHasReachedThePlayerOnce: 0
 --- !u!61 &937093688
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -423,6 +429,7 @@ GameObject:
   - component: {fileID: 1103692428}
   - component: {fileID: 1103692430}
   - component: {fileID: 1103692429}
+  - component: {fileID: 1103692431}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -530,6 +537,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerSpeed: 5
   canMove: 0
+  isMoving: 0
   playerAnimationControllerReference: {fileID: 1103692428}
   playerAttackScriptReference: {fileID: 1103692430}
 --- !u!61 &1103692426
@@ -597,6 +605,7 @@ MonoBehaviour:
   PUNCH_AND_PUSH_ANIMATION: PunchAndPush
   PLAYER_ATTACK_ONE_ANIMATION: PlayerAttackOne
   PLAYER_ATTACK_TWO_ANIMATION: PlayerAttackTwo
+  AXE_REAPPEAR_TO_HAND_ANIMATION: AxeReappearToHandAnimation
 --- !u!61 &1103692429
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -638,6 +647,7 @@ MonoBehaviour:
   playerControllerReferenceWhichHasATurnOnAndTurnOffBoolean: {fileID: 1103692425}
   playerAnimationControllerReference: {fileID: 1103692428}
   myAtackBoxCollider: {fileID: 1103692429}
+  isAttacking: 0
   maximumAllowedDelayBetweenAttackButtonPresses: 1
   pushBackForceOfFirstAttack: 0
   damageOfFirstAttack: 0
@@ -646,6 +656,21 @@ MonoBehaviour:
   windingUpTimeOfSecondAttack: 0.9
   damageOfThirdAttack: 0
   windingUpTimeOfThirdAttack: 1.1
+--- !u!114 &1103692431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1103692421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb133e5d878e17344a19483f615d18de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  axeThrowScriptReference: {fileID: 0}
+  playerAttackScriptReference: {fileID: 0}
+  mainCharacterBasicMovementScriptReference: {fileID: 0}
 --- !u!1 &1897888116
 GameObject:
   m_ObjectHideFlags: 0
