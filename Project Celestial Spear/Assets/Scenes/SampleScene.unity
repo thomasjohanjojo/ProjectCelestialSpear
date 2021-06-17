@@ -515,7 +515,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: -3145328045451892686, guid: 638b0ca75b69ce047a2f3d388f05f1f2,
     type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.9245283, g: 0.8844073, b: 0.8948946, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -552,7 +552,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7772389e84e06f44faa8a392a540c675, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerSpeed: 5
+  playerSpeed: 8
   canMove: 0
   isMoving: 0
   playerAnimationControllerReference: {fileID: 1103692428}
@@ -795,7 +795,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 4.125, y: 2}
+    oldSize: {x: 4.125, y: 2.125}
     newSize: {x: 4.125, y: 2.125}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
