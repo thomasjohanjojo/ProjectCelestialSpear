@@ -30,7 +30,7 @@ public class AxeThrowScript : MonoBehaviour
     public MainCharacterBasicMovement mainCharacterBasicMovementScriptReference;
     public PlayerAttack playerAttackScriptReference;
 
-    
+    public float animationDurationOfTheAxeReturnToHandAnimation;
 
     private Rigidbody2D enemyRigidBody;
 
@@ -75,7 +75,7 @@ public class AxeThrowScript : MonoBehaviour
         {
             GoBackToThePlayer();
             pressingTheRangedAttackButtonIsPossibleAndCanThrowAxe = false;
-            CheckIfDistanceToPlayerHasReachedZeroAndIfSoThenReEnableAxeThrow();
+            StartCoroutine(CheckIfDistanceToPlayerHasReachedZeroAndIfSoThenReEnableAxeThrow());
 
         }
 
@@ -88,7 +88,7 @@ public class AxeThrowScript : MonoBehaviour
 
             else if(axeThrowHasBeenPressedOnceBeforeReturnJourney == true && goBackToThePlayerAfterAttack == false)
             {
-                DetectRangedAttackButtonPressAndInstantlyTransportTheAxeBackToThePlayer();
+               StartCoroutine(DetectRangedAttackButtonPressAndInstantlyTransportTheAxeBackToThePlayer());
             }
         }
     }
@@ -130,7 +130,7 @@ public class AxeThrowScript : MonoBehaviour
         }
     }
 
-    public void DetectRangedAttackButtonPressAndInstantlyTransportTheAxeBackToThePlayer()
+    public IEnumerator DetectRangedAttackButtonPressAndInstantlyTransportTheAxeBackToThePlayer()
     {
         if(Input.GetButtonDown("Fire2"))
         {
@@ -142,6 +142,9 @@ public class AxeThrowScript : MonoBehaviour
 
             isAxeThowing = false;
             axeHasReachedThePlayerOnce = true;
+
+            animationControllerOfThePlayer.ChangeAnimationState(animationControllerOfThePlayer.AXE_REAPPEAR_TO_HAND_ANIMATION);
+            yield return new WaitForSeconds(animationDurationOfTheAxeReturnToHandAnimation);
             TurnOnOtherPlayerStates();
 
             
@@ -154,7 +157,7 @@ public class AxeThrowScript : MonoBehaviour
         directionToThePlayerWithMagnitude = directionToThePlayer;
     }
 
-    public void CheckIfDistanceToPlayerHasReachedZeroAndIfSoThenReEnableAxeThrow()
+    public IEnumerator CheckIfDistanceToPlayerHasReachedZeroAndIfSoThenReEnableAxeThrow()
     {
         if(directionToThePlayerWithMagnitude.magnitude < 0.5)
         {
@@ -170,6 +173,9 @@ public class AxeThrowScript : MonoBehaviour
                 colliderOfTheAxe.enabled = false;
 
                 axeHasReachedThePlayerOnce = true;
+
+                animationControllerOfThePlayer.ChangeAnimationState(animationControllerOfThePlayer.AXE_REAPPEAR_TO_HAND_ANIMATION);
+                yield return new WaitForSeconds(animationDurationOfTheAxeReturnToHandAnimation);
                 TurnOnOtherPlayerStates();
 
             }
@@ -212,7 +218,7 @@ public class AxeThrowScript : MonoBehaviour
     {
         if (collision.tag == "Ground")
         {
-            GoBackToThePlayerIntantlySinceTheAxeHasTouchedGroundLayer();
+            StartCoroutine(GoBackToThePlayerIntantlySinceTheAxeHasTouchedGroundLayer());
         }
 
         else if(collision.tag == "Enemy")
@@ -225,13 +231,17 @@ public class AxeThrowScript : MonoBehaviour
         }
     }
 
-    public void GoBackToThePlayerIntantlySinceTheAxeHasTouchedGroundLayer()
+    public IEnumerator GoBackToThePlayerIntantlySinceTheAxeHasTouchedGroundLayer()
     {
         transform.position = transformOfThePlayer.position;
         axeThrowHasBeenPressedOnceBeforeReturnJourney = false;
         goBackToThePlayerAfterAttack = false;
         goToTheEnemyToAttack = false;
         colliderOfTheAxe.enabled = false;
+
+        animationControllerOfThePlayer.ChangeAnimationState(animationControllerOfThePlayer.AXE_REAPPEAR_TO_HAND_ANIMATION);
+        yield return new WaitForSeconds(animationDurationOfTheAxeReturnToHandAnimation);
+        TurnOnOtherPlayerStates();
 
         
     }
