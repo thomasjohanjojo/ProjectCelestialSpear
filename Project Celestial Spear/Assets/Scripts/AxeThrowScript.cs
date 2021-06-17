@@ -232,6 +232,7 @@ public class AxeThrowScript : MonoBehaviour
         if (collision.tag == "Ground")
         {
             StartCoroutine(GoBackToThePlayerIntantlySinceTheAxeHasTouchedGroundLayer());
+            
         }
 
         else if(collision.tag == "Enemy")
