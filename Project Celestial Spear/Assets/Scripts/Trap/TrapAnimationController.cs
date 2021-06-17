@@ -12,8 +12,9 @@ public class TrapAnimationController : MonoBehaviour
 
 
     public string TRAP_IDLE_ANIMATION = "TrapIdle";
-    public string TRAP_COMING_OUT_ANIMATION = "TrapcomingOut";
+    public string TRAP_COMING_OUT_ANIMATION = "TrapComingOut";
     public string TRAP_COMING_IN_ANIMATION = "TrapComingIn";
+    public string TRAP_IS_AT_THE_TOP_MOST = "TrapIsAtTheTopMost";
 
     // Start is called before the first frame update
     void Start()

@@ -446,6 +446,7 @@ GameObject:
   - component: {fileID: 1103692428}
   - component: {fileID: 1103692430}
   - component: {fileID: 1103692429}
+  - component: {fileID: 1103692431}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -532,7 +533,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1103692421}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.2598472, y: -3.8, z: 0}
+  m_LocalPosition: {x: -7.31, y: -3.8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 937093686}
@@ -672,6 +673,19 @@ MonoBehaviour:
   windingUpTimeOfSecondAttack: 0.9
   damageOfThirdAttack: 0
   windingUpTimeOfThirdAttack: 1.1
+--- !u!114 &1103692431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1103692421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ead1ff4bb6997940ad159319d1a5a79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
 --- !u!1 &1244033750
 GameObject:
   m_ObjectHideFlags: 0
@@ -889,11 +903,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trapAnimationControllerScriptReference: {fileID: 1569398835}
   proximityDetectionColliderScriptReference: {fileID: 1244033751}
-  durationOfTheComingOutAnimation: 0
-  durationOfTheWaitTimeBetweenAnimation: 0
-  durationOfTheGoingInAnimation: 0
-  damageToBeGivenToPlayer: 0
+  durationOfTheComingOutAnimation: 1.4
+  durationOfTheWaitTimeBetweenAnimation: 1
+  durationOfTheGoingInAnimation: 1.4
+  damageToBeGivenToPlayer: 1
   victimIsInDamageArea: 0
+  theTrapCoroutineIsPlaying: 0
   statusScriptOfThePlayer: {fileID: 0}
   statusScriptOfTheEnemy: {fileID: 0}
   gameObjectOfThePlayer: {fileID: 0}
@@ -911,8 +926,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animatorOfTheTrap: {fileID: 1569398831}
   TRAP_IDLE_ANIMATION: TrapIdle
-  TRAP_COMING_OUT_ANIMATION: TrapcomingOut
+  TRAP_COMING_OUT_ANIMATION: TrapComingOut
   TRAP_COMING_IN_ANIMATION: TrapComingIn
+  TRAP_IS_AT_THE_TOP_MOST: TrapIsAtTheTopMost
 --- !u!1 &1897888116
 GameObject:
   m_ObjectHideFlags: 0

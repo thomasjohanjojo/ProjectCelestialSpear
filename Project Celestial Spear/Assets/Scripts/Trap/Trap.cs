@@ -17,6 +17,8 @@ public class Trap : MonoBehaviour
 
     public bool victimIsInDamageArea;
 
+    public bool theTrapCoroutineIsPlaying;
+
     public Statuses statusScriptOfThePlayer;
 
     public Statuses statusScriptOfTheEnemy;
@@ -27,6 +29,7 @@ public class Trap : MonoBehaviour
     void Start()
     {
         victimIsInDamageArea = false;
+        theTrapCoroutineIsPlaying = false;
     }
 
     // Update is called once per frame
@@ -40,9 +43,14 @@ public class Trap : MonoBehaviour
 
     public void IfVictimInProximityActiviateTheCoRoutine()
     {
-        if(proximityDetectionColliderScriptReference.isVictimInProximity == true)
+        if(proximityDetectionColliderScriptReference.isVictimInProximity == true && theTrapCoroutineIsPlaying == false)
         {
             StartCoroutine(PlayTheTrapAnimationsAndDealDamageIfPossible());
+        }
+
+        else if(proximityDetectionColliderScriptReference.isVictimInProximity == false)
+        {
+            StopCoroutine(PlayTheTrapAnimationsAndDealDamageIfPossible());
         }
     }
 
@@ -73,8 +81,11 @@ public class Trap : MonoBehaviour
 
     public IEnumerator PlayTheTrapAnimationsAndDealDamageIfPossible()
     {
+        theTrapCoroutineIsPlaying = true;
+
         trapAnimationControllerScriptReference.ChangeAnimationState(trapAnimationControllerScriptReference.TRAP_COMING_OUT_ANIMATION);
         yield return new WaitForSeconds(durationOfTheComingOutAnimation);
+        trapAnimationControllerScriptReference.ChangeAnimationState(trapAnimationControllerScriptReference.TRAP_IS_AT_THE_TOP_MOST);
 
         if (victimIsInDamageArea)
         {
@@ -91,7 +102,11 @@ public class Trap : MonoBehaviour
 
         trapAnimationControllerScriptReference.ChangeAnimationState(trapAnimationControllerScriptReference.TRAP_COMING_IN_ANIMATION);
         yield return new WaitForSeconds(durationOfTheGoingInAnimation);
+        
+        trapAnimationControllerScriptReference.ChangeAnimationState(trapAnimationControllerScriptReference.TRAP_IDLE_ANIMATION);
         yield return new WaitForSeconds(durationOfTheWaitTimeBetweenAnimation);
+
+        theTrapCoroutineIsPlaying = false;
     }
 
 }
