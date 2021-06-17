@@ -373,7 +373,7 @@ MonoBehaviour:
   directionToThePlayer: {x: 0, y: 0, z: 0}
   transformOfThisAxe: {fileID: 937093686}
   positionOfTheMouseClick: {x: 0, y: 0, z: 0}
-  maxDistanceOfAxeTravel: 30
+  maxDistanceOfAxeTravel: 10
   speedOfAxeThrow: 10
   damageOfTheAxeThrow: 0
   colliderOfTheAxe: {fileID: 937093688}
@@ -381,7 +381,7 @@ MonoBehaviour:
   animationControllerOfThePlayer: {fileID: 1103692428}
   mainCharacterBasicMovementScriptReference: {fileID: 1103692425}
   playerAttackScriptReference: {fileID: 1103692430}
-  animationDurationOfTheAxeReturnToHandAnimation: 1
+  animationDurationOfTheAxeReturnToHandAnimation: 0.9
   isAxeThowing: 0
   goBackToThePlayerAfterAttack: 0
   goToTheEnemyToAttack: 0
