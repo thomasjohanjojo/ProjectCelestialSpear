@@ -27,7 +27,11 @@ public class AxeThrowScript : MonoBehaviour
 
     public PlayerAnimationController animationControllerOfThePlayer;
 
+    
+
     private Rigidbody2D enemyRigidBody;
+
+    public bool isAxeThowing;
 
     public bool goBackToThePlayerAfterAttack = false;
     public bool goToTheEnemyToAttack = false;
@@ -36,6 +40,8 @@ public class AxeThrowScript : MonoBehaviour
     public bool axeThrowHasBeenPressedOnceBeforeReturnJourney = false;
 
     public bool canPlayAxeReapppearAnimationJustOnce = false;
+
+    public bool axeHasReachedThePlayerOnce;
 
 
 
@@ -47,6 +53,7 @@ public class AxeThrowScript : MonoBehaviour
         pressingTheRangedAttackButtonIsPossibleAndCanThrowAxe = true;
         axeThrowHasBeenPressedOnceBeforeReturnJourney = false;
         colliderOfTheAxe.enabled = false;
+        canPlayAxeReapppearAnimationJustOnce = false;
     }
 
     // Update is called once per frame
@@ -94,6 +101,9 @@ public class AxeThrowScript : MonoBehaviour
             goBackToThePlayerAfterAttack = false;
             goToTheEnemyToAttack = true;
 
+            isAxeThowing = true;
+
+            axeHasReachedThePlayerOnce = false;
             axeThrowHasBeenPressedOnceBeforeReturnJourney = true;
 
             colliderOfTheAxe.enabled = true;
@@ -111,7 +121,10 @@ public class AxeThrowScript : MonoBehaviour
             goToTheEnemyToAttack = false;
             colliderOfTheAxe.enabled = false;
 
-            canPlayAxeReapppearAnimationJustOnce = true;
+            isAxeThowing = false;
+            axeHasReachedThePlayerOnce = true;
+
+            
         }
     }
 
@@ -125,14 +138,22 @@ public class AxeThrowScript : MonoBehaviour
     {
         if(directionToThePlayerWithMagnitude.magnitude < 0.5)
         {
-            pressingTheRangedAttackButtonIsPossibleAndCanThrowAxe = true;
-            axeThrowHasBeenPressedOnceBeforeReturnJourney = false;
-            goBackToThePlayerAfterAttack = false;
-            goToTheEnemyToAttack = false;
+            if (axeHasReachedThePlayerOnce == false)
+            {
+                pressingTheRangedAttackButtonIsPossibleAndCanThrowAxe = true;
+                axeThrowHasBeenPressedOnceBeforeReturnJourney = false;
+                goBackToThePlayerAfterAttack = false;
+                goToTheEnemyToAttack = false;
 
-            colliderOfTheAxe.enabled = false;
 
-            PlayAxeReappearToHandAnimationOnlyOnce();
+                isAxeThowing = false;
+                colliderOfTheAxe.enabled = false;
+
+                axeHasReachedThePlayerOnce = true;
+
+            }
+
+            
 
             
             
@@ -154,7 +175,7 @@ public class AxeThrowScript : MonoBehaviour
         directionToThePlayer.Normalize();
         transform.Translate(directionToThePlayer * Time.deltaTime * speedOfAxeThrow);
 
-        canPlayAxeReapppearAnimationJustOnce = true;
+        
     }
 
     public void CheckIfAxeHasTravelledMaximumDistanceAndIfSoThenGoBackToPlayer()
@@ -191,6 +212,6 @@ public class AxeThrowScript : MonoBehaviour
         goToTheEnemyToAttack = false;
         colliderOfTheAxe.enabled = false;
 
-        canPlayAxeReapppearAnimationJustOnce = true;
+        
     }
 }
