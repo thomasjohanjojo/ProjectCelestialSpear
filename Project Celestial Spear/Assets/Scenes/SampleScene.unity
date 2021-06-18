@@ -449,11 +449,11 @@ MonoBehaviour:
   speedOfAxeThrow: 10
   damageOfTheAxeThrow: 0
   colliderOfTheAxe: {fileID: 937093688}
-  spriteRendererOfTheAxe: {fileID: 937093685}
   animationControllerOfThePlayer: {fileID: 1103692428}
   mainCharacterBasicMovementScriptReference: {fileID: 1103692425}
   playerAttackScriptReference: {fileID: 1103692430}
   animationDurationOfTheAxeReturnToHandAnimation: 0.9
+  axeThrowScriptOnOffBoolean: 0
   isAxeThowing: 0
   goBackToThePlayerAfterAttack: 0
   goToTheEnemyToAttack: 0
@@ -519,6 +519,7 @@ GameObject:
   - component: {fileID: 1103692430}
   - component: {fileID: 1103692431}
   - component: {fileID: 1103692429}
+  - component: {fileID: 1103692432}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -629,6 +630,7 @@ MonoBehaviour:
   playerSpeed: 8
   canMove: 0
   isMoving: 0
+  mainCharacterBasicMovementScriptOnOffBoolean: 0
   playerAnimationControllerReference: {fileID: 1103692428}
   playerAttackScriptReference: {fileID: 1103692430}
 --- !u!61 &1103692426
@@ -647,8 +649,8 @@ BoxCollider2D:
   m_Offset: {x: -0.049087405, y: -0.24543762}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.68932724, y: 0.52442926}
-    oldSize: {x: 3, y: 3.875}
+    pivot: {x: 0.51963496, y: 0.55950004}
+    oldSize: {x: 2.5, y: 4.125}
     newSize: {x: 2.5, y: 4.125}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -709,13 +711,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f924de34652663f46a8c65ed5cb7534e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dodgeSpeed: 500
+  dodgeSpeed: 100
   thatMillisecondsOfTimeBeforeInvincibility: 0.5
   thatMillisecondsOfTimeOfTheInvincibilityPeriod: 0.5
-  theDurationOfTheDodge: 0.1
+  theDurationOfTheDodge: 0.2
   myRigidbody2D: {fileID: 1103692427}
   myBoxCollider2D: {fileID: 1103692426}
   dodgeHitDetectionColliderScriptReference: {fileID: 337683033}
+  playerAnimationControllerScriptReference: {fileID: 1103692428}
+  playerStateControllerReference: {fileID: 1103692432}
   HoldBeforeTheDodge: 0
   isInInvincibilityPeriod: 0
   DoTheDodge: 0
@@ -736,6 +740,7 @@ MonoBehaviour:
   playerControllerReferenceWhichHasATurnOnAndTurnOffBoolean: {fileID: 1103692425}
   playerAnimationControllerReference: {fileID: 1103692428}
   attackColliderScriptReference: {fileID: 1839155469}
+  PlayerAttackScriptOnOffBoolean: 0
   isAttacking: 0
   maximumAllowedDelayBetweenAttackButtonPresses: 1
   pushBackForceOfFirstAttack: 0
@@ -758,6 +763,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+--- !u!114 &1103692432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1103692421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb133e5d878e17344a19483f615d18de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  axeThrowScriptReference: {fileID: 937093687}
+  playerAttackScriptReference: {fileID: 1103692430}
+  mainCharacterBasicMovementScriptReference: {fileID: 1103692425}
+  playerDodgeScriptReference: {fileID: 1103692429}
+  PLAYER_STATE_IDLE_OR_MOVING: PlayerStateIdleOrMoving
+  PLAYER_STATE_ATTACKING: PlayerStateAttacking
+  PLAYER_STATE_AXE_THROW: PlayerStateAxeThrow
+  PLAYER_STATE_DODGING: PlayerStateDodging
 --- !u!1 &1244033750
 GameObject:
   m_ObjectHideFlags: 0

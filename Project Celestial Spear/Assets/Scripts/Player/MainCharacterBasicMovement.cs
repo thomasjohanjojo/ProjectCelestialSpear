@@ -12,6 +12,7 @@ public class MainCharacterBasicMovement : MonoBehaviour
     public float playerSpeed;
     public bool canMove;
     public bool isMoving;
+    public bool mainCharacterBasicMovementScriptOnOffBoolean;
     private float playerHorizontalInputValue;
     private int lastFacingDirection = 1;
     private int currentFacingDirection = 1;
@@ -26,7 +27,7 @@ public class MainCharacterBasicMovement : MonoBehaviour
 
     bool doFlipPlayerFacingDirectionAccordingToDirectionOfInputFunctionInFixedUpdate;
     bool doMovePlayerHorizontallyFunctionInFixedUpdate;
-
+    
 
 
 
@@ -35,7 +36,8 @@ public class MainCharacterBasicMovement : MonoBehaviour
     void Start()
     {
         //Default Values
-        
+
+        mainCharacterBasicMovementScriptOnOffBoolean = true;
         canMove = true;
         isMoving = false;
         playerHorizontalInputValue = 0;
@@ -48,30 +50,35 @@ public class MainCharacterBasicMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ObtainMovementInputFromPlayer();
-        if (canMove == true)
+        if (mainCharacterBasicMovementScriptOnOffBoolean == true)
         {
-            doFlipPlayerFacingDirectionAccordingToDirectionOfInputFunctionInFixedUpdate = true;
-            doMovePlayerHorizontallyFunctionInFixedUpdate = true;
-            CheckIfPlayerIsMovingAndCallTheAppropriateMovementAnimation();
-        }
-        
+            ObtainMovementInputFromPlayer();
+            if (canMove == true)
+            {
+                doFlipPlayerFacingDirectionAccordingToDirectionOfInputFunctionInFixedUpdate = true;
+                doMovePlayerHorizontallyFunctionInFixedUpdate = true;
+                CheckIfPlayerIsMovingAndCallTheAppropriateMovementAnimation();
+            }
 
+        }
         
     }
 
     private void FixedUpdate()
     {
-        if (doFlipPlayerFacingDirectionAccordingToDirectionOfInputFunctionInFixedUpdate == true)
+        if (mainCharacterBasicMovementScriptOnOffBoolean == true)
         {
-            FlipPlayerFacingDirectionAccordingToDirectionOfInput();
-            doFlipPlayerFacingDirectionAccordingToDirectionOfInputFunctionInFixedUpdate = false;
-        }
+            if (doFlipPlayerFacingDirectionAccordingToDirectionOfInputFunctionInFixedUpdate == true)
+            {
+                FlipPlayerFacingDirectionAccordingToDirectionOfInput();
+                doFlipPlayerFacingDirectionAccordingToDirectionOfInputFunctionInFixedUpdate = false;
+            }
 
-        if (doMovePlayerHorizontallyFunctionInFixedUpdate == true)
-        {
-            MovePlayerHorizontally();
-            doMovePlayerHorizontallyFunctionInFixedUpdate = false;
+            if (doMovePlayerHorizontallyFunctionInFixedUpdate == true)
+            {
+                MovePlayerHorizontally();
+                doMovePlayerHorizontallyFunctionInFixedUpdate = false;
+            }
         }
     }
 

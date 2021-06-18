@@ -12,6 +12,8 @@ public class PlayerDodge : MonoBehaviour
     public Rigidbody2D myRigidbody2D;
     public BoxCollider2D myBoxCollider2D;
     public DodgeHitDetectionColliderScript dodgeHitDetectionColliderScriptReference;
+    public PlayerAnimationController playerAnimationControllerScriptReference;
+    public PlayerStateController playerStateControllerReference;
 
     public bool HoldBeforeTheDodge;
     public bool isInInvincibilityPeriod;
@@ -66,7 +68,7 @@ public class PlayerDodge : MonoBehaviour
         {
             StartCoroutine(waitBeforeDodging());
 
-
+            
         }
 
 
@@ -74,16 +76,28 @@ public class PlayerDodge : MonoBehaviour
 
     IEnumerator waitBeforeDodging()
     {
+        playerStateControllerReference.DisableEverythingElseForDoingDodge();
+
         HoldBeforeTheDodge = true;
+
+        playerAnimationControllerScriptReference.ChangeAnimationState(playerAnimationControllerScriptReference.HOLD_THE_DODGE_ANIMATION);
         yield return new WaitForSeconds(thatMillisecondsOfTimeBeforeInvincibility);
+
         HoldBeforeTheDodge = false;
 
         isInInvincibilityPeriod = true;
+
+        playerAnimationControllerScriptReference.ChangeAnimationState(playerAnimationControllerScriptReference.INVINCIBLE_STAGE_ANIMATION);
         dodgeHitDetectionColliderScriptReference.boxColliderForDetectingDodgeHits.enabled = true;
         yield return new WaitForSeconds(thatMillisecondsOfTimeOfTheInvincibilityPeriod);
         dodgeHitDetectionColliderScriptReference.boxColliderForDetectingDodgeHits.enabled = false;
+
         isInInvincibilityPeriod = false;
-       
+
+        if (DoTheDodge == false)
+        {
+            playerStateControllerReference.EnableEverythingBackAfterDodging();
+        }
 
     }
 
@@ -101,10 +115,15 @@ public class PlayerDodge : MonoBehaviour
 
     IEnumerator IfHitHasBeenDetectedDuringTheInvincibilityPeriodThenAskToDoTheDodge()
     {
+        playerStateControllerReference.DisableEverythingElseForDoingDodge();
+
         DoTheDodge = true;
+        playerAnimationControllerScriptReference.ChangeAnimationState(playerAnimationControllerScriptReference.THE_ACTUAL_DODGE_ANIMATION);
         yield return new WaitForSeconds(theDurationOfTheDodge);
         DoTheDodge = false;
         FlipThePlayerToTheOppositeFacingSideAfterDodging();
+
+        playerStateControllerReference.EnableEverythingBackAfterDodging();
     }
 
     void TurnOffColliderAndGravityAndDoTheDodgeWheneverTheBooleanIsTrueAndDoTheOppositeWhenItIsFalse()
@@ -116,6 +135,8 @@ public class PlayerDodge : MonoBehaviour
 
             Vector2 forceToAddWhenDodging = new Vector2(dodgeSpeed * playerFacingDirection, 0f);
             myRigidbody2D.AddForce(forceToAddWhenDodging, ForceMode2D.Force);
+
+            
 
 
         }
