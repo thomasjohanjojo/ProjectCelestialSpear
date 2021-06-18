@@ -6,7 +6,8 @@ public class PlayerAttack : MonoBehaviour
 {
     public MainCharacterBasicMovement playerControllerReferenceWhichHasATurnOnAndTurnOffBoolean;
     public PlayerAnimationController playerAnimationControllerReference;
-    public BoxCollider2D myAtackBoxCollider;
+    
+    public AttackColliderScript attackColliderScriptReference;
 
     private Statuses statusSciptOfEnemy;
     private Rigidbody2D enemyRigidBody;
@@ -39,7 +40,7 @@ public class PlayerAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
+        UpdateOrGrabEnemyRigidBodyFromAttackCollider();       
         CheckPlayerFacingDirection();
         CheckIfPlayerCanAttackAndExecuteAttackIfThePlayerCan();
     }
@@ -93,19 +94,17 @@ public class PlayerAttack : MonoBehaviour
         enemyRigidBody.AddForce(pushBackForceToAddAsVector, ForceMode2D.Impulse);
     }
 
-    
-
-
-    private void OnTriggerStay2D(Collider2D collision) // This function is automatically called by unity like the update function
+    private void UpdateOrGrabEnemyRigidBodyFromAttackCollider()
     {
-        if (collision.tag == "Enemy")
+        if(attackColliderScriptReference.enemyRigidBody)
         {
-            Debug.Log("Collision with enemy successfully detected");
-
-            enemyRigidBody = collision.gameObject.GetComponent<Rigidbody2D>();
-
+            enemyRigidBody = attackColliderScriptReference.enemyRigidBody;
+            statusSciptOfEnemy = attackColliderScriptReference.statusSciptOfEnemy;
         }
     }
+
+
+    
 
 
     public void CheckPlayerFacingDirection()
@@ -129,11 +128,8 @@ public class PlayerAttack : MonoBehaviour
 
     public IEnumerator AttackWhenverAttackButtonIsPressedAndEnemyRigidbodyWithAnAttachedStatusScriptIsAvailable()
     {
-        if (enemyRigidBody)
-        {
-            statusSciptOfEnemy = enemyRigidBody.gameObject.GetComponent<Statuses>();
-
-        }
+        
+        
 
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
