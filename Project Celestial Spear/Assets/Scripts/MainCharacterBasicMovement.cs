@@ -11,7 +11,7 @@ public class MainCharacterBasicMovement : MonoBehaviour
     //Fields
     public float playerSpeed;
     public bool canMove;
-    private bool isMoving;
+    public bool isMoving;
     private float playerHorizontalInputValue;
     private int lastFacingDirection = 1;
     private int currentFacingDirection = 1;

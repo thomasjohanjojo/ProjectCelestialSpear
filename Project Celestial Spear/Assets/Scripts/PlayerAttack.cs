@@ -12,6 +12,7 @@ public class PlayerAttack : MonoBehaviour
     private Rigidbody2D enemyRigidBody;
     
     private bool canAttack = true;
+    public bool isAttacking;
     private int attackIDCounterWhichIsUsedToControlWhichAttackIsToBeExecuted = 10; // In case the user doesn't input a number. This represents the number of attacks, starting from zero
     private float playerFacingDirection;
 
@@ -52,6 +53,15 @@ public class PlayerAttack : MonoBehaviour
     }
 
 
+    public void SetCanAttackBooleanToTrueWhichShouldOnlyBeDoneThroughAxeThrowScript()
+    {
+        canAttack = true;
+    }
+
+    public void SetCanAttackBooleanToFalseWhichShouldOnlyBeDoneThroughAxeThrowScript()
+    {
+        canAttack = false;
+    }
 
    
 
