@@ -11,9 +11,13 @@ public class PlayerDodge : MonoBehaviour
 
     public Rigidbody2D myRigidbody2D;
     public BoxCollider2D myBoxCollider2D;
+    public DodgeHitDetectionColliderScript dodgeHitDetectionColliderScriptReference;
 
     public bool HoldBeforeTheDodge;
+    public bool isInInvincibilityPeriod;
     public bool DoTheDodge;
+
+    public bool dodgeScriptOnOffBoolean;
 
     public float playerFacingDirection;
     // Start is called before the first frame update
@@ -21,17 +25,21 @@ public class PlayerDodge : MonoBehaviour
     {
        
         DoTheDodge = false;
+        dodgeScriptOnOffBoolean = true;
     }
 
     // Update is called once per frame
     void Update()
     {
 
+        if (dodgeScriptOnOffBoolean == true)
+        {
+            CheckPlayerFacingDirection();
+            DetectWhenShiftButtonIsPressedThenStartTheTimerAndAlsoStopItAfterSomeTimeByTurningTheBooleanOnAndOff();
+            CheckIfHitHasBeenDetectedDuringInvincibilityPhaseAndCallTheDodgeAppropriately();
+            TurnOffColliderAndGravityAndDoTheDodgeWheneverTheBooleanIsTrueAndDoTheOppositeWhenItIsFalse();
 
-        CheckPlayerFacingDirection();
-        DetectWhenShiftButtonIsPressedThenStartTheTimerAndAlsoStopItAfterSomeTimeByTurningTheBooleanOnAndOff();
-        TurnOffColliderAndGravityAndDoTheDodgeWheneverTheBooleanIsTrueAndDoTheOppositeWhenItIsFalse();
-
+        }
 
 
     }
@@ -69,11 +77,34 @@ public class PlayerDodge : MonoBehaviour
         HoldBeforeTheDodge = true;
         yield return new WaitForSeconds(thatMillisecondsOfTimeBeforeInvincibility);
         HoldBeforeTheDodge = false;
+
+        isInInvincibilityPeriod = true;
+        dodgeHitDetectionColliderScriptReference.boxColliderForDetectingDodgeHits.enabled = true;
+        yield return new WaitForSeconds(thatMillisecondsOfTimeOfTheInvincibilityPeriod);
+        dodgeHitDetectionColliderScriptReference.boxColliderForDetectingDodgeHits.enabled = false;
+        isInInvincibilityPeriod = false;
+       
+
+    }
+
+    void CheckIfHitHasBeenDetectedDuringInvincibilityPhaseAndCallTheDodgeAppropriately()
+    {
+        if(isInInvincibilityPeriod == true && dodgeHitDetectionColliderScriptReference.hasAHitBeenDetectedDuringInvincibilityPhase == true)
+        {
+            StartCoroutine(IfHitHasBeenDetectedDuringTheInvincibilityPeriodThenAskToDoTheDodge());
+            dodgeHitDetectionColliderScriptReference.boxColliderForDetectingDodgeHits.enabled = false;
+            dodgeHitDetectionColliderScriptReference.hasAHitBeenDetectedDuringInvincibilityPhase = false;
+        }
+    }
+
+
+
+    IEnumerator IfHitHasBeenDetectedDuringTheInvincibilityPeriodThenAskToDoTheDodge()
+    {
         DoTheDodge = true;
         yield return new WaitForSeconds(theDurationOfTheDodge);
         DoTheDodge = false;
         FlipThePlayerToTheOppositeFacingSideAfterDodging();
-
     }
 
     void TurnOffColliderAndGravityAndDoTheDodgeWheneverTheBooleanIsTrueAndDoTheOppositeWhenItIsFalse()

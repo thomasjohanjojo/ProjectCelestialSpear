@@ -647,8 +647,8 @@ BoxCollider2D:
   m_Offset: {x: -0.049087405, y: -0.24543762}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.51963496, y: 0.55950004}
-    oldSize: {x: 2.5, y: 4.125}
+    pivot: {x: 0.68932724, y: 0.52442926}
+    oldSize: {x: 3, y: 3.875}
     newSize: {x: 2.5, y: 4.125}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -709,14 +709,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f924de34652663f46a8c65ed5cb7534e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dodgeSpeed: 0
-  thatMillisecondsOfTimeBeforeInvincibility: 0
-  thatMillisecondsOfTimeOfTheInvincibilityPeriod: 0
-  theDurationOfTheDodge: 0
-  myRigidbody2D: {fileID: 0}
-  myBoxCollider2D: {fileID: 0}
+  dodgeSpeed: 500
+  thatMillisecondsOfTimeBeforeInvincibility: 0.5
+  thatMillisecondsOfTimeOfTheInvincibilityPeriod: 0.5
+  theDurationOfTheDodge: 0.1
+  myRigidbody2D: {fileID: 1103692427}
+  myBoxCollider2D: {fileID: 1103692426}
+  dodgeHitDetectionColliderScriptReference: {fileID: 337683033}
   HoldBeforeTheDodge: 0
+  isInInvincibilityPeriod: 0
   DoTheDodge: 0
+  dodgeScriptOnOffBoolean: 0
   playerFacingDirection: 0
 --- !u!114 &1103692430
 MonoBehaviour:

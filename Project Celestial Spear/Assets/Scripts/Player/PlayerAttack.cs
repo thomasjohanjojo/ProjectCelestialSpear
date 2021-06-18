@@ -13,6 +13,7 @@ public class PlayerAttack : MonoBehaviour
     private Rigidbody2D enemyRigidBody;
     
     private bool canAttack = true;
+    public bool PlayerAttackScriptOnOffBoolean;
     public bool isAttacking;
     private int attackIDCounterWhichIsUsedToControlWhichAttackIsToBeExecuted = 10; // In case the user doesn't input a number. This represents the number of attacks, starting from zero
     private float playerFacingDirection;
@@ -33,16 +34,19 @@ public class PlayerAttack : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
 
+        PlayerAttackScriptOnOffBoolean = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        UpdateOrGrabEnemyRigidBodyFromAttackCollider();       
-        CheckPlayerFacingDirection();
-        CheckIfPlayerCanAttackAndExecuteAttackIfThePlayerCan();
+        if (PlayerAttackScriptOnOffBoolean == true)
+        {
+            UpdateOrGrabEnemyRigidBodyFromAttackCollider();
+            CheckPlayerFacingDirection();
+            CheckIfPlayerCanAttackAndExecuteAttackIfThePlayerCan();
+        }
     }
 
     private void CheckIfPlayerCanAttackAndExecuteAttackIfThePlayerCan()

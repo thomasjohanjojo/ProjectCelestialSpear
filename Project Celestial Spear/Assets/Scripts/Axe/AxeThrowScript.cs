@@ -25,7 +25,7 @@ public class AxeThrowScript : MonoBehaviour
 
     private Statuses statusScriptOfTheEnemy;
 
-    public SpriteRenderer spriteRendererOfTheAxe;
+    
 
     public PlayerAnimationController animationControllerOfThePlayer;
 
@@ -35,6 +35,8 @@ public class AxeThrowScript : MonoBehaviour
     public float animationDurationOfTheAxeReturnToHandAnimation;
 
     private Rigidbody2D enemyRigidBody;
+
+    public bool axeThrowScriptOnOffBoolean;
 
     public bool isAxeThowing;
 
@@ -53,6 +55,7 @@ public class AxeThrowScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        axeThrowScriptOnOffBoolean = true;
         goBackToThePlayerAfterAttack = false;
         goToTheEnemyToAttack = false;
         pressingTheRangedAttackButtonIsPossibleAndCanThrowAxe = true;
@@ -65,17 +68,26 @@ public class AxeThrowScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(axeThrowScriptOnOffBoolean == true)
+        {
+            AxeThrowMainFunction();
+        }
+    }
+
+
+    public void AxeThrowMainFunction()
+    {
         KeepRotationAsSame();
         CheckDistanceToPlayer();
 
-        if(goToTheEnemyToAttack == true)
+        if (goToTheEnemyToAttack == true)
         {
             transform.Translate(positionOfTheMouseClick * Time.deltaTime * speedOfAxeThrow);
             CheckIfAxeHasTravelledMaximumDistanceAndIfSoThenGoBackToPlayer();
-            
+
         }
 
-        else if(goBackToThePlayerAfterAttack == true)
+        else if (goBackToThePlayerAfterAttack == true)
         {
             GoBackToThePlayer();
             pressingTheRangedAttackButtonIsPossibleAndCanThrowAxe = false;
@@ -90,12 +102,13 @@ public class AxeThrowScript : MonoBehaviour
                 DetectMousePositionWheneverFire2ButtonIsPressed();
             }
 
-            else if(axeThrowHasBeenPressedOnceBeforeReturnJourney == true && goBackToThePlayerAfterAttack == false)
+            else if (axeThrowHasBeenPressedOnceBeforeReturnJourney == true && goBackToThePlayerAfterAttack == false)
             {
-               StartCoroutine(DetectRangedAttackButtonPressAndInstantlyTransportTheAxeBackToThePlayer());
+                StartCoroutine(DetectRangedAttackButtonPressAndInstantlyTransportTheAxeBackToThePlayer());
             }
         }
     }
+
 
     public void KeepRotationAsSame()
     {
