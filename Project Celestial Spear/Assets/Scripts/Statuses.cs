@@ -11,6 +11,7 @@ public class Statuses : MonoBehaviour
 
     // The statuses and their respective functions, in that order for each status-functions group
     public int health = 100;
+    public HealthBarScript healthbar;
 
     public void DecreaseHealthByTheNumber(int healthToBeDecreased)
     {
@@ -20,12 +21,13 @@ public class Statuses : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        DecreaseHealthByTheNumber(10); // simply for testing    
+       // DecreaseHealthByTheNumber(10); // simply for testing   
+      
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        healthbar.Sethealth(health);
     }
 }
