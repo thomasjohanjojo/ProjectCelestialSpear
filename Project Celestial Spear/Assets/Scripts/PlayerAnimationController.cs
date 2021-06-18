@@ -17,6 +17,8 @@ public class PlayerAnimationController : MonoBehaviour
     public string PUNCH_AND_PUSH_ANIMATION = "PunchAndPush";
     public string PLAYER_ATTACK_ONE_ANIMATION = "PlayerAttackOne";
     public string PLAYER_ATTACK_TWO_ANIMATION = "PlayerAttackTwo";
+    public string AXE_REAPPEAR_TO_HAND_ANIMATION = "AxeReappearToHandAnimation";
+    
 
 
     // Start is called before the first frame update
