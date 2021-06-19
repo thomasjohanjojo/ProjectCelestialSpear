@@ -132,6 +132,9 @@ public class PlayerDodge : MonoBehaviour
         DoTheDodge = false;
         FlipThePlayerToTheOppositeFacingSideAfterDodging();
 
+        myBoxCollider2D.enabled = true;
+        myRigidbody2D.gravityScale = 1;
+
         playerStateControllerReference.StateExecutionHasCompletedAndTurnOnDefaultState(playerStateControllerReference.PLAYER_STATE_DODGING);
     }
 
