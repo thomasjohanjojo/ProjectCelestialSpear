@@ -449,9 +449,9 @@ MonoBehaviour:
   speedOfAxeThrow: 10
   damageOfTheAxeThrow: 0
   colliderOfTheAxe: {fileID: 937093688}
+  axeThrowButtonHasBeenPressed: 0
+  playerStateControllerReference: {fileID: 1103692432}
   animationControllerOfThePlayer: {fileID: 1103692428}
-  mainCharacterBasicMovementScriptReference: {fileID: 1103692425}
-  playerAttackScriptReference: {fileID: 1103692430}
   animationDurationOfTheAxeReturnToHandAnimation: 0.9
   axeThrowScriptOnOffBoolean: 0
   isAxeThowing: 0
@@ -633,6 +633,7 @@ MonoBehaviour:
   mainCharacterBasicMovementScriptOnOffBoolean: 0
   playerAnimationControllerReference: {fileID: 1103692428}
   playerAttackScriptReference: {fileID: 1103692430}
+  playerStateControllerReference: {fileID: 1103692432}
 --- !u!61 &1103692426
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -699,6 +700,9 @@ MonoBehaviour:
   PLAYER_ATTACK_ONE_ANIMATION: PlayerAttackOne
   PLAYER_ATTACK_TWO_ANIMATION: PlayerAttackTwo
   AXE_REAPPEAR_TO_HAND_ANIMATION: AxeReappearToHandAnimation
+  HOLD_THE_DODGE_ANIMATION: HoldTheDodge
+  INVINCIBLE_STAGE_ANIMATION: InvincibleStage
+  THE_ACTUAL_DODGE_ANIMATION: TheActualDodge
 --- !u!114 &1103692429
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -737,6 +741,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e242005fcf2753449946bd99acd707f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerStateControllerReference: {fileID: 1103692432}
   playerControllerReferenceWhichHasATurnOnAndTurnOffBoolean: {fileID: 1103692425}
   playerAnimationControllerReference: {fileID: 1103692428}
   attackColliderScriptReference: {fileID: 1839155469}
@@ -783,6 +788,11 @@ MonoBehaviour:
   PLAYER_STATE_ATTACKING: PlayerStateAttacking
   PLAYER_STATE_AXE_THROW: PlayerStateAxeThrow
   PLAYER_STATE_DODGING: PlayerStateDodging
+  isIdleOrMovingStateIsExecuting: 0
+  isAttackStateIsExecuting: 0
+  isAxeThrowStateIsExecuting: 0
+  isDodgeStateIsExecuting: 0
+  currentState: 
 --- !u!1 &1244033750
 GameObject:
   m_ObjectHideFlags: 0

@@ -26,7 +26,7 @@ public class PlayerStateController : MonoBehaviour
     public bool isDodgeStateIsExecuting;
 
 
-    string currentState;
+    public string currentState;
     string defaultState;
 
     
@@ -237,17 +237,5 @@ public class PlayerStateController : MonoBehaviour
 
 
 
-    public void DisableEverythingElseForDoingDodge()
-    {
-        axeThrowScriptReference.axeThrowScriptOnOffBoolean = false;
-        mainCharacterBasicMovementScriptReference.mainCharacterBasicMovementScriptOnOffBoolean = false;
-        playerAttackScriptReference.PlayerAttackScriptOnOffBoolean = false;
-    }
-
-    public void EnableEverythingBackAfterDodging()
-    {
-        axeThrowScriptReference.axeThrowScriptOnOffBoolean = true;
-        mainCharacterBasicMovementScriptReference.mainCharacterBasicMovementScriptOnOffBoolean = true;
-        playerAttackScriptReference.PlayerAttackScriptOnOffBoolean = true;
-    }
+   
 }

@@ -27,13 +27,13 @@ public class PlayerDodge : MonoBehaviour
     {
        
         DoTheDodge = false;
-        dodgeScriptOnOffBoolean = true;
+        dodgeScriptOnOffBoolean = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        CheckIfDodgeButtonHasPressedForChangingState();
         if (dodgeScriptOnOffBoolean == true)
         {
             CheckPlayerFacingDirection();
@@ -44,6 +44,15 @@ public class PlayerDodge : MonoBehaviour
         }
 
 
+    }
+
+
+    void CheckIfDodgeButtonHasPressedForChangingState()
+    {
+       if( Input.GetKeyDown((KeyCode.LeftShift)) == true)
+        {
+            playerStateControllerReference.ChangeStateAccordingToPriority(playerStateControllerReference.PLAYER_STATE_DODGING);
+        }
     }
 
     void CheckPlayerFacingDirection()
@@ -76,7 +85,7 @@ public class PlayerDodge : MonoBehaviour
 
     IEnumerator waitBeforeDodging()
     {
-        playerStateControllerReference.DisableEverythingElseForDoingDodge();
+        
 
         HoldBeforeTheDodge = true;
 
@@ -96,7 +105,7 @@ public class PlayerDodge : MonoBehaviour
 
         if (DoTheDodge == false)
         {
-            playerStateControllerReference.EnableEverythingBackAfterDodging();
+            playerStateControllerReference.StateExecutionHasCompletedAndTurnOnDefaultState(playerStateControllerReference.PLAYER_STATE_DODGING);
         }
 
     }
@@ -115,7 +124,7 @@ public class PlayerDodge : MonoBehaviour
 
     IEnumerator IfHitHasBeenDetectedDuringTheInvincibilityPeriodThenAskToDoTheDodge()
     {
-        playerStateControllerReference.DisableEverythingElseForDoingDodge();
+        
 
         DoTheDodge = true;
         playerAnimationControllerScriptReference.ChangeAnimationState(playerAnimationControllerScriptReference.THE_ACTUAL_DODGE_ANIMATION);
@@ -123,7 +132,7 @@ public class PlayerDodge : MonoBehaviour
         DoTheDodge = false;
         FlipThePlayerToTheOppositeFacingSideAfterDodging();
 
-        playerStateControllerReference.EnableEverythingBackAfterDodging();
+        playerStateControllerReference.StateExecutionHasCompletedAndTurnOnDefaultState(playerStateControllerReference.PLAYER_STATE_DODGING);
     }
 
     void TurnOffColliderAndGravityAndDoTheDodgeWheneverTheBooleanIsTrueAndDoTheOppositeWhenItIsFalse()
