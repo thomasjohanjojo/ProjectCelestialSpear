@@ -19,6 +19,7 @@ public class MainCharacterBasicMovement : MonoBehaviour
 
     public PlayerAnimationController playerAnimationControllerReference;
     public PlayerAttack playerAttackScriptReference;
+    public PlayerStateController playerStateControllerReference;
     Rigidbody2D maincharacterRigidbody;
    
 
@@ -37,7 +38,7 @@ public class MainCharacterBasicMovement : MonoBehaviour
     {
         //Default Values
 
-        mainCharacterBasicMovementScriptOnOffBoolean = true;
+        
         canMove = true;
         isMoving = false;
         playerHorizontalInputValue = 0;
@@ -60,6 +61,7 @@ public class MainCharacterBasicMovement : MonoBehaviour
                 CheckIfPlayerIsMovingAndCallTheAppropriateMovementAnimation();
             }
 
+            playerStateControllerReference.StateExecutionHasCompletedAndTurnOnDefaultState(playerStateControllerReference.PLAYER_STATE_IDLE_OR_MOVING);
         }
         
     }
