@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
-
     public PlayerStateController playerStateControllerReference;
     public MainCharacterBasicMovement playerControllerReferenceWhichHasATurnOnAndTurnOffBoolean;
     public PlayerAnimationController playerAnimationControllerReference;
@@ -19,7 +18,6 @@ public class PlayerAttack : MonoBehaviour
     private bool canAttack = true;
     public bool PlayerAttackScriptOnOffBoolean;
     public bool isAttacking;
-
     private int attackIDCounterWhichIsUsedToControlWhichAttackIsToBeExecuted = 10; // In case the user doesn't input a number. This represents the number of attacks, starting from zero
     private float playerFacingDirection;
 
@@ -40,15 +38,12 @@ public class PlayerAttack : MonoBehaviour
     void Start()
     {
 
-
         PlayerAttackScriptOnOffBoolean = false;
-
     }
 
     // Update is called once per frame
     void Update()
     {
-
         GetAttackButtonInputForStateChanging();
         if (PlayerAttackScriptOnOffBoolean == true)
         {
@@ -72,7 +67,6 @@ public class PlayerAttack : MonoBehaviour
     }
 
 
-
     private void CheckIfPlayerCanAttackAndExecuteAttackIfThePlayerCan()
     {
         if (canAttack)
@@ -80,7 +74,6 @@ public class PlayerAttack : MonoBehaviour
             StartCoroutine(AttackWhenverAttackButtonIsPressedAndEnemyRigidbodyWithAnAttachedStatusScriptIsAvailable());
         }
     }
-
 
 
     public void SetCanAttackBooleanToTrueWhichShouldOnlyBeDoneThroughAxeThrowScript()
@@ -92,7 +85,6 @@ public class PlayerAttack : MonoBehaviour
     {
         canAttack = false;
     }
-
 
    
 
@@ -124,21 +116,17 @@ public class PlayerAttack : MonoBehaviour
         enemyRigidBody.AddForce(pushBackForceToAddAsVector, ForceMode2D.Impulse);
     }
 
-
     private void UpdateOrGrabEnemyRigidBodyFromAttackCollider()
     {
         if(attackColliderScriptReference.enemyRigidBody)
         {
             enemyRigidBody = attackColliderScriptReference.enemyRigidBody;
             statusSciptOfEnemy = attackColliderScriptReference.statusSciptOfEnemy;
-
         }
     }
 
 
-
     
-
 
 
     public void CheckPlayerFacingDirection()
@@ -162,10 +150,8 @@ public class PlayerAttack : MonoBehaviour
 
     public IEnumerator AttackWhenverAttackButtonIsPressedAndEnemyRigidbodyWithAnAttachedStatusScriptIsAvailable()
     {
-
         
         
-
 
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
@@ -184,9 +170,7 @@ public class PlayerAttack : MonoBehaviour
             if (attackIDCounterWhichIsUsedToControlWhichAttackIsToBeExecuted == 0)
             {
                 SetMainCharacterVelocityToZeroToStopTheLeftOverMovementWhenCanMoveIsTurnedOff();
-
                 
-
                 canAttack = false;
 
                 IfEnemyHasBeenDetectedThenPushTheEnemyAndAlsoPlayTheAppropriateAnimation();
@@ -202,9 +186,7 @@ public class PlayerAttack : MonoBehaviour
                 timeStampWhenAttackButtonWasLastPressed = Time.time;
 
                 statusSciptOfEnemy = null;
-
                 
-
                 canAttack = true;
             }
 
@@ -212,9 +194,7 @@ public class PlayerAttack : MonoBehaviour
             {
                 SetMainCharacterVelocityToZeroToStopTheLeftOverMovementWhenCanMoveIsTurnedOff();
                 canAttack = false;
-
                 
-
 
                 playerAnimationControllerReference.ChangeAnimationState(playerAnimationControllerReference.PLAYER_ATTACK_ONE_ANIMATION);
                 yield return new WaitForSeconds(windingUpTimeOfSecondAttack);
@@ -227,9 +207,7 @@ public class PlayerAttack : MonoBehaviour
                 timeStampWhenAttackButtonWasLastPressed = Time.time;                
 
                 statusSciptOfEnemy = null;
-
                 
-
                 canAttack = true;
             }
 
@@ -237,9 +215,7 @@ public class PlayerAttack : MonoBehaviour
             {
                 SetMainCharacterVelocityToZeroToStopTheLeftOverMovementWhenCanMoveIsTurnedOff();
                 canAttack = false;
-
                 
-
 
                 playerAnimationControllerReference.ChangeAnimationState(playerAnimationControllerReference.PLAYER_ATTACK_TWO_ANIMATION);
                 yield return new WaitForSeconds(windingUpTimeOfThirdAttack);
@@ -254,7 +230,6 @@ public class PlayerAttack : MonoBehaviour
 
 
                 statusSciptOfEnemy = null;
-
                 
                 canAttack = true;
             }
@@ -263,7 +238,6 @@ public class PlayerAttack : MonoBehaviour
         }
 
         playerStateControllerReference.StateExecutionHasCompletedAndTurnOnDefaultState(playerStateControllerReference.PLAYER_STATE_ATTACKING);
-
     }
 
     private void ResetAttackIDCounterToZeroIfTooMuchDelayBetweenButtonPresses()

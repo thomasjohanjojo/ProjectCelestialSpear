@@ -15,23 +15,17 @@ public class Statuses : MonoBehaviour
     public void DecreaseHealthByTheNumber(int healthToBeDecreased)
     {
         health = health - healthToBeDecreased;
-        Debug.Log("damage dealt");
-
     }
-    
-    
+
     // Start is called before the first frame update
     void Start()
     {
-         // simply for testing    
+        DecreaseHealthByTheNumber(10); // simply for testing    
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (health <= 0.0f)
-        {
-            Destroy(this.gameObject);
-        }
+        
     }
 }
