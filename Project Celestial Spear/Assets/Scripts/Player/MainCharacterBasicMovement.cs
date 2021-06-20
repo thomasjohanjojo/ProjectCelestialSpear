@@ -11,16 +11,20 @@ public class MainCharacterBasicMovement : MonoBehaviour
     //Fields
     public float playerSpeed;
     public bool canMove;
+
     public bool isMoving;
     public bool mainCharacterBasicMovementScriptOnOffBoolean;
+
     private float playerHorizontalInputValue;
     private int lastFacingDirection = 1;
     private int currentFacingDirection = 1;
 
     public PlayerAnimationController playerAnimationControllerReference;
     public PlayerAttack playerAttackScriptReference;
+
     public PlayerStateController playerStateControllerReference;
     public ObstructionDetectionColliderScriptForPlayer obstructionDetectionColliderScriptReference;
+
     Rigidbody2D maincharacterRigidbody;
    
 
@@ -29,6 +33,7 @@ public class MainCharacterBasicMovement : MonoBehaviour
 
     bool doFlipPlayerFacingDirectionAccordingToDirectionOfInputFunctionInFixedUpdate;
     bool doMovePlayerHorizontallyFunctionInFixedUpdate;
+
     
 
 
@@ -38,6 +43,8 @@ public class MainCharacterBasicMovement : MonoBehaviour
     void Start()
     {
         //Default Values
+
+
 
         
         canMove = true;
@@ -52,6 +59,7 @@ public class MainCharacterBasicMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         if (mainCharacterBasicMovementScriptOnOffBoolean == true)
         {
             ObtainMovementInputFromPlayer();
@@ -65,12 +73,14 @@ public class MainCharacterBasicMovement : MonoBehaviour
             }
 
             playerStateControllerReference.StateExecutionHasCompletedAndTurnOnDefaultState(playerStateControllerReference.PLAYER_STATE_IDLE_OR_MOVING);
+
         }
         
     }
 
     private void FixedUpdate()
     {
+
         if (mainCharacterBasicMovementScriptOnOffBoolean == true)
         {
             if (doFlipPlayerFacingDirectionAccordingToDirectionOfInputFunctionInFixedUpdate == true)
@@ -92,6 +102,7 @@ public class MainCharacterBasicMovement : MonoBehaviour
 
                 doMovePlayerHorizontallyFunctionInFixedUpdate = false;
             }
+
         }
     }
 
@@ -192,6 +203,8 @@ public class MainCharacterBasicMovement : MonoBehaviour
         maincharacterRigidbody.velocity = new Vector3(0f, maincharacterRigidbody.velocity.y, 0f);
     }
 
+
     
+
 
 }
