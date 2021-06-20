@@ -38,7 +38,6 @@ public class MainCharacterBasicMovement : MonoBehaviour
     void Start()
     {
         //Default Values
-
         
         canMove = true;
         isMoving = false;

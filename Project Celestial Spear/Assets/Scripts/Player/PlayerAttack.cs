@@ -85,7 +85,6 @@ public class PlayerAttack : MonoBehaviour
     {
         canAttack = false;
     }
-
    
 
 
@@ -195,7 +194,6 @@ public class PlayerAttack : MonoBehaviour
                 SetMainCharacterVelocityToZeroToStopTheLeftOverMovementWhenCanMoveIsTurnedOff();
                 canAttack = false;
                 
-
                 playerAnimationControllerReference.ChangeAnimationState(playerAnimationControllerReference.PLAYER_ATTACK_ONE_ANIMATION);
                 yield return new WaitForSeconds(windingUpTimeOfSecondAttack);
 
