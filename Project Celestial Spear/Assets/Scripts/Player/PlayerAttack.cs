@@ -4,14 +4,20 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
+    public PlayerStateController playerStateControllerReference;
     public MainCharacterBasicMovement playerControllerReferenceWhichHasATurnOnAndTurnOffBoolean;
     public PlayerAnimationController playerAnimationControllerReference;
-    public BoxCollider2D myAtackBoxCollider;
+
+    
+    public AttackColliderScript attackColliderScriptReference;
 
     private Statuses statusSciptOfEnemy;
     private Rigidbody2D enemyRigidBody;
+
     
     private bool canAttack = true;
+    public bool PlayerAttackScriptOnOffBoolean;
+    public bool isAttacking;
     private int attackIDCounterWhichIsUsedToControlWhichAttackIsToBeExecuted = 10; // In case the user doesn't input a number. This represents the number of attacks, starting from zero
     private float playerFacingDirection;
 
@@ -31,17 +37,35 @@ public class PlayerAttack : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
 
+        PlayerAttackScriptOnOffBoolean = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-       
-        CheckPlayerFacingDirection();
-        CheckIfPlayerCanAttackAndExecuteAttackIfThePlayerCan();
+        GetAttackButtonInputForStateChanging();
+        if (PlayerAttackScriptOnOffBoolean == true)
+        {
+            UpdateOrGrabEnemyRigidBodyFromAttackCollider();
+            CheckPlayerFacingDirection();
+            CheckIfPlayerCanAttackAndExecuteAttackIfThePlayerCan();
+        }
     }
+
+
+    private void GetAttackButtonInputForStateChanging()
+    {
+        if(Input.GetKeyDown(KeyCode.Mouse0) ==  true)
+        {
+            
+            playerStateControllerReference.ChangeStateAccordingToPriority(playerStateControllerReference.PLAYER_STATE_ATTACKING);
+            
+        }
+
+        
+    }
+
 
     private void CheckIfPlayerCanAttackAndExecuteAttackIfThePlayerCan()
     {
@@ -52,7 +76,15 @@ public class PlayerAttack : MonoBehaviour
     }
 
 
+    public void SetCanAttackBooleanToTrueWhichShouldOnlyBeDoneThroughAxeThrowScript()
+    {
+        canAttack = true;
+    }
 
+    public void SetCanAttackBooleanToFalseWhichShouldOnlyBeDoneThroughAxeThrowScript()
+    {
+        canAttack = false;
+    }
    
 
 
@@ -83,19 +115,17 @@ public class PlayerAttack : MonoBehaviour
         enemyRigidBody.AddForce(pushBackForceToAddAsVector, ForceMode2D.Impulse);
     }
 
-    
-
-
-    private void OnTriggerStay2D(Collider2D collision) // This function is automatically called by unity like the update function
+    private void UpdateOrGrabEnemyRigidBodyFromAttackCollider()
     {
-        if (collision.tag == "Enemy")
+        if(attackColliderScriptReference.enemyRigidBody)
         {
-            Debug.Log("Collision with enemy successfully detected");
-
-            enemyRigidBody = collision.gameObject.GetComponent<Rigidbody2D>();
-
+            enemyRigidBody = attackColliderScriptReference.enemyRigidBody;
+            statusSciptOfEnemy = attackColliderScriptReference.statusSciptOfEnemy;
         }
     }
+
+
+    
 
 
     public void CheckPlayerFacingDirection()
@@ -119,11 +149,8 @@ public class PlayerAttack : MonoBehaviour
 
     public IEnumerator AttackWhenverAttackButtonIsPressedAndEnemyRigidbodyWithAnAttachedStatusScriptIsAvailable()
     {
-        if (enemyRigidBody)
-        {
-            statusSciptOfEnemy = enemyRigidBody.gameObject.GetComponent<Statuses>();
-
-        }
+        
+        
 
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
@@ -142,7 +169,7 @@ public class PlayerAttack : MonoBehaviour
             if (attackIDCounterWhichIsUsedToControlWhichAttackIsToBeExecuted == 0)
             {
                 SetMainCharacterVelocityToZeroToStopTheLeftOverMovementWhenCanMoveIsTurnedOff();
-                playerControllerReferenceWhichHasATurnOnAndTurnOffBoolean.canMove = false;
+                
                 canAttack = false;
 
                 IfEnemyHasBeenDetectedThenPushTheEnemyAndAlsoPlayTheAppropriateAnimation();
@@ -158,7 +185,7 @@ public class PlayerAttack : MonoBehaviour
                 timeStampWhenAttackButtonWasLastPressed = Time.time;
 
                 statusSciptOfEnemy = null;
-                playerControllerReferenceWhichHasATurnOnAndTurnOffBoolean.canMove = true;
+                
                 canAttack = true;
             }
 
@@ -166,8 +193,7 @@ public class PlayerAttack : MonoBehaviour
             {
                 SetMainCharacterVelocityToZeroToStopTheLeftOverMovementWhenCanMoveIsTurnedOff();
                 canAttack = false;
-                playerControllerReferenceWhichHasATurnOnAndTurnOffBoolean.canMove = false;
-
+                
                 playerAnimationControllerReference.ChangeAnimationState(playerAnimationControllerReference.PLAYER_ATTACK_ONE_ANIMATION);
                 yield return new WaitForSeconds(windingUpTimeOfSecondAttack);
 
@@ -179,7 +205,7 @@ public class PlayerAttack : MonoBehaviour
                 timeStampWhenAttackButtonWasLastPressed = Time.time;                
 
                 statusSciptOfEnemy = null;
-                playerControllerReferenceWhichHasATurnOnAndTurnOffBoolean.canMove = true;
+                
                 canAttack = true;
             }
 
@@ -187,7 +213,7 @@ public class PlayerAttack : MonoBehaviour
             {
                 SetMainCharacterVelocityToZeroToStopTheLeftOverMovementWhenCanMoveIsTurnedOff();
                 canAttack = false;
-                playerControllerReferenceWhichHasATurnOnAndTurnOffBoolean.canMove = false;
+                
 
                 playerAnimationControllerReference.ChangeAnimationState(playerAnimationControllerReference.PLAYER_ATTACK_TWO_ANIMATION);
                 yield return new WaitForSeconds(windingUpTimeOfThirdAttack);
@@ -202,13 +228,14 @@ public class PlayerAttack : MonoBehaviour
 
 
                 statusSciptOfEnemy = null;
-                playerControllerReferenceWhichHasATurnOnAndTurnOffBoolean.canMove = true;
+                
                 canAttack = true;
             }
 
-
+            
         }
 
+        playerStateControllerReference.StateExecutionHasCompletedAndTurnOnDefaultState(playerStateControllerReference.PLAYER_STATE_ATTACKING);
     }
 
     private void ResetAttackIDCounterToZeroIfTooMuchDelayBetweenButtonPresses()
