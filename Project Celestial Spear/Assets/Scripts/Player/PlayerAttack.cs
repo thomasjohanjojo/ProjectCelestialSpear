@@ -19,7 +19,7 @@ public class PlayerAttack : MonoBehaviour
     public bool PlayerAttackScriptOnOffBoolean;
     public bool isAttacking;
     private int attackIDCounterWhichIsUsedToControlWhichAttackIsToBeExecuted = 10; // In case the user doesn't input a number. This represents the number of attacks, starting from zero
-    private float playerFacingDirection;
+    public float playerFacingDirection;
 
 
     public float maximumAllowedDelayBetweenAttackButtonPresses = 1f;

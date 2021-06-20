@@ -21,18 +21,25 @@ public class Entity : MonoBehaviour
     [SerializeField]
     private Transform playerCheck;
 
+    [SerializeField]
+    private BoxCollider2D damageGivingSignifyingCollider;
+
     private Vector2 velocityWorkspace;
 
     public virtual void Start()
     {
-        facingDirection = -1;
-        
+        facingDirection = 1;
+
+        TurnOffDamageSignifyingColliderBoolean();
+
         aliveGO = transform.Find("Alive").gameObject;
         rb = aliveGO.GetComponent<Rigidbody2D>();
         anim = aliveGO.GetComponent<Animator>();
         atsm = aliveGO.GetComponent<AnimationToStatemachine>();
 
         stateMachine = new FiniteStateMachine();
+
+       
 
     }
 
@@ -72,6 +79,17 @@ public class Entity : MonoBehaviour
         return Physics2D.Raycast(playerCheck.position, aliveGO.transform.right, entityData.maxAgroDistance, entityData.whatIsPlayer);
     }
 
+    public virtual void TurnOnDamageSignifyingColliderBoolean()
+    {
+        damageGivingSignifyingCollider.enabled = true;
+        
+    }
+
+    public virtual void TurnOffDamageSignifyingColliderBoolean()
+    {
+        damageGivingSignifyingCollider.enabled = false;
+    }
+
     public virtual void Flip()
     {
         facingDirection *= -1;
@@ -91,5 +109,7 @@ public class Entity : MonoBehaviour
         Gizmos.DrawWireSphere(playerCheck.position + (Vector3)(Vector2.right * entityData.closeRangeActionDistance), 0.2f);
         Gizmos.DrawWireSphere(playerCheck.position + (Vector3)(Vector2.right * entityData.minAgroDistance), 0.2f);
         Gizmos.DrawWireSphere(playerCheck.position + (Vector3)(Vector2.right * entityData.maxAgroDistance), 0.2f);
+        
+        
     }
 }

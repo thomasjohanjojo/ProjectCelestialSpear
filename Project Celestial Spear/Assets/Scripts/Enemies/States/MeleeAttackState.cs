@@ -34,6 +34,8 @@ public class MeleeAttackState : AttackState
     public override void FinishAttack()
     {
         base.FinishAttack();
+        entity.TurnOffDamageSignifyingColliderBoolean();
+        
     }
 
     public override void LogicUpdate()
@@ -54,7 +56,9 @@ public class MeleeAttackState : AttackState
 
         foreach (Collider2D collider in detectedObjects)
         {
+            entity.TurnOnDamageSignifyingColliderBoolean();
             collider.transform.SendMessage("DecreaseHealthByTheNumber", attackDetails.damageAmount);
+            
         }
     }
 }

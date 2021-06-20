@@ -6,6 +6,11 @@ public class ObstructionDetectionColliderScriptForPlayer : MonoBehaviour
 {
 
     public bool ObstructionInFront;
+    public float detectionDistanceOfRaycast;
+    
+    public PlayerAttack playerAttackScriptReference;
+
+    public LayerMask layerMaskOfEnemy;
 
 
     // Start is called before the first frame update
@@ -17,22 +22,28 @@ public class ObstructionDetectionColliderScriptForPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        playerAttackScriptReference.CheckPlayerFacingDirection();
+
         
+       if(IfEnemyInRange() == true)
+       {
+           ObstructionInFront = true;
+       }
+
+       else if(IfEnemyInRange() == false)
+       {
+           ObstructionInFront = false;
+       }
+
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private bool IfEnemyInRange()
     {
-        if(collision.tag == "Enemy")
-        {
-            ObstructionInFront = true;
-        }
+        Vector2 directionOfRaycast = new Vector2(playerAttackScriptReference.playerFacingDirection, 0);
+
+        return Physics2D.Raycast(transform.position, directionOfRaycast, detectionDistanceOfRaycast, layerMaskOfEnemy);
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if(collision.tag == "Enemy")
-        {
-            ObstructionInFront = false;
-        }
-    }
+
 }

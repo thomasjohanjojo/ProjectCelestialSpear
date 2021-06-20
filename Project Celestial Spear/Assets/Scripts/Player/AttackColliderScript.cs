@@ -24,7 +24,7 @@ public class AttackColliderScript : MonoBehaviour
     {
         if (collision.tag == "Enemy")
         {
-            Debug.Log("Collision with enemy successfully detected");
+            
 
             enemyRigidBody = collision.gameObject.GetComponent<Rigidbody2D>();
 

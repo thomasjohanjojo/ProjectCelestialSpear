@@ -45,7 +45,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.87875056, y: -0.3131181}
+  m_Offset: {x: 3.9067144, y: -0.3131181}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -56,7 +56,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.97979975, y: 3.6867535}
+  m_Size: {x: 8.460653, y: 3.6867535}
   m_EdgeRadius: 0
 --- !u!114 &2204384637875850910
 MonoBehaviour:
@@ -306,7 +306,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2204384638453528343}
-  - component: {fileID: 2204384638453528342}
   - component: {fileID: 2204384638453528341}
   m_Layer: 0
   m_Name: DetectionColliderToCheckForObstructionInFrontOfPlayer
@@ -323,38 +322,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2204384638453528328}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.29, y: 0, z: 0}
+  m_LocalPosition: {x: -0.08, y: -0.21, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2204384638749814351}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &2204384638453528342
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2204384638453528328}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 1.5670042, y: -0.33296323}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.9153652, y: 3.330742}
-  m_EdgeRadius: 0
 --- !u!114 &2204384638453528341
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -368,6 +341,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ObstructionInFront: 0
+  detectionDistanceOfRaycast: 1.5
+  playerAttackScriptReference: {fileID: 2204384638749814345}
+  layerMaskOfEnemy:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &2204384638749814338
 GameObject:
   m_ObjectHideFlags: 0
@@ -387,7 +365,7 @@ GameObject:
   - component: {fileID: 2204384638749814344}
   - component: {fileID: 2204384638749814346}
   - component: {fileID: 2204384638749814359}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -401,7 +379,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2204384638749814338}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -5, y: -3.23, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -591,6 +569,7 @@ MonoBehaviour:
   attackColliderScriptReference: {fileID: 2204384639090746826}
   PlayerAttackScriptOnOffBoolean: 0
   isAttacking: 0
+  playerFacingDirection: 0
   maximumAllowedDelayBetweenAttackButtonPresses: 1
   pushBackForceOfFirstAttack: 0
   damageOfFirstAttack: 0
@@ -611,7 +590,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ead1ff4bb6997940ad159319d1a5a79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  health: 1000
 --- !u!114 &2204384638749814346
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -625,7 +604,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dodgeSpeed: 100
-  thatMillisecondsOfTimeBeforeInvincibility: 0.5
+  thatMillisecondsOfTimeBeforeInvincibility: 0
   thatMillisecondsOfTimeOfTheInvincibilityPeriod: 0.5
   theDurationOfTheDodge: 0.2
   myRigidbody2D: {fileID: 2204384638749814348}
