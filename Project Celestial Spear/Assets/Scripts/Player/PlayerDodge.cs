@@ -11,6 +11,7 @@ public class PlayerDodge : MonoBehaviour
 
     public Rigidbody2D myRigidbody2D;
     public BoxCollider2D myBoxCollider2D;
+    public CircleCollider2D circleColliderForSmootheningWalking;
     public DodgeHitDetectionColliderScript dodgeHitDetectionColliderScriptReference;
     public PlayerAnimationController playerAnimationControllerScriptReference;
     public PlayerStateController playerStateControllerReference;
@@ -133,6 +134,7 @@ public class PlayerDodge : MonoBehaviour
         FlipThePlayerToTheOppositeFacingSideAfterDodging();
 
         myBoxCollider2D.enabled = true;
+        circleColliderForSmootheningWalking.enabled = true;
         myRigidbody2D.gravityScale = 1;
 
         playerStateControllerReference.StateExecutionHasCompletedAndTurnOnDefaultState(playerStateControllerReference.PLAYER_STATE_DODGING);
@@ -144,6 +146,7 @@ public class PlayerDodge : MonoBehaviour
         {
             myRigidbody2D.gravityScale = 0;
             myBoxCollider2D.enabled = false;
+            circleColliderForSmootheningWalking.enabled = false;
 
             Vector2 forceToAddWhenDodging = new Vector2(dodgeSpeed * playerFacingDirection, 0f);
             myRigidbody2D.AddForce(forceToAddWhenDodging, ForceMode2D.Force);
@@ -156,6 +159,7 @@ public class PlayerDodge : MonoBehaviour
         if (DoTheDodge == false)
         {
             myBoxCollider2D.enabled = true;
+            circleColliderForSmootheningWalking.enabled = true;
             myRigidbody2D.gravityScale = 1;
         }
     }

@@ -20,6 +20,7 @@ public class MainCharacterBasicMovement : MonoBehaviour
     public PlayerAnimationController playerAnimationControllerReference;
     public PlayerAttack playerAttackScriptReference;
     public PlayerStateController playerStateControllerReference;
+    public ObstructionDetectionColliderScriptForPlayer obstructionDetectionColliderScriptReference;
     Rigidbody2D maincharacterRigidbody;
    
 
@@ -57,7 +58,9 @@ public class MainCharacterBasicMovement : MonoBehaviour
             if (canMove == true)
             {
                 doFlipPlayerFacingDirectionAccordingToDirectionOfInputFunctionInFixedUpdate = true;
+                              
                 doMovePlayerHorizontallyFunctionInFixedUpdate = true;
+                                              
                 CheckIfPlayerIsMovingAndCallTheAppropriateMovementAnimation();
             }
 
@@ -78,7 +81,15 @@ public class MainCharacterBasicMovement : MonoBehaviour
 
             if (doMovePlayerHorizontallyFunctionInFixedUpdate == true)
             {
-                MovePlayerHorizontally();
+                if (obstructionDetectionColliderScriptReference.ObstructionInFront == false)
+                {
+                    MovePlayerHorizontally();
+                }
+                else
+                {
+                    maincharacterRigidbody.velocity = new Vector3(0f, maincharacterRigidbody.velocity.y, 0f);
+                }
+
                 doMovePlayerHorizontallyFunctionInFixedUpdate = false;
             }
         }
@@ -180,5 +191,7 @@ public class MainCharacterBasicMovement : MonoBehaviour
     {
         maincharacterRigidbody.velocity = new Vector3(0f, maincharacterRigidbody.velocity.y, 0f);
     }
+
+    
 
 }
