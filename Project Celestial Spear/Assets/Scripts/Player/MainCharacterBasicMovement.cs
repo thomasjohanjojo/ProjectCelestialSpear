@@ -56,8 +56,6 @@ public class MainCharacterBasicMovement : MonoBehaviour
             CheckIfPlayerIsMovingAndCallTheAppropriateMovementAnimation();
         }
         
-
-        
     }
 
     private void FixedUpdate()
