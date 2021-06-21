@@ -255,8 +255,8 @@ public class AxeThrowScript : MonoBehaviour
 
         else if(collision.tag == "Enemy")
         {
-            enemyRigidBody = collision.GetComponent<Rigidbody2D>();
-            statusScriptOfTheEnemy = collision.GetComponent<Statuses>();
+            enemyRigidBody = collision.GetComponentInChildren<Rigidbody2D>();
+            statusScriptOfTheEnemy = collision.GetComponentInChildren<Statuses>();
             statusScriptOfTheEnemy.DecreaseHealthByTheNumber(damageOfTheAxeThrow);
             statusScriptOfTheEnemy = null;
             enemyRigidBody = null;

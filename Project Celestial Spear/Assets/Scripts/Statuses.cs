@@ -12,6 +12,8 @@ public class Statuses : MonoBehaviour
     // The statuses and their respective functions, in that order for each status-functions group
     public int health = 100;
 
+    private GameObject parentGameObject;
+
     public void DecreaseHealthByTheNumber(int healthToBeDecreased)
     {
         health = health - healthToBeDecreased;
@@ -31,7 +33,17 @@ public class Statuses : MonoBehaviour
     {
         if (health <= 0.0f)
         {
-            Destroy(this.gameObject);
+            if (this.transform.parent)
+            {
+                parentGameObject = this.transform.parent.gameObject;
+                Destroy(this.gameObject);
+                Destroy(parentGameObject);
+            }
+
+            else
+            {
+                Destroy(this.gameObject);
+            }
         }
     }
 }

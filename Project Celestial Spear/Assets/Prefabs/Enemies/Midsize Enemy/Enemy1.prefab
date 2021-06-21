@@ -97,6 +97,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8008500180441162146}
   - component: {fileID: 8008500180441162147}
+  - component: {fileID: 2102192110}
   m_Layer: 6
   m_Name: Enemy1
   m_TagString: Enemy
@@ -145,6 +146,19 @@ MonoBehaviour:
   meleeAttackStateData: {fileID: 11400000, guid: da0142531382ed849be5bd1302cb364a,
     type: 2}
   meleeAttackPosition: {fileID: 8008500181171847832}
+--- !u!114 &2102192110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8008500180441162145}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ead1ff4bb6997940ad159319d1a5a79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
 --- !u!1 &8008500180926775135
 GameObject:
   m_ObjectHideFlags: 0

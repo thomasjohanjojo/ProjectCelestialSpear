@@ -571,12 +571,12 @@ MonoBehaviour:
   isAttacking: 0
   playerFacingDirection: 0
   maximumAllowedDelayBetweenAttackButtonPresses: 1
-  pushBackForceOfFirstAttack: 0
-  damageOfFirstAttack: 0
+  pushBackForceOfFirstAttack: 5
+  damageOfFirstAttack: 5
   windingUpTimeOfFirstAttack: 0.5
-  damageOfSecondAttack: 0
+  damageOfSecondAttack: 10
   windingUpTimeOfSecondAttack: 0.9
-  damageOfThirdAttack: 0
+  damageOfThirdAttack: 20
   windingUpTimeOfThirdAttack: 1.1
 --- !u!114 &2204384638749814344
 MonoBehaviour:
