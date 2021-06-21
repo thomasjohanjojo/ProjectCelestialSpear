@@ -115,7 +115,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Axe Appear-Sheet_2
+      name: Axe Appear-6
       rect:
         serializedVersion: 2
         x: 299
@@ -136,7 +136,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Axe Appear-Sheet_3
+      name: Axe Appear-7
       rect:
         serializedVersion: 2
         x: 353
@@ -157,7 +157,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Axe Appear-Sheet_5
+      name: Axe Appear-8
       rect:
         serializedVersion: 2
         x: 404
@@ -178,7 +178,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Axe Appear-Sheet_6
+      name: Axe Appear-9
       rect:
         serializedVersion: 2
         x: 450
@@ -199,7 +199,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Axe Appear-Sheet_8
+      name: Axe Appear-0
       rect:
         serializedVersion: 2
         x: 12
@@ -220,10 +220,10 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Axe Appear-Sheet_9
+      name: Axe Appear-1
       rect:
         serializedVersion: 2
-        x: 57
+        x: 56
         y: 0
         width: 23
         height: 32
@@ -241,7 +241,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Axe Appear-Sheet_10
+      name: Axe Appear-2
       rect:
         serializedVersion: 2
         x: 105
@@ -262,7 +262,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Axe Appear-Sheet_11
+      name: Axe Appear-3
       rect:
         serializedVersion: 2
         x: 152
@@ -283,7 +283,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Axe Appear-Sheet_12
+      name: Axe Appear-4
       rect:
         serializedVersion: 2
         x: 196
@@ -304,7 +304,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Axe Appear-Sheet_13
+      name: Axe Appear-5
       rect:
         serializedVersion: 2
         x: 246

@@ -13,17 +13,17 @@ public class Trap : MonoBehaviour
     public float durationOfTheWaitTimeBetweenAnimation;
     public float durationOfTheGoingInAnimation;
 
-    public int damageToBeGivenToPlayer;
+    public int damageToBeGivenToVictim;
 
     public bool victimIsInDamageArea;
 
     public bool theTrapCoroutineIsPlaying;
 
-    public Statuses statusScriptOfThePlayer;
+    public Statuses statusScriptOfTheVictim;
 
-    public Statuses statusScriptOfTheEnemy;
+    
 
-    public GameObject gameObjectOfThePlayer;
+    public GameObject gameObjectOfTheVictim;
 
     // Start is called before the first frame update
     void Start()
@@ -58,11 +58,24 @@ public class Trap : MonoBehaviour
     {
         if(collision.gameObject.tag == "Player")
         {
-            gameObjectOfThePlayer = collision.gameObject;
+            gameObjectOfTheVictim = collision.gameObject;
 
-            if (gameObjectOfThePlayer.GetComponent<Statuses>())
+            if (gameObjectOfTheVictim.GetComponent<Statuses>())
             {
-                statusScriptOfThePlayer = gameObjectOfThePlayer.GetComponent<Statuses>();
+                statusScriptOfTheVictim = gameObjectOfTheVictim.GetComponent<Statuses>();
+            }
+
+            victimIsInDamageArea = true;
+        }
+
+
+        if (collision.tag == "Enemy")
+        {
+            gameObjectOfTheVictim = collision.gameObject;
+
+            if (gameObjectOfTheVictim.GetComponentInChildren<Statuses>())
+            {
+                statusScriptOfTheVictim = gameObjectOfTheVictim.GetComponentInChildren<Statuses>();
             }
 
             victimIsInDamageArea = true;
@@ -71,10 +84,10 @@ public class Trap : MonoBehaviour
 
     public void OnTriggerExit2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "Player")
+        if(collision.gameObject.tag == "Player" || collision.gameObject.tag == "Enemy")
         {
-            gameObjectOfThePlayer = null;
-            statusScriptOfThePlayer = null;
+            gameObjectOfTheVictim = null;
+            statusScriptOfTheVictim = null;
             victimIsInDamageArea = false;
         }
     }
@@ -89,11 +102,11 @@ public class Trap : MonoBehaviour
 
         if (victimIsInDamageArea)
         {
-            if(gameObjectOfThePlayer)
+            if(gameObjectOfTheVictim)
             {
-                if(statusScriptOfThePlayer)
+                if(statusScriptOfTheVictim)
                 {
-                    statusScriptOfThePlayer.DecreaseHealthByTheNumber(damageToBeGivenToPlayer);
+                    statusScriptOfTheVictim.DecreaseHealthByTheNumber(damageToBeGivenToVictim);
                 }
             }
         }
