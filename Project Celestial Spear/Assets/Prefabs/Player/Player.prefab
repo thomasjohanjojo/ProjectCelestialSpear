@@ -156,7 +156,7 @@ SpriteRenderer:
   m_Size: {x: 1.125, y: 2.75}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!95 &2204384638448781043
@@ -196,7 +196,7 @@ MonoBehaviour:
   positionOfTheMouseClick: {x: 0, y: 0, z: 0}
   maxDistanceOfAxeTravel: 10
   speedOfAxeThrow: 10
-  damageOfTheAxeThrow: 0
+  damageOfTheAxeThrow: 50
   colliderOfTheAxe: {fileID: 2204384638448781055}
   axeThrowButtonHasBeenPressed: 0
   playerStateControllerReference: {fileID: 2204384638749814359}
@@ -590,7 +590,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ead1ff4bb6997940ad159319d1a5a79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 50
+  health: 100
+  healthbar: {fileID: 0}
 --- !u!114 &2204384638749814346
 MonoBehaviour:
   m_ObjectHideFlags: 0
