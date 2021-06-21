@@ -186,10 +186,10 @@ public class PlayerAttack : MonoBehaviour
                 
                 canAttack = false;
 
-                IfEnemyHasBeenDetectedThenPushTheEnemy();
+                
                 playerAnimationControllerReference.ChangeAnimationState(playerAnimationControllerReference.PUNCH_AND_PUSH_ANIMATION);
                 yield return new WaitForSeconds(windingUpTimeOfFirstAttack);
-                
+                IfEnemyHasBeenDetectedThenPushTheEnemy();
 
 
 
