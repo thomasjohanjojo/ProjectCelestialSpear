@@ -182,6 +182,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2204384638749814345, guid: fe4467b2fb1a6f042880d64f91ac1f12,
         type: 3}
+      propertyPath: damageOfFirstAttack
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2204384638749814345, guid: fe4467b2fb1a6f042880d64f91ac1f12,
+        type: 3}
+      propertyPath: damageOfThirdAttack
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 2204384638749814345, guid: fe4467b2fb1a6f042880d64f91ac1f12,
+        type: 3}
+      propertyPath: damageOfSecondAttack
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2204384638749814345, guid: fe4467b2fb1a6f042880d64f91ac1f12,
+        type: 3}
       propertyPath: pushBackForceOfFirstAttack
       value: 3
       objectReference: {fileID: 0}
@@ -2253,3 +2268,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bc5277dc08b9d414ca4aaa49e7d9d5e4, type: 3}
+--- !u!1 &8008500179779747509 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8008500181440546023, guid: bc5277dc08b9d414ca4aaa49e7d9d5e4,
+    type: 3}
+  m_PrefabInstance: {fileID: 8008500179779747508}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8008500179779747510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8008500179779747509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ead1ff4bb6997940ad159319d1a5a79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100

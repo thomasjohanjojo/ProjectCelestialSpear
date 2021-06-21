@@ -24,15 +24,13 @@ public class AttackColliderScript : MonoBehaviour
     {
         if (collision.tag == "Enemy")
         {
-            
 
-            enemyRigidBody = collision.gameObject.GetComponent<Rigidbody2D>();
+
+            enemyRigidBody = collision.gameObject.GetComponentInChildren<Rigidbody2D>();
 
             if (enemyRigidBody)
             {
-                statusSciptOfEnemy = enemyRigidBody.gameObject.GetComponent<Statuses>();
-
-
+                statusSciptOfEnemy = enemyRigidBody.gameObject.GetComponentInChildren<Statuses>();
             }
 
         }
