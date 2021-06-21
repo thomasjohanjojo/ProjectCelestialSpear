@@ -183,7 +183,7 @@ PrefabInstance:
     - target: {fileID: 2204384638749814345, guid: fe4467b2fb1a6f042880d64f91ac1f12,
         type: 3}
       propertyPath: damageOfThirdAttack
-      value: 100
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 2204384638749814351, guid: fe4467b2fb1a6f042880d64f91ac1f12,
         type: 3}
@@ -2282,4 +2282,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ead1ff4bb6997940ad159319d1a5a79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  health: 500

@@ -20,6 +20,7 @@ public class PlayerAttack : MonoBehaviour
     public bool isAttacking;
     private int attackIDCounterWhichIsUsedToControlWhichAttackIsToBeExecuted = 10; // In case the user doesn't input a number. This represents the number of attacks, starting from zero
     public float playerFacingDirection;
+    private bool doThePushBoolean;
 
 
     public float maximumAllowedDelayBetweenAttackButtonPresses = 1f;
@@ -39,6 +40,7 @@ public class PlayerAttack : MonoBehaviour
     {
 
         PlayerAttackScriptOnOffBoolean = false;
+        doThePushBoolean = false;
     }
 
     // Update is called once per frame
@@ -51,6 +53,11 @@ public class PlayerAttack : MonoBehaviour
             CheckPlayerFacingDirection();
             CheckIfPlayerCanAttackAndExecuteAttackIfThePlayerCan();
         }
+    }
+
+    private void FixedUpdate()
+    {
+        DoThePushInTheFixedUpdateWheneverTheDoThePushBooleanIsTrue();
     }
 
 
@@ -91,28 +98,35 @@ public class PlayerAttack : MonoBehaviour
 
 
 
-    public void IfEnemyHasBeenDetectedThenPushTheEnemyAndAlsoPlayTheAppropriateAnimation()
+    public void IfEnemyHasBeenDetectedThenPushTheEnemy()
     {
         if (enemyRigidBody)
         {
-            CalculateTheForceAsVectorAndAddItToTheEnemyRigicbody();
+            DoThePushThroughTheBooleanByTurningItOn();
 
-            playerAnimationControllerReference.ChangeAnimationState(playerAnimationControllerReference.PUNCH_AND_PUSH_ANIMATION);
+            
 
-            enemyRigidBody = null;
+            
 
         }
 
-        else
-        {
-            playerAnimationControllerReference.ChangeAnimationState(playerAnimationControllerReference.PUNCH_AND_PUSH_ANIMATION);
-        }
+        
     }
 
-    private void CalculateTheForceAsVectorAndAddItToTheEnemyRigicbody()
+    private void DoThePushThroughTheBooleanByTurningItOn()
     {
-        Vector2 pushBackForceToAddAsVector = new Vector2(playerFacingDirection * pushBackForceOfFirstAttack, 0f);
-        enemyRigidBody.AddForce(pushBackForceToAddAsVector, ForceMode2D.Impulse);
+        doThePushBoolean = true;
+    }
+
+    private void DoThePushInTheFixedUpdateWheneverTheDoThePushBooleanIsTrue()
+    {
+        if (doThePushBoolean == true)
+        {
+            Vector2 pushBackForceToAddAsVector = new Vector2(playerFacingDirection * pushBackForceOfFirstAttack, 0f);
+            enemyRigidBody.AddForce(pushBackForceToAddAsVector, ForceMode2D.Impulse);
+            doThePushBoolean = false;
+            enemyRigidBody = null;
+        }
     }
 
     private void UpdateOrGrabEnemyRigidBodyFromAttackCollider()
@@ -172,10 +186,12 @@ public class PlayerAttack : MonoBehaviour
                 
                 canAttack = false;
 
-                IfEnemyHasBeenDetectedThenPushTheEnemyAndAlsoPlayTheAppropriateAnimation();
+                IfEnemyHasBeenDetectedThenPushTheEnemy();
+                playerAnimationControllerReference.ChangeAnimationState(playerAnimationControllerReference.PUNCH_AND_PUSH_ANIMATION);
                 yield return new WaitForSeconds(windingUpTimeOfFirstAttack);
-
                 
+
+
 
                 if (statusSciptOfEnemy)
                 {
