@@ -11,6 +11,7 @@ public class Statuses : MonoBehaviour
 
     // The statuses and their respective functions, in that order for each status-functions group
     public int health = 100;
+    public HealthBarScript healthbar;
 
     private GameObject parentGameObject;
 
@@ -31,6 +32,7 @@ public class Statuses : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        healthbar.Sethealth(health);
         if (health <= 0.0f)
         {
             if (this.transform.parent)
