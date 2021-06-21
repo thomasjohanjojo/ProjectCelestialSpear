@@ -221,12 +221,11 @@ MonoBehaviour:
   durationOfTheComingOutAnimation: 1.4
   durationOfTheWaitTimeBetweenAnimation: 1
   durationOfTheGoingInAnimation: 1.4
-  damageToBeGivenToPlayer: 1
+  damageToBeGivenToVictim: 50
   victimIsInDamageArea: 0
   theTrapCoroutineIsPlaying: 0
-  statusScriptOfThePlayer: {fileID: 0}
-  statusScriptOfTheEnemy: {fileID: 0}
-  gameObjectOfThePlayer: {fileID: 0}
+  statusScriptOfTheVictim: {fileID: 0}
+  gameObjectOfTheVictim: {fileID: 0}
 --- !u!114 &8340181330334018317
 MonoBehaviour:
   m_ObjectHideFlags: 0

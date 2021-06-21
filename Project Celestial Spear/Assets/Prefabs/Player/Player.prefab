@@ -576,7 +576,7 @@ MonoBehaviour:
   windingUpTimeOfFirstAttack: 0.5
   damageOfSecondAttack: 10
   windingUpTimeOfSecondAttack: 0.9
-  damageOfThirdAttack: 20
+  damageOfThirdAttack: 30
   windingUpTimeOfThirdAttack: 1.1
 --- !u!114 &2204384638749814344
 MonoBehaviour:
@@ -590,7 +590,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ead1ff4bb6997940ad159319d1a5a79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 1000
+  health: 50
 --- !u!114 &2204384638749814346
 MonoBehaviour:
   m_ObjectHideFlags: 0
