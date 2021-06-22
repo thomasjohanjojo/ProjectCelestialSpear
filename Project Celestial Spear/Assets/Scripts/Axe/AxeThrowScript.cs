@@ -94,6 +94,21 @@ public class AxeThrowScript : MonoBehaviour
         KeepRotationAsSame();
         CheckDistanceToPlayer();
 
+        
+
+        if (pressingTheRangedAttackButtonIsPossibleAndCanThrowAxe == true)
+        {
+            if (axeThrowHasBeenPressedOnceBeforeReturnJourney == false && goBackToThePlayerAfterAttack == false)
+            {
+                DetectMousePositionWheneverFire2ButtonIsPressed();
+            }
+
+            else if (axeThrowHasBeenPressedOnceBeforeReturnJourney == true && goBackToThePlayerAfterAttack == false)
+            {
+                StartCoroutine(DetectRangedAttackButtonPressAndInstantlyTransportTheAxeBackToThePlayer());
+            }
+        }
+        
         if (goToTheEnemyToAttack == true)
         {
             transform.Translate(positionOfTheMouseClick * Time.deltaTime * speedOfAxeThrow);
@@ -107,19 +122,6 @@ public class AxeThrowScript : MonoBehaviour
             pressingTheRangedAttackButtonIsPossibleAndCanThrowAxe = false;
             StartCoroutine(CheckIfDistanceToPlayerHasReachedZeroAndIfSoThenReEnableAxeThrow());
 
-        }
-
-        if (pressingTheRangedAttackButtonIsPossibleAndCanThrowAxe == true)
-        {
-            if (axeThrowHasBeenPressedOnceBeforeReturnJourney == false && goBackToThePlayerAfterAttack == false)
-            {
-                DetectMousePositionWheneverFire2ButtonIsPressed();
-            }
-
-            else if (axeThrowHasBeenPressedOnceBeforeReturnJourney == true && goBackToThePlayerAfterAttack == false)
-            {
-                StartCoroutine(DetectRangedAttackButtonPressAndInstantlyTransportTheAxeBackToThePlayer());
-            }
         }
     }
 
@@ -136,9 +138,8 @@ public class AxeThrowScript : MonoBehaviour
     {
         if(Input.GetButtonDown("Fire2"))
         {
-            positionOfTheMouseClick = Input.mousePosition;
-            positionOfTheMouseClick = Camera.main.ScreenToWorldPoint(positionOfTheMouseClick);
-            positionOfTheMouseClick.z = transformOfThePlayer.position.z;
+
+            positionOfTheMouseClick = new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y, 0);
             positionOfTheMouseClick.Normalize();
             goBackToThePlayerAfterAttack = false;
             goToTheEnemyToAttack = true;
