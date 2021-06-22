@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerStateController : MonoBehaviour
 {
 
-    public AxeThrowScript axeThrowScriptReference;
+    public AxeThrowRaw axeThrowScriptReference;
     public PlayerAttack playerAttackScriptReference;
     public MainCharacterBasicMovement mainCharacterBasicMovementScriptReference;
     public PlayerDodge playerDodgeScriptReference;

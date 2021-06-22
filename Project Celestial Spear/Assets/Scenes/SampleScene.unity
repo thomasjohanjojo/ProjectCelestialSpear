@@ -667,7 +667,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 173934869}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 160.22728, y: -2.0276232, z: -10}
+  m_LocalPosition: {x: 139.80728, y: 16.462378, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1686604021}
@@ -1177,12 +1177,12 @@ PrefabInstance:
     - target: {fileID: 2204384638749814351, guid: fe4467b2fb1a6f042880d64f91ac1f12,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 159.02
+      value: 138.6
       objectReference: {fileID: 0}
     - target: {fileID: 2204384638749814351, guid: fe4467b2fb1a6f042880d64f91ac1f12,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -11.09
+      value: 7.4
       objectReference: {fileID: 0}
     - target: {fileID: 2204384638749814351, guid: fe4467b2fb1a6f042880d64f91ac1f12,
         type: 3}
@@ -1224,6 +1224,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2204384638749814359, guid: fe4467b2fb1a6f042880d64f91ac1f12,
+        type: 3}
+      propertyPath: axeThrowScriptReference
+      value: 
+      objectReference: {fileID: 215061806}
     - target: {fileID: 2204384639090746827, guid: fe4467b2fb1a6f042880d64f91ac1f12,
         type: 3}
       propertyPath: m_Size.x
@@ -1244,8 +1249,66 @@ PrefabInstance:
       propertyPath: m_Offset.y
       value: -0.1915406
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2204384638448781040, guid: fe4467b2fb1a6f042880d64f91ac1f12, type: 3}
+    - {fileID: 2204384638448781054, guid: fe4467b2fb1a6f042880d64f91ac1f12, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: fe4467b2fb1a6f042880d64f91ac1f12, type: 3}
+--- !u!4 &215061804 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2204384638448781041, guid: fe4467b2fb1a6f042880d64f91ac1f12,
+    type: 3}
+  m_PrefabInstance: {fileID: 215061803}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &215061805 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2204384638448781044, guid: fe4467b2fb1a6f042880d64f91ac1f12,
+    type: 3}
+  m_PrefabInstance: {fileID: 215061803}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &215061806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 215061805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3c32a29ebd967d49aa918b3522bd8fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  transformOfThePlayer: {fileID: 613295198}
+  directionToThePlayer: {x: 0, y: 0, z: 0}
+  transformOfThisAxe: {fileID: 215061804}
+  positionOfTheMouseClick: {x: 0, y: 0, z: 0}
+  maxDistanceOfAxeTravel: 20
+  speedOfAxeThrow: 20
+  damageOfTheAxeThrow: 100
+  colliderOfTheAxe: {fileID: 215061808}
+  playerStateControllerReference: {fileID: 215061807}
+  axeThrowScriptOnOffBoolean: 0
+  goBackToThePlayerAfterAttack: 0
+  goToTheEnemyToAttack: 0
+  pressingTheRangedAttackButtonIsPossibleAndCanThrowAxe: 1
+  axeThrowHasBeenPressedOnceBeforeReturnJourney: 0
+--- !u!114 &215061807 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2204384638749814359, guid: fe4467b2fb1a6f042880d64f91ac1f12,
+    type: 3}
+  m_PrefabInstance: {fileID: 215061803}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb133e5d878e17344a19483f615d18de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!61 &215061808 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 2204384638448781055, guid: fe4467b2fb1a6f042880d64f91ac1f12,
+    type: 3}
+  m_PrefabInstance: {fileID: 215061803}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &216339558
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1994,7 +2057,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 160.22728, y: -2.0276232, z: -10}
+  m_LocalPosition: {x: 139.80728, y: 16.462378, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
