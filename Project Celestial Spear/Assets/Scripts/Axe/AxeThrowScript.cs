@@ -140,7 +140,7 @@ public class AxeThrowScript : MonoBehaviour
         {
 
             positionOfTheMouseClick = new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y, 0);
-            positionOfTheMouseClick.Normalize();
+            //positionOfTheMouseClick.Normalize();
             goBackToThePlayerAfterAttack = false;
             goToTheEnemyToAttack = true;
 
@@ -169,9 +169,10 @@ public class AxeThrowScript : MonoBehaviour
             isAxeThowing = false;
             axeHasReachedThePlayerOnce = true;
 
-            
-            animationControllerOfThePlayer.ChangeAnimationState(animationControllerOfThePlayer.AXE_REAPPEAR_TO_HAND_ANIMATION);
-            yield return new WaitForSeconds(animationDurationOfTheAxeReturnToHandAnimation);
+
+            // animationControllerOfThePlayer.ChangeAnimationState(animationControllerOfThePlayer.AXE_REAPPEAR_TO_HAND_ANIMATION);
+            // yield return new WaitForSeconds(animationDurationOfTheAxeReturnToHandAnimation);
+            yield return new WaitForSeconds(0f);
 
             playerStateControllerReference.StateExecutionHasCompletedAndTurnOnDefaultState(playerStateControllerReference.PLAYER_STATE_AXE_THROW);
 
@@ -203,11 +204,12 @@ public class AxeThrowScript : MonoBehaviour
                 axeHasReachedThePlayerOnce = true;
 
                 
-                animationControllerOfThePlayer.ChangeAnimationState(animationControllerOfThePlayer.AXE_REAPPEAR_TO_HAND_ANIMATION);
-                yield return new WaitForSeconds(animationDurationOfTheAxeReturnToHandAnimation);
+                //animationControllerOfThePlayer.ChangeAnimationState(animationControllerOfThePlayer.AXE_REAPPEAR_TO_HAND_ANIMATION);
+                //yield return new WaitForSeconds(animationDurationOfTheAxeReturnToHandAnimation);
+                yield return new WaitForSeconds(0f);
 
-                
-                
+
+
                 playerStateControllerReference.StateExecutionHasCompletedAndTurnOnDefaultState(playerStateControllerReference.PLAYER_STATE_AXE_THROW);
 
             }
@@ -273,8 +275,9 @@ public class AxeThrowScript : MonoBehaviour
         colliderOfTheAxe.enabled = false;
         isAxeThowing = false;
         
-        animationControllerOfThePlayer.ChangeAnimationState(animationControllerOfThePlayer.AXE_REAPPEAR_TO_HAND_ANIMATION);
-        yield return new WaitForSeconds(animationDurationOfTheAxeReturnToHandAnimation);
+        //animationControllerOfThePlayer.ChangeAnimationState(animationControllerOfThePlayer.AXE_REAPPEAR_TO_HAND_ANIMATION);
+        //yield return new WaitForSeconds(animationDurationOfTheAxeReturnToHandAnimation);
+        yield return new WaitForSeconds(0f);
 
 
         playerStateControllerReference.StateExecutionHasCompletedAndTurnOnDefaultState(playerStateControllerReference.PLAYER_STATE_AXE_THROW);

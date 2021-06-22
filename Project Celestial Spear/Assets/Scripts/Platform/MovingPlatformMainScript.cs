@@ -77,12 +77,18 @@ public class MovingPlatformMainScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        collision.transform.SetParent(transform);
+        if (collision.tag != "Axe")
+        {
+            collision.transform.SetParent(transform);
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        collision.transform.SetParent(null);
+        if (collision.tag != "Axe")
+        {
+            collision.transform.SetParent(null);
+        }
     }
 
     
