@@ -18,6 +18,8 @@ public class AxeThrowRaw : MonoBehaviour
 
     public BoxCollider2D colliderOfTheAxe;
 
+    private Rigidbody2D enemyRigidBody;
+
     private Vector3 directionToThePlayerWithMagnitude;
 
     public bool goBackToThePlayerAfterAttack = false;
