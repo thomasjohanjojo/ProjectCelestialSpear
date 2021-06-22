@@ -32,7 +32,10 @@ public class Statuses : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        healthbar.Sethealth(health);
+        if (healthbar)
+        {
+            healthbar.Sethealth(health);
+        }
         if (health <= 0.0f)
         {
             if (this.transform.parent)
