@@ -15,12 +15,19 @@ public class AxeThrowRaw : MonoBehaviour
     public float maxDistanceOfAxeTravel;
 
     public float speedOfAxeThrow;
+    public int damageOfTheAxeThrow;
 
     public BoxCollider2D colliderOfTheAxe;
-
+     
     private Rigidbody2D enemyRigidBody;
 
+    private Statuses statusScriptOfTheEnemy;
+
+    public PlayerStateController playerStateControllerReference;
+
     private Vector3 directionToThePlayerWithMagnitude;
+
+    public bool axeThrowScriptOnOffBoolean;
 
     public bool goBackToThePlayerAfterAttack = false;
     public bool goToTheEnemyToAttack = false;
@@ -33,6 +40,7 @@ public class AxeThrowRaw : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        axeThrowScriptOnOffBoolean = false;
         goBackToThePlayerAfterAttack = false;
         goToTheEnemyToAttack = false;
         pressingTheRangedAttackButtonIsPossibleAndCanThrowAxe = true;
@@ -42,6 +50,15 @@ public class AxeThrowRaw : MonoBehaviour
 
     // Update is called once per frame
     void Update()
+    {
+        GetAxeThrowButtonInputOnlyForChangingState();
+        if (axeThrowScriptOnOffBoolean == true)
+        {
+            AxeThrowMainFunction();
+        }
+    }
+
+    private void AxeThrowMainFunction()
     {
         CheckDistanceToPlayer();
         KeepRotationAsSame();
@@ -76,6 +93,18 @@ public class AxeThrowRaw : MonoBehaviour
         }
     }
 
+
+    private void GetAxeThrowButtonInputOnlyForChangingState()
+    {
+        if (Input.GetButtonDown("Fire2"))
+        {
+
+            playerStateControllerReference.ChangeStateAccordingToPriority(playerStateControllerReference.PLAYER_STATE_AXE_THROW);
+
+        }
+    }
+
+
     public void KeepRotationAsSame()
     {
         transform.rotation = Quaternion.Euler(0f, 0f, 0f);
@@ -108,6 +137,7 @@ public class AxeThrowRaw : MonoBehaviour
             goBackToThePlayerAfterAttack = false;
             goToTheEnemyToAttack = false;
             colliderOfTheAxe.enabled = false;
+            playerStateControllerReference.StateExecutionHasCompletedAndTurnOnDefaultState(playerStateControllerReference.PLAYER_STATE_AXE_THROW);
         }
     }
 
@@ -127,6 +157,8 @@ public class AxeThrowRaw : MonoBehaviour
             goToTheEnemyToAttack = false;
 
             colliderOfTheAxe.enabled = false;
+
+            playerStateControllerReference.StateExecutionHasCompletedAndTurnOnDefaultState(playerStateControllerReference.PLAYER_STATE_AXE_THROW);
 
         }
     }
@@ -156,7 +188,11 @@ public class AxeThrowRaw : MonoBehaviour
 
         else if (collision.tag == "Enemy")
         {
-            // Deal Damage
+            enemyRigidBody = collision.GetComponentInChildren<Rigidbody2D>();
+            statusScriptOfTheEnemy = collision.GetComponentInChildren<Statuses>();
+            statusScriptOfTheEnemy.DecreaseHealthByTheNumber(damageOfTheAxeThrow);
+            statusScriptOfTheEnemy = null;
+            enemyRigidBody = null;
         }
     }
 
@@ -167,5 +203,6 @@ public class AxeThrowRaw : MonoBehaviour
         goBackToThePlayerAfterAttack = false;
         goToTheEnemyToAttack = false;
         colliderOfTheAxe.enabled = false;
+        playerStateControllerReference.StateExecutionHasCompletedAndTurnOnDefaultState(playerStateControllerReference.PLAYER_STATE_AXE_THROW);
     }
 }
