@@ -34,6 +34,8 @@ public class PlayerAttack : MonoBehaviour
     public float windingUpTimeOfSecondAttack;
     public int damageOfThirdAttack;
     public float windingUpTimeOfThirdAttack;
+    public int damageOfFourthAttack;
+    public float windingUpTimeOfFourthAttack;
 
     // Start is called before the first frame update
     void Start()
@@ -174,7 +176,7 @@ public class PlayerAttack : MonoBehaviour
             ResetAttackIDCounterToZeroIfTooMuchDelayBetweenButtonPresses();
 
 
-            if (attackIDCounterWhichIsUsedToControlWhichAttackIsToBeExecuted > 2)
+            if (attackIDCounterWhichIsUsedToControlWhichAttackIsToBeExecuted > 3)
             {
                 attackIDCounterWhichIsUsedToControlWhichAttackIsToBeExecuted = 0;
             }
@@ -248,7 +250,31 @@ public class PlayerAttack : MonoBehaviour
                 canAttack = true;
             }
 
-            
+
+            if (attackIDCounterWhichIsUsedToControlWhichAttackIsToBeExecuted == 3)
+            {
+                SetMainCharacterVelocityToZeroToStopTheLeftOverMovementWhenCanMoveIsTurnedOff();
+                canAttack = false;
+
+
+                playerAnimationControllerReference.ChangeAnimationState(playerAnimationControllerReference.PLAYER_ATTACK_FINAL_ATTACK);
+                yield return new WaitForSeconds(windingUpTimeOfFourthAttack);
+
+                if (statusSciptOfEnemy)
+                {
+                    statusSciptOfEnemy.DecreaseHealthByTheNumber(damageOfFourthAttack);
+                }
+
+                timeStampWhenAttackButtonWasLastPressed = Time.time;
+
+
+
+                statusSciptOfEnemy = null;
+
+                canAttack = true;
+            }
+
+
         }
 
         playerStateControllerReference.StateExecutionHasCompletedAndTurnOnDefaultState(playerStateControllerReference.PLAYER_STATE_ATTACKING);

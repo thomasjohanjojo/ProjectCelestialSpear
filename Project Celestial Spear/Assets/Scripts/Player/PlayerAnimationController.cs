@@ -21,6 +21,7 @@ public class PlayerAnimationController : MonoBehaviour
     public string HOLD_THE_DODGE_ANIMATION = "HoldTheDodge";
     public string INVINCIBLE_STAGE_ANIMATION = "InvincibleStage";
     public string THE_ACTUAL_DODGE_ANIMATION = "TheActualDodge";
+    public string PLAYER_ATTACK_FINAL_ATTACK = "FinalAttack";
     
 
 
