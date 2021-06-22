@@ -111,7 +111,7 @@ public class AxeThrowScript : MonoBehaviour
         
         if (goToTheEnemyToAttack == true)
         {
-            transform.Translate(positionOfTheMouseClick * Time.deltaTime * speedOfAxeThrow);
+            transform.position = Vector2.MoveTowards(transform.position, positionOfTheMouseClick, speedOfAxeThrow * Time.deltaTime);
             CheckIfAxeHasTravelledMaximumDistanceAndIfSoThenGoBackToPlayer();
 
         }
