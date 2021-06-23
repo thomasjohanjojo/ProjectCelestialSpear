@@ -5,283 +5,111 @@ using UnityEngine;
 public class AxeThrowScript : MonoBehaviour
 {
 
-    public Transform transformOfThePlayer;
 
-    public Vector3 directionToThePlayer;
+    public BoxCollider2D verticalAttackArea;
+    public BoxCollider2D horizontalAttackArea;
 
-    public Transform transformOfThisAxe;
-
-    public Vector3 positionOfTheMouseClick;
-
-    public float maxDistanceOfAxeTravel;
-
-    public float speedOfAxeThrow;
-
-    public int damageOfTheAxeThrow;
-
-    public BoxCollider2D colliderOfTheAxe;
-
-    private Vector3 directionToThePlayerWithMagnitude;
-
-    private Statuses statusScriptOfTheEnemy;
-
-    public bool axeThrowButtonHasBeenPressed;
-
-    public PlayerStateController playerStateControllerReference;
-
-    
-
-    public PlayerAnimationController animationControllerOfThePlayer;
-
-   
-
-    public float animationDurationOfTheAxeReturnToHandAnimation;
-
-    private Rigidbody2D enemyRigidBody;
+    public float durationOfTheAttack;
 
     public bool axeThrowScriptOnOffBoolean;
 
-    public bool isAxeThowing;
+    public bool oneAttackIsExecutingRightNow;
 
-    public bool goBackToThePlayerAfterAttack = false;
-    public bool goToTheEnemyToAttack = false;
-    public bool pressingTheRangedAttackButtonIsPossibleAndCanThrowAxe = true;
+    public int damageOfTheAttack;
 
-    public bool axeThrowHasBeenPressedOnceBeforeReturnJourney = false;
+    public PlayerStateController playerStateControllerReference;
 
-    public bool canPlayAxeReapppearAnimationJustOnce = false;
+    private Rigidbody2D enemyRigidBody;
 
-    public bool axeHasReachedThePlayerOnce;
+    private Statuses statusScriptOfTheEnemy;
 
 
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        axeThrowScriptOnOffBoolean = false;
-        goBackToThePlayerAfterAttack = false;
-        goToTheEnemyToAttack = false;
-        pressingTheRangedAttackButtonIsPossibleAndCanThrowAxe = true;
-        axeThrowHasBeenPressedOnceBeforeReturnJourney = false;
-        colliderOfTheAxe.enabled = false;
-        canPlayAxeReapppearAnimationJustOnce = false;
-        
+        verticalAttackArea.enabled = false;
+        horizontalAttackArea.enabled = false;
+        oneAttackIsExecutingRightNow = false;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
         GetAxeThrowButtonInputOnlyForChangingState();
-        if(axeThrowScriptOnOffBoolean == true)
+        if (axeThrowScriptOnOffBoolean == true)
         {
-            AxeThrowMainFunction();
+            if (oneAttackIsExecutingRightNow == false)
+            {
+                MainFunction();
+            }
+
         }
+    }
+
+    private void MainFunction()
+    {
+        if(Input.GetKeyDown(KeyCode.E))
+        {
+            StartCoroutine(DoTheVerticalAttack());
+        }
+
+        else if(Input.GetKeyDown(KeyCode.R))
+        {
+            StartCoroutine(DoTheHorizontalAttack());
+        }
+
     }
 
     private void GetAxeThrowButtonInputOnlyForChangingState()
     {
-        if(Input.GetButtonDown("Fire2"))
+        if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.R))
         {
-            
+
             playerStateControllerReference.ChangeStateAccordingToPriority(playerStateControllerReference.PLAYER_STATE_AXE_THROW);
-            
+
         }
-    }
 
-
-    public void AxeThrowMainFunction()
-    {
-        KeepRotationAsSame();
-        CheckDistanceToPlayer();
 
         
-
-        if (pressingTheRangedAttackButtonIsPossibleAndCanThrowAxe == true)
-        {
-            if (axeThrowHasBeenPressedOnceBeforeReturnJourney == false && goBackToThePlayerAfterAttack == false)
-            {
-                DetectMousePositionWheneverFire2ButtonIsPressed();
-            }
-
-            else if (axeThrowHasBeenPressedOnceBeforeReturnJourney == true && goBackToThePlayerAfterAttack == false)
-            {
-                StartCoroutine(DetectRangedAttackButtonPressAndInstantlyTransportTheAxeBackToThePlayer());
-            }
-        }
-        
-        if (goToTheEnemyToAttack == true)
-        {
-            transform.Translate(positionOfTheMouseClick * Time.deltaTime * speedOfAxeThrow);
-            CheckIfAxeHasTravelledMaximumDistanceAndIfSoThenGoBackToPlayer();
-
-        }
-
-        else if (goBackToThePlayerAfterAttack == true)
-        {
-            GoBackToThePlayer();
-            pressingTheRangedAttackButtonIsPossibleAndCanThrowAxe = false;
-            StartCoroutine(CheckIfDistanceToPlayerHasReachedZeroAndIfSoThenReEnableAxeThrow());
-
-        }
-    }
-
-
-    public void KeepRotationAsSame()
-    {
-        transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-    }
-   
-
-   
-
-    public void DetectMousePositionWheneverFire2ButtonIsPressed()
-    {
-        if(Input.GetButtonDown("Fire2"))
-        {
-
-            positionOfTheMouseClick = new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y, 0);
-            //positionOfTheMouseClick.Normalize();
-            goBackToThePlayerAfterAttack = false;
-            goToTheEnemyToAttack = true;
-
-            isAxeThowing = true;
-
-            axeHasReachedThePlayerOnce = false;
-            axeThrowHasBeenPressedOnceBeforeReturnJourney = true;
-            
-
-            
-            colliderOfTheAxe.enabled = true;
-            
-        }
-    }
-
-    public IEnumerator DetectRangedAttackButtonPressAndInstantlyTransportTheAxeBackToThePlayer()
-    {
-        if(Input.GetButtonDown("Fire2"))
-        {
-            transform.position = transformOfThePlayer.position;
-            axeThrowHasBeenPressedOnceBeforeReturnJourney = false;
-            goBackToThePlayerAfterAttack = false;
-            goToTheEnemyToAttack = false;
-            colliderOfTheAxe.enabled = false;
-
-            isAxeThowing = false;
-            axeHasReachedThePlayerOnce = true;
-
-
-            // animationControllerOfThePlayer.ChangeAnimationState(animationControllerOfThePlayer.AXE_REAPPEAR_TO_HAND_ANIMATION);
-            // yield return new WaitForSeconds(animationDurationOfTheAxeReturnToHandAnimation);
-            yield return new WaitForSeconds(0f);
-
-            playerStateControllerReference.StateExecutionHasCompletedAndTurnOnDefaultState(playerStateControllerReference.PLAYER_STATE_AXE_THROW);
-
-            
-        }
-    }
-
-    public void CheckDistanceToPlayer()
-    {
-        directionToThePlayer = transformOfThePlayer.position - transformOfThisAxe.position;
-        directionToThePlayerWithMagnitude = directionToThePlayer;
-    }
-
-    public IEnumerator CheckIfDistanceToPlayerHasReachedZeroAndIfSoThenReEnableAxeThrow()
-    {
-        if(directionToThePlayerWithMagnitude.magnitude < 0.5)
-        {
-            if (axeHasReachedThePlayerOnce == false)
-            {
-                pressingTheRangedAttackButtonIsPossibleAndCanThrowAxe = true;
-                axeThrowHasBeenPressedOnceBeforeReturnJourney = false;
-                goBackToThePlayerAfterAttack = false;
-                goToTheEnemyToAttack = false;
-
-
-                isAxeThowing = false;
-                colliderOfTheAxe.enabled = false;
-
-                axeHasReachedThePlayerOnce = true;
-
-                
-                //animationControllerOfThePlayer.ChangeAnimationState(animationControllerOfThePlayer.AXE_REAPPEAR_TO_HAND_ANIMATION);
-                //yield return new WaitForSeconds(animationDurationOfTheAxeReturnToHandAnimation);
-                yield return new WaitForSeconds(0f);
-
-
-
-                playerStateControllerReference.StateExecutionHasCompletedAndTurnOnDefaultState(playerStateControllerReference.PLAYER_STATE_AXE_THROW);
-
-            }
-
-            
-
-            
-            
-        }
-    }
-
-    public void PlayAxeReappearToHandAnimationOnlyOnce()
-    {
-        if (canPlayAxeReapppearAnimationJustOnce)
-        {
-            animationControllerOfThePlayer.ChangeAnimationState(animationControllerOfThePlayer.AXE_REAPPEAR_TO_HAND_ANIMATION);
-            canPlayAxeReapppearAnimationJustOnce = false;
-        }
-    }
-
-    public void GoBackToThePlayer()
-    {
-        
-        directionToThePlayer.Normalize();
-        transform.Translate(directionToThePlayer * Time.deltaTime * speedOfAxeThrow);
-
         
     }
 
-    public void CheckIfAxeHasTravelledMaximumDistanceAndIfSoThenGoBackToPlayer()
+
+    private IEnumerator DoTheVerticalAttack()
     {
-        if(directionToThePlayerWithMagnitude.magnitude > maxDistanceOfAxeTravel)
-        {
-            goToTheEnemyToAttack = false;
-            goBackToThePlayerAfterAttack = true;
-        }
+        oneAttackIsExecutingRightNow = true;
+        verticalAttackArea.enabled = true;
+        yield return new WaitForSeconds(durationOfTheAttack);
+
+        verticalAttackArea.enabled = false;
+        oneAttackIsExecutingRightNow = false;
+
+        playerStateControllerReference.StateExecutionHasCompletedAndTurnOnDefaultState(playerStateControllerReference.PLAYER_STATE_AXE_THROW);
+    }
+
+    private IEnumerator DoTheHorizontalAttack()
+    {
+        oneAttackIsExecutingRightNow = true;
+        horizontalAttackArea.enabled = true;
+        yield return new WaitForSeconds(durationOfTheAttack);
+
+        horizontalAttackArea.enabled = false;
+        oneAttackIsExecutingRightNow = false;
+
+        playerStateControllerReference.StateExecutionHasCompletedAndTurnOnDefaultState(playerStateControllerReference.PLAYER_STATE_AXE_THROW);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Ground")
-        {
-            StartCoroutine(GoBackToThePlayerIntantlySinceTheAxeHasTouchedGroundLayer());
-            
-        }
+        
 
-        else if(collision.tag == "Enemy")
+        if (collision.tag == "Enemy")
         {
             enemyRigidBody = collision.GetComponentInChildren<Rigidbody2D>();
             statusScriptOfTheEnemy = collision.GetComponentInChildren<Statuses>();
-            statusScriptOfTheEnemy.DecreaseHealthByTheNumber(damageOfTheAxeThrow);
+            statusScriptOfTheEnemy.DecreaseHealthByTheNumber(damageOfTheAttack);
             statusScriptOfTheEnemy = null;
             enemyRigidBody = null;
         }
     }
 
-    public IEnumerator GoBackToThePlayerIntantlySinceTheAxeHasTouchedGroundLayer()
-    {
-        transform.position = transformOfThePlayer.position;
-        axeThrowHasBeenPressedOnceBeforeReturnJourney = false;
-        goBackToThePlayerAfterAttack = false;
-        goToTheEnemyToAttack = false;
-        colliderOfTheAxe.enabled = false;
-        isAxeThowing = false;
-        
-        //animationControllerOfThePlayer.ChangeAnimationState(animationControllerOfThePlayer.AXE_REAPPEAR_TO_HAND_ANIMATION);
-        //yield return new WaitForSeconds(animationDurationOfTheAxeReturnToHandAnimation);
-        yield return new WaitForSeconds(0f);
-
-
-        playerStateControllerReference.StateExecutionHasCompletedAndTurnOnDefaultState(playerStateControllerReference.PLAYER_STATE_AXE_THROW);
-
-
-    }
 }
