@@ -15,13 +15,14 @@ public class AxeThrowScript : MonoBehaviour
 
     public bool oneAttackIsExecutingRightNow;
 
-    public int damageOfTheAttack;
+    public AxeThrowAnimatorScript animatorScriptOfTheAxeThrowVertical;
+    public AxeThrowAnimatorScript animatorScriptOfTheAxeThrowHorizontal;
+
+    
 
     public PlayerStateController playerStateControllerReference;
 
-    private Rigidbody2D enemyRigidBody;
-
-    private Statuses statusScriptOfTheEnemy;
+    
 
 
 
@@ -78,7 +79,10 @@ public class AxeThrowScript : MonoBehaviour
     {
         oneAttackIsExecutingRightNow = true;
         verticalAttackArea.enabled = true;
+
+        animatorScriptOfTheAxeThrowVertical.ChangeAnimationState(animatorScriptOfTheAxeThrowVertical.VERTICAL);
         yield return new WaitForSeconds(durationOfTheAttack);
+        animatorScriptOfTheAxeThrowVertical.ChangeAnimationState(animatorScriptOfTheAxeThrowVertical.IDLE);
 
         verticalAttackArea.enabled = false;
         oneAttackIsExecutingRightNow = false;
@@ -90,7 +94,10 @@ public class AxeThrowScript : MonoBehaviour
     {
         oneAttackIsExecutingRightNow = true;
         horizontalAttackArea.enabled = true;
+
+        animatorScriptOfTheAxeThrowHorizontal.ChangeAnimationState(animatorScriptOfTheAxeThrowHorizontal.HORIZONTAL);
         yield return new WaitForSeconds(durationOfTheAttack);
+        animatorScriptOfTheAxeThrowHorizontal.ChangeAnimationState(animatorScriptOfTheAxeThrowHorizontal.IDLE);
 
         horizontalAttackArea.enabled = false;
         oneAttackIsExecutingRightNow = false;
@@ -98,18 +105,6 @@ public class AxeThrowScript : MonoBehaviour
         playerStateControllerReference.StateExecutionHasCompletedAndTurnOnDefaultState(playerStateControllerReference.PLAYER_STATE_AXE_THROW);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        
-
-        if (collision.tag == "Enemy")
-        {
-            enemyRigidBody = collision.GetComponentInChildren<Rigidbody2D>();
-            statusScriptOfTheEnemy = collision.GetComponentInChildren<Statuses>();
-            statusScriptOfTheEnemy.DecreaseHealthByTheNumber(damageOfTheAttack);
-            statusScriptOfTheEnemy = null;
-            enemyRigidBody = null;
-        }
-    }
+    
 
 }
