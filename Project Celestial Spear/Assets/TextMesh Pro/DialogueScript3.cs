@@ -64,7 +64,7 @@ public class DialogueScript3 : MonoBehaviour
         {
             textDisplay.text = "";
             textBox.SetActive(false);
-            GameObject.Destroy(bandasur);
+            GameObject.Destroy(bandasur.gameObject);
         }
     }
 }
