@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 6308797756038934553}
   - component: {fileID: 6308797756038934556}
   - component: {fileID: 6308797756038934555}
-  - component: {fileID: 6308797756038934554}
+  - component: {fileID: 6751565673686337735}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Text_TMP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26,7 +26,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6308797756038934552}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -93,8 +93,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 70
+  m_fontSizeBase: 70
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -135,7 +135,7 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &6308797756038934554
+--- !u!114 &6751565673686337735
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -144,9 +144,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 6308797756038934552}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a69a7c7b1a6df884fa47620a6a4ff35a, type: 3}
+  m_Script: {fileID: 11500000, guid: 1d43fa75c8c39ab4c9b9ec3c46afdcd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  textMeshPro: {fileID: 0}
-  hitCount: 0
