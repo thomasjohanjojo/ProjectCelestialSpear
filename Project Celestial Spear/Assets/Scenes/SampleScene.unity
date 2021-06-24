@@ -846,6 +846,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2204384637875850896, guid: fe4467b2fb1a6f042880d64f91ac1f12,
+        type: 3}
+      propertyPath: m_TagString
+      value: PlayerChild
+      objectReference: {fileID: 0}
     - target: {fileID: 2204384637875850909, guid: fe4467b2fb1a6f042880d64f91ac1f12,
         type: 3}
       propertyPath: m_Size.x
@@ -946,10 +951,20 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2204384638451112344, guid: fe4467b2fb1a6f042880d64f91ac1f12,
+        type: 3}
+      propertyPath: m_TagString
+      value: PlayerChild
+      objectReference: {fileID: 0}
     - target: {fileID: 2204384638451112358, guid: fe4467b2fb1a6f042880d64f91ac1f12,
         type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2204384638453528328, guid: fe4467b2fb1a6f042880d64f91ac1f12,
+        type: 3}
+      propertyPath: m_TagString
+      value: PlayerChild
       objectReference: {fileID: 0}
     - target: {fileID: 2204384638453528341, guid: fe4467b2fb1a6f042880d64f91ac1f12,
         type: 3}
@@ -1059,7 +1074,7 @@ PrefabInstance:
     - target: {fileID: 2204384639090746829, guid: fe4467b2fb1a6f042880d64f91ac1f12,
         type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: PlayerChild
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2204384638448781054, guid: fe4467b2fb1a6f042880d64f91ac1f12, type: 3}

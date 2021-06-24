@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - Axe
   - Platform
+  - PlayerChild
   layers:
   - Default
   - TransparentFX
