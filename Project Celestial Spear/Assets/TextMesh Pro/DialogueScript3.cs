@@ -15,7 +15,7 @@ public class DialogueScript3 : MonoBehaviour
 
     public GameObject continueButton;
 
-    public SpriteRenderer ofBanda;
+    
     // public GameObject objectDestroy;
 
     void Start()
@@ -67,7 +67,7 @@ public class DialogueScript3 : MonoBehaviour
             textDisplay.text = "";
             textBox.SetActive(false);
             
-            ofBanda.enabled = false;
+            
             
         }
     }
