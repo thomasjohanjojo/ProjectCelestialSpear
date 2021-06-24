@@ -5,7 +5,7 @@ using TMPro;
 
 public class ComboCounterUIScript : MonoBehaviour
 {
-    public PlayerAttack player;
+    [SerializeField] public PlayerAttack player;
     public TextMeshProUGUI textMeshPro;
 
     public int hitCount;
