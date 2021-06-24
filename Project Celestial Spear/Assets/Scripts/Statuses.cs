@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Statuses : MonoBehaviour
 {
@@ -44,19 +45,41 @@ public class Statuses : MonoBehaviour
 
                 if (parentGameObject.tag == "Platform")
                 {
+                    
+
                     Destroy(this.gameObject);
+
+                    if (this.gameObject.tag == "Player")
+                    {
+                        SceneManager.LoadScene(0);
+                    }
+
                 }
 
                 else
                 {
                     Destroy(this.gameObject);
                     Destroy(parentGameObject);
+
+                    if (this.gameObject.tag == "Player")
+                    {
+                        SceneManager.LoadScene(0);
+                    }
                 }
             }
 
             else
             {
+                
+
                 Destroy(this.gameObject);
+
+
+                if (this.gameObject.tag == "Player")
+                {
+                    SceneManager.LoadScene(0);
+                }
+
             }
         }
     }

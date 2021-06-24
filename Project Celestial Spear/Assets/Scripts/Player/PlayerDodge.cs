@@ -8,6 +8,7 @@ public class PlayerDodge : MonoBehaviour
     public float thatMillisecondsOfTimeBeforeInvincibility;
     public float thatMillisecondsOfTimeOfTheInvincibilityPeriod;
     public float theDurationOfTheDodge;
+    public Statuses playerStatusScript;
 
     public Rigidbody2D myRigidbody2D;
     public BoxCollider2D myBoxCollider2D;
@@ -132,6 +133,7 @@ public class PlayerDodge : MonoBehaviour
         yield return new WaitForSeconds(theDurationOfTheDodge);
         DoTheDodge = false;
         FlipThePlayerToTheOppositeFacingSideAfterDodging();
+        playerStatusScript.health = playerStatusScript.health + 20;
 
         myBoxCollider2D.enabled = true;
         //circleColliderForSmootheningWalking.enabled = true;
@@ -150,6 +152,8 @@ public class PlayerDodge : MonoBehaviour
 
             Vector2 forceToAddWhenDodging = new Vector2(dodgeSpeed * playerFacingDirection, 0f);
             myRigidbody2D.AddForce(forceToAddWhenDodging, ForceMode2D.Force);
+            
+            
 
             
 
