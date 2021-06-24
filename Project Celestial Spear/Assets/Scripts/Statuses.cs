@@ -41,8 +41,17 @@ public class Statuses : MonoBehaviour
             if (this.transform.parent)
             {
                 parentGameObject = this.transform.parent.gameObject;
-                Destroy(this.gameObject);
-                Destroy(parentGameObject);
+
+                if (parentGameObject.tag == "Platform")
+                {
+                    Destroy(this.gameObject);
+                }
+
+                else
+                {
+                    Destroy(this.gameObject);
+                    Destroy(parentGameObject);
+                }
             }
 
             else

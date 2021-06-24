@@ -8,6 +8,7 @@ TagManager:
   - CanDamagePlayer
   - Enemy
   - Axe
+  - Platform
   layers:
   - Default
   - TransparentFX
