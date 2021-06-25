@@ -9,6 +9,8 @@ public class PlayerDodge : MonoBehaviour
     public float thatMillisecondsOfTimeOfTheInvincibilityPeriod;
     public float theDurationOfTheDodge;
     public Statuses playerStatusScript;
+    public PlayerAttack playerAttackScriptForMaintainingTheComboCounterNumberInCaseOfASuccessfulDodge;
+    private int comboCounterNumberToRestoreTheComboCounterNumberAfterASuccesfulDodge;
 
     public Rigidbody2D myRigidbody2D;
     public BoxCollider2D myBoxCollider2D;
@@ -90,6 +92,7 @@ public class PlayerDodge : MonoBehaviour
         
 
         HoldBeforeTheDodge = true;
+        comboCounterNumberToRestoreTheComboCounterNumberAfterASuccesfulDodge = playerAttackScriptForMaintainingTheComboCounterNumberInCaseOfASuccessfulDodge.HitCounterInt;
 
         playerAnimationControllerScriptReference.ChangeAnimationState(playerAnimationControllerScriptReference.HOLD_THE_DODGE_ANIMATION);
         yield return new WaitForSeconds(thatMillisecondsOfTimeBeforeInvincibility);
@@ -107,6 +110,7 @@ public class PlayerDodge : MonoBehaviour
 
         if (DoTheDodge == false)
         {
+            comboCounterNumberToRestoreTheComboCounterNumberAfterASuccesfulDodge = 0;
             playerStateControllerReference.StateExecutionHasCompletedAndTurnOnDefaultState(playerStateControllerReference.PLAYER_STATE_DODGING);
         }
 
@@ -134,6 +138,7 @@ public class PlayerDodge : MonoBehaviour
         DoTheDodge = false;
         FlipThePlayerToTheOppositeFacingSideAfterDodging();
         playerStatusScript.health = playerStatusScript.health + 20;
+        playerAttackScriptForMaintainingTheComboCounterNumberInCaseOfASuccessfulDodge.HitCounterInt = comboCounterNumberToRestoreTheComboCounterNumberAfterASuccesfulDodge;
 
         myBoxCollider2D.enabled = true;
         //circleColliderForSmootheningWalking.enabled = true;

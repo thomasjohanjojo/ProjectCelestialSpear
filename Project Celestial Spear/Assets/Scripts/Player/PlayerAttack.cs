@@ -126,10 +126,13 @@ public class PlayerAttack : MonoBehaviour
     {
         if (doThePushBoolean == true)
         {
-            Vector2 pushBackForceToAddAsVector = new Vector2(playerFacingDirection * pushBackForceOfFirstAttack, 0f);
-            enemyRigidBody.AddForce(pushBackForceToAddAsVector, ForceMode2D.Impulse);
-            doThePushBoolean = false;
-            enemyRigidBody = null;
+            if (enemyRigidBody)
+            {
+                Vector2 pushBackForceToAddAsVector = new Vector2(playerFacingDirection * pushBackForceOfFirstAttack, 0f);
+                enemyRigidBody.AddForce(pushBackForceToAddAsVector, ForceMode2D.Impulse);
+                doThePushBoolean = false;
+                enemyRigidBody = null;
+            }
         }
     }
 

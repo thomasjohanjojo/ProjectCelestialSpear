@@ -36,8 +36,8 @@ public class PlayerStateController : MonoBehaviour
     {
         STATE_PRIORITY_ID_IDLE_OR_MOVING = 1;
         STATE_PRIORITY_ID_ATTACKING = 2;
-        STATE_PRIORITY_ID_AXE_THROW = 2;
-        STATE_PRIORITY_ID_DODGING = 2;
+        STATE_PRIORITY_ID_AXE_THROW = 3;
+        STATE_PRIORITY_ID_DODGING = 3;
 
         defaultState = PLAYER_STATE_IDLE_OR_MOVING;
         currentState = PLAYER_STATE_IDLE_OR_MOVING;
