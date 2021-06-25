@@ -5,7 +5,7 @@ using TMPro;
 
 public class ComboCounterScript : MonoBehaviour
 {
-    [SerializeField] public PlayerAttack player;
+    public PlayerAttack player;
     public TextMeshProUGUI textMeshPro;
 
     public int hitCount;
@@ -22,7 +22,7 @@ public class ComboCounterScript : MonoBehaviour
 
         {
             // Debug.Log("Entered");
-            hitCount++;
+            
             SetHitCounter(player.HitCounterInt);
 
         }
