@@ -1011,6 +1011,16 @@ PrefabInstance:
       propertyPath: healthbar
       value: 
       objectReference: {fileID: 1298457440}
+    - target: {fileID: 2204384638749814344, guid: fe4467b2fb1a6f042880d64f91ac1f12,
+        type: 3}
+      propertyPath: comboCounterScriptReference
+      value: 
+      objectReference: {fileID: 1275443837}
+    - target: {fileID: 2204384638749814344, guid: fe4467b2fb1a6f042880d64f91ac1f12,
+        type: 3}
+      propertyPath: playerAttackScriptReference
+      value: 
+      objectReference: {fileID: 2092842500}
     - target: {fileID: 2204384638749814346, guid: fe4467b2fb1a6f042880d64f91ac1f12,
         type: 3}
       propertyPath: playerStatusScript
@@ -44516,6 +44526,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: de6dfc996730e2545aa0684499870204, type: 3}
+--- !u!114 &1275443837 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6751565673686337735, guid: cf3830357aafb2b4ea3f058dad48d931,
+    type: 3}
+  m_PrefabInstance: {fileID: 1010218356}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d43fa75c8c39ab4c9b9ec3c46afdcd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1275443838 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6308797756038934555, guid: cf3830357aafb2b4ea3f058dad48d931,

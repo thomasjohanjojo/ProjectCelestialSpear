@@ -13,13 +13,19 @@ public class Statuses : MonoBehaviour
     // The statuses and their respective functions, in that order for each status-functions group
     public int health = 100;
     public HealthBarScript healthbar;
+    public PlayerAttack playerAttackScriptReference;
 
     private GameObject parentGameObject;
 
     public void DecreaseHealthByTheNumber(int healthToBeDecreased)
     {
         health = health - healthToBeDecreased;
-        Debug.Log("damage dealt");
+       
+
+        if(this.gameObject.tag == "Player")
+        {
+            playerAttackScriptReference.HitCounterInt = 0;
+        }
 
     }
     
