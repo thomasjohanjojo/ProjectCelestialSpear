@@ -8,13 +8,13 @@ public class PlayerAttack : MonoBehaviour
     public MainCharacterBasicMovement playerControllerReferenceWhichHasATurnOnAndTurnOffBoolean;
     public PlayerAnimationController playerAnimationControllerReference;
 
-    
+
     public AttackColliderScript attackColliderScriptReference;
 
     private Statuses statusSciptOfEnemy;
     private Rigidbody2D enemyRigidBody;
 
-    
+
     private bool canAttack = true;
     public bool PlayerAttackScriptOnOffBoolean;
     public bool isAttacking;
@@ -25,7 +25,7 @@ public class PlayerAttack : MonoBehaviour
 
     public float maximumAllowedDelayBetweenAttackButtonPresses = 1f;
     private float timeStampWhenAttackButtonWasLastPressed = 0f;
-   
+
 
     public float pushBackForceOfFirstAttack;
     public int damageOfFirstAttack;
@@ -36,6 +36,8 @@ public class PlayerAttack : MonoBehaviour
     public float windingUpTimeOfThirdAttack;
     public int damageOfFourthAttack;
     public float windingUpTimeOfFourthAttack;
+    public int HitCounterInt = 0;
+
 
     // Start is called before the first frame update
     void Start()
@@ -65,14 +67,14 @@ public class PlayerAttack : MonoBehaviour
 
     private void GetAttackButtonInputForStateChanging()
     {
-        if(Input.GetKeyDown(KeyCode.Mouse0) ==  true)
+        if (Input.GetKeyDown(KeyCode.Mouse0) == true)
         {
-            
+
             playerStateControllerReference.ChangeStateAccordingToPriority(playerStateControllerReference.PLAYER_STATE_ATTACKING);
-            
+
         }
 
-        
+
     }
 
 
@@ -94,7 +96,7 @@ public class PlayerAttack : MonoBehaviour
     {
         canAttack = false;
     }
-   
+
 
 
 
@@ -106,13 +108,13 @@ public class PlayerAttack : MonoBehaviour
         {
             DoThePushThroughTheBooleanByTurningItOn();
 
-            
 
-            
+
+
 
         }
 
-        
+
     }
 
     private void DoThePushThroughTheBooleanByTurningItOn()
@@ -133,15 +135,19 @@ public class PlayerAttack : MonoBehaviour
 
     private void UpdateOrGrabEnemyRigidBodyFromAttackCollider()
     {
-        if(attackColliderScriptReference.enemyRigidBody)
+        if (attackColliderScriptReference.enemyRigidBody)
         {
+            //Debug.Log("Entered in player script loop");
+            HitCounterInt++;
             enemyRigidBody = attackColliderScriptReference.enemyRigidBody;
             statusSciptOfEnemy = attackColliderScriptReference.statusSciptOfEnemy;
+
         }
+
     }
 
 
-    
+
 
 
     public void CheckPlayerFacingDirection()
@@ -165,8 +171,8 @@ public class PlayerAttack : MonoBehaviour
 
     public IEnumerator AttackWhenverAttackButtonIsPressedAndEnemyRigidbodyWithAnAttachedStatusScriptIsAvailable()
     {
-        
-        
+
+
 
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
@@ -185,10 +191,10 @@ public class PlayerAttack : MonoBehaviour
             if (attackIDCounterWhichIsUsedToControlWhichAttackIsToBeExecuted == 0)
             {
                 SetMainCharacterVelocityToZeroToStopTheLeftOverMovementWhenCanMoveIsTurnedOff();
-                
+
                 canAttack = false;
 
-                
+
                 playerAnimationControllerReference.ChangeAnimationState(playerAnimationControllerReference.PUNCH_AND_PUSH_ANIMATION);
                 yield return new WaitForSeconds(windingUpTimeOfFirstAttack);
                 IfEnemyHasBeenDetectedThenPushTheEnemy();
@@ -203,7 +209,7 @@ public class PlayerAttack : MonoBehaviour
                 timeStampWhenAttackButtonWasLastPressed = Time.time;
 
                 statusSciptOfEnemy = null;
-                
+
                 canAttack = true;
             }
 
@@ -211,7 +217,7 @@ public class PlayerAttack : MonoBehaviour
             {
                 SetMainCharacterVelocityToZeroToStopTheLeftOverMovementWhenCanMoveIsTurnedOff();
                 canAttack = false;
-                
+
                 playerAnimationControllerReference.ChangeAnimationState(playerAnimationControllerReference.PLAYER_ATTACK_ONE_ANIMATION);
                 yield return new WaitForSeconds(windingUpTimeOfSecondAttack);
 
@@ -220,10 +226,10 @@ public class PlayerAttack : MonoBehaviour
                     statusSciptOfEnemy.DecreaseHealthByTheNumber(damageOfSecondAttack);
                 }
 
-                timeStampWhenAttackButtonWasLastPressed = Time.time;                
+                timeStampWhenAttackButtonWasLastPressed = Time.time;
 
                 statusSciptOfEnemy = null;
-                
+
                 canAttack = true;
             }
 
@@ -231,7 +237,7 @@ public class PlayerAttack : MonoBehaviour
             {
                 SetMainCharacterVelocityToZeroToStopTheLeftOverMovementWhenCanMoveIsTurnedOff();
                 canAttack = false;
-                
+
 
                 playerAnimationControllerReference.ChangeAnimationState(playerAnimationControllerReference.PLAYER_ATTACK_TWO_ANIMATION);
                 yield return new WaitForSeconds(windingUpTimeOfThirdAttack);
@@ -246,7 +252,7 @@ public class PlayerAttack : MonoBehaviour
 
 
                 statusSciptOfEnemy = null;
-                
+
                 canAttack = true;
             }
 
@@ -282,15 +288,15 @@ public class PlayerAttack : MonoBehaviour
 
     private void ResetAttackIDCounterToZeroIfTooMuchDelayBetweenButtonPresses()
     {
-        if(Time.time - timeStampWhenAttackButtonWasLastPressed > maximumAllowedDelayBetweenAttackButtonPresses)
+        if (Time.time - timeStampWhenAttackButtonWasLastPressed > maximumAllowedDelayBetweenAttackButtonPresses)
         {
             attackIDCounterWhichIsUsedToControlWhichAttackIsToBeExecuted = 0;
         }
     }
 
-   public void ResetAttackIDCounterToRightBeforeZeroWheneverRequired()
+    public void ResetAttackIDCounterToRightBeforeZeroWheneverRequired()
     {
-        attackIDCounterWhichIsUsedToControlWhichAttackIsToBeExecuted = 10; 
+        attackIDCounterWhichIsUsedToControlWhichAttackIsToBeExecuted = 10;
     }
 
     void SetMainCharacterVelocityToZeroToStopTheLeftOverMovementWhenCanMoveIsTurnedOff()
