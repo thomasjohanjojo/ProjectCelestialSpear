@@ -138,7 +138,7 @@ public class PlayerAttack : MonoBehaviour
         if (attackColliderScriptReference.enemyRigidBody)
         {
             //Debug.Log("Entered in player script loop");
-            HitCounterInt++;
+            
             enemyRigidBody = attackColliderScriptReference.enemyRigidBody;
             statusSciptOfEnemy = attackColliderScriptReference.statusSciptOfEnemy;
 
@@ -204,6 +204,7 @@ public class PlayerAttack : MonoBehaviour
                 if (statusSciptOfEnemy)
                 {
                     statusSciptOfEnemy.DecreaseHealthByTheNumber(damageOfFirstAttack);
+                    HitCounterInt++;
                 }
 
                 timeStampWhenAttackButtonWasLastPressed = Time.time;
@@ -224,6 +225,7 @@ public class PlayerAttack : MonoBehaviour
                 if (statusSciptOfEnemy)
                 {
                     statusSciptOfEnemy.DecreaseHealthByTheNumber(damageOfSecondAttack);
+                    HitCounterInt++;
                 }
 
                 timeStampWhenAttackButtonWasLastPressed = Time.time;
@@ -245,6 +247,7 @@ public class PlayerAttack : MonoBehaviour
                 if (statusSciptOfEnemy)
                 {
                     statusSciptOfEnemy.DecreaseHealthByTheNumber(damageOfThirdAttack);
+                    HitCounterInt++;
                 }
 
                 timeStampWhenAttackButtonWasLastPressed = Time.time;
@@ -269,6 +272,7 @@ public class PlayerAttack : MonoBehaviour
                 if (statusSciptOfEnemy)
                 {
                     statusSciptOfEnemy.DecreaseHealthByTheNumber(damageOfFourthAttack);
+                    HitCounterInt++;
                 }
 
                 timeStampWhenAttackButtonWasLastPressed = Time.time;
