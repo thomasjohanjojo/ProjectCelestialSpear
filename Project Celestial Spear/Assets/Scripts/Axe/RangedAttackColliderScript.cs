@@ -5,6 +5,7 @@ using UnityEngine;
 public class RangedAttackColliderScript : MonoBehaviour
 {
 
+    public PlayerAttack playerAttackReferenceForGettingHitCounter;
 
     public int damageOfTheAttack;
     private Rigidbody2D enemyRigidBody;
@@ -31,7 +32,7 @@ public class RangedAttackColliderScript : MonoBehaviour
         {
             enemyRigidBody = collision.GetComponentInChildren<Rigidbody2D>();
             statusScriptOfTheEnemy = collision.GetComponentInChildren<Statuses>();
-            statusScriptOfTheEnemy.DecreaseHealthByTheNumber(damageOfTheAttack);
+            statusScriptOfTheEnemy.DecreaseHealthByTheNumber(damageOfTheAttack * playerAttackReferenceForGettingHitCounter.HitCounterInt);
             statusScriptOfTheEnemy = null;
             enemyRigidBody = null;
         }
