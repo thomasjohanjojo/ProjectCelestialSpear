@@ -7,33 +7,40 @@ public class LevelSectionsControllerScript : MonoBehaviour
 {
 
 
-    public bool thisSectionHasThePlayerInIt;
+    
 
-    public CinemachineVirtualCamera virtualCameraOfCinemachine;
+    public IntermediateScriptforLerpingTheCameraWhenNecessary IntermediateScriptforLerpingTheCameraWhenNecessaryScriptReference;
+
+    public string nameOfThisSection;
+
+    public bool isActive;
+
+    public Transform theTransformOfThePositionWhereTheCameraShouldLookAt;
 
     // Start is called before the first frame update
     void Start()
     {
-        thisSectionHasThePlayerInIt = false;
+        isActive = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(thisSectionHasThePlayerInIt == true)
-        {
-            virtualCameraOfCinemachine.LookAt = gameObject.transform;
-            virtualCameraOfCinemachine.Follow = gameObject.transform;
-        }
+        
     }
 
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+
+
         if(collision.tag == "Player")
         {
-            thisSectionHasThePlayerInIt = true;
+            IntermediateScriptforLerpingTheCameraWhenNecessaryScriptReference.ChangeActiveSection(nameOfThisSection, theTransformOfThePositionWhereTheCameraShouldLookAt.position);
+            isActive = true;
         }
+
+        
 
     }
 
@@ -41,8 +48,10 @@ public class LevelSectionsControllerScript : MonoBehaviour
     {
         if(collision.tag == "Player")
         {
-            thisSectionHasThePlayerInIt = false;
+            isActive = false;
         }
     }
+
+
 
 }
