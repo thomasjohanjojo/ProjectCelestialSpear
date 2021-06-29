@@ -18,14 +18,15 @@ public class PlayerDodge : MonoBehaviour
     public DodgeHitDetectionColliderScript dodgeHitDetectionColliderScriptReference;
     public PlayerAnimationController playerAnimationControllerScriptReference;
     public PlayerStateController playerStateControllerReference;
+    public MainCharacterBasicMovement mainCharacterBasicMovementScriptForEnsuringMeleeComboContinuationAfterDodging;
 
-    public bool HoldBeforeTheDodge;
-    public bool isInInvincibilityPeriod;
-    public bool DoTheDodge;
+    private bool HoldBeforeTheDodge;
+    private bool isInInvincibilityPeriod;
+    private bool DoTheDodge;
 
     public bool dodgeScriptOnOffBoolean;
 
-    public float playerFacingDirection;
+    private float playerFacingDirection;
     // Start is called before the first frame update
     void Start()
     {
@@ -179,12 +180,16 @@ public class PlayerDodge : MonoBehaviour
         if (playerFacingDirection == -1)
         {
             gameObject.transform.rotation = Quaternion.Euler(transform.rotation.x, 0f, transform.rotation.z);
+            mainCharacterBasicMovementScriptForEnsuringMeleeComboContinuationAfterDodging.lastFacingDirection = 1;
+            mainCharacterBasicMovementScriptForEnsuringMeleeComboContinuationAfterDodging.currentFacingDirection = 1;
 
         }
 
         else
         {
             gameObject.transform.rotation = Quaternion.Euler(transform.rotation.x, 180f, transform.rotation.z);
+            mainCharacterBasicMovementScriptForEnsuringMeleeComboContinuationAfterDodging.lastFacingDirection = -1;
+            mainCharacterBasicMovementScriptForEnsuringMeleeComboContinuationAfterDodging.currentFacingDirection = -1;
 
         }
     }

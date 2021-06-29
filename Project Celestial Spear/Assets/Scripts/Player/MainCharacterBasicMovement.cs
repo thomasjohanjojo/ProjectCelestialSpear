@@ -14,8 +14,8 @@ public class MainCharacterBasicMovement : MonoBehaviour
     public bool isMoving;
     public bool mainCharacterBasicMovementScriptOnOffBoolean;
     private float playerHorizontalInputValue;
-    private int lastFacingDirection = 1;
-    private int currentFacingDirection = 1;
+    public  int lastFacingDirection = 1;
+    public int currentFacingDirection = 1;
 
     public PlayerAnimationController playerAnimationControllerReference;
     public PlayerAttack playerAttackScriptReference;
