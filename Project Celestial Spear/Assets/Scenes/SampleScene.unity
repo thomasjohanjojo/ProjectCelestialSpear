@@ -303,7 +303,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &78503232
 Transform:
   m_ObjectHideFlags: 0
@@ -605,7 +605,7 @@ MonoBehaviour:
   m_Priority: 10
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 0}
-  m_Follow: {fileID: 0}
+  m_Follow: {fileID: 613295198}
   m_Lens:
     FieldOfView: 99
     OrthographicSize: 11
@@ -629,7 +629,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 173934869}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.862723, y: -1.2376232, z: -10}
+  m_LocalPosition: {x: -9.741996, y: -1.5420465, z: -11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1686604021}
@@ -1823,7 +1823,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.862723, y: -1.2376232, z: -10}
+  m_LocalPosition: {x: -9.741996, y: -1.5420465, z: -11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2287,6 +2287,12 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 51.891518, y: 25.97182}
   m_EdgeRadius: 0
+--- !u!4 &613295198 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2204384638749814351, guid: fe4467b2fb1a6f042880d64f91ac1f12,
+    type: 3}
+  m_PrefabInstance: {fileID: 215061803}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &631035083
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -45103,7 +45109,7 @@ MonoBehaviour:
   m_ZDamping: 1
   m_TargetMovementOnly: 1
   m_ScreenX: 0.471
-  m_ScreenY: 0.887
+  m_ScreenY: 0.84
   m_CameraDistance: 11
   m_DeadZoneWidth: 0
   m_DeadZoneHeight: 0
