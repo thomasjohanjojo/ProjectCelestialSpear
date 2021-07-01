@@ -34,7 +34,7 @@ public class AxeThrowRaw : MonoBehaviour
     public bool goToTheEnemyToAttack = false;
     public bool pressingTheRangedAttackButtonIsPossibleAndCanThrowAxe = true;
 
-    private bool StayWithThePlayer;
+    private bool StayWithThePlayerWhileAxeIsNotThrowing;
 
     public bool axeThrowHasBeenPressedOnceBeforeReturnJourney = false;
 
@@ -43,7 +43,7 @@ public class AxeThrowRaw : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StayWithThePlayer = true;
+        StayWithThePlayerWhileAxeIsNotThrowing = true;
         axeThrowScriptOnOffBoolean = false;
         goBackToThePlayerAfterAttack = false;
         goToTheEnemyToAttack = false;
@@ -56,7 +56,7 @@ public class AxeThrowRaw : MonoBehaviour
     void Update()
     {
         GetAxeThrowButtonInputOnlyForChangingState();
-        if(StayWithThePlayer == true)
+        if(StayWithThePlayerWhileAxeIsNotThrowing == true)
         {
             transform.position = transformOfThePlayer.position;
         }
@@ -70,7 +70,7 @@ public class AxeThrowRaw : MonoBehaviour
     private void AxeThrowMainFunction()
     {
         CheckDistanceToPlayer();
-        KeepRotationAsSame();
+        
 
 
         if (goToTheEnemyToAttack == true)
@@ -116,16 +116,13 @@ public class AxeThrowRaw : MonoBehaviour
     }
 
 
-    public void KeepRotationAsSame()
-    {
-        //transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-    }
+    
 
-    public void DetectMousePositionWheneverFire2ButtonIsPressed()
+    private void DetectMousePositionWheneverFire2ButtonIsPressed()
     {
         if (Input.GetButtonDown("Fire2"))
         {
-            StayWithThePlayer = false;
+            StayWithThePlayerWhileAxeIsNotThrowing = false;
             positionOfTheMouseClick = new Vector3(Input.mousePosition.x, Input.mousePosition.y, transform.position.z - Camera.main.transform.position.z);
             positionOfTheMouseClick = Camera.main.ScreenToWorldPoint(positionOfTheMouseClick);
 
@@ -146,12 +143,12 @@ public class AxeThrowRaw : MonoBehaviour
    
 
 
-    public void DetectRangedAttackButtonPressAndInstantlyTransportTheAxeBackToThePlayer()
+    private void DetectRangedAttackButtonPressAndInstantlyTransportTheAxeBackToThePlayer()
     {
         if (Input.GetButtonDown("Fire2"))
         {
             transform.position = transformOfThePlayer.position;
-            StayWithThePlayer = true;
+            StayWithThePlayerWhileAxeIsNotThrowing = true;
             axeThrowHasBeenPressedOnceBeforeReturnJourney = false;
             goBackToThePlayerAfterAttack = false;
             goToTheEnemyToAttack = false;
@@ -160,13 +157,13 @@ public class AxeThrowRaw : MonoBehaviour
         }
     }
 
-    public void CheckDistanceToPlayer()
+    private void CheckDistanceToPlayer()
     {
         directionToThePlayer = transformOfThePlayer.position - transformOfThisAxe.position;
         directionToThePlayerWithMagnitude = directionToThePlayer;
     }
 
-    public void CheckIfDistanceToPlayerHasReachedZeroAndIfSoThenReEnableAxeThrow()
+    private void CheckIfDistanceToPlayerHasReachedZeroAndIfSoThenReEnableAxeThrow()
     {
         if (directionToThePlayerWithMagnitude.magnitude < 0.5)
         {
@@ -174,7 +171,7 @@ public class AxeThrowRaw : MonoBehaviour
             axeThrowHasBeenPressedOnceBeforeReturnJourney = false;
             goBackToThePlayerAfterAttack = false;
             goToTheEnemyToAttack = false;
-            StayWithThePlayer = true;
+            StayWithThePlayerWhileAxeIsNotThrowing = true;
 
             colliderOfTheAxe.enabled = false;
 
@@ -183,14 +180,14 @@ public class AxeThrowRaw : MonoBehaviour
         }
     }
 
-    public void GoBackToThePlayer()
+    private void GoBackToThePlayer()
     {
 
         directionToThePlayer.Normalize();
         transform.Translate(directionToThePlayer * Time.deltaTime * speedOfAxeThrow);
     }
 
-    public void CheckIfAxeHasTravelledMaximumDistanceAndIfSoThenGoBackToPlayer()
+    private void CheckIfAxeHasTravelledMaximumDistanceAndIfSoThenGoBackToPlayer()
     {
         if (directionToThePlayerWithMagnitude.magnitude > maxDistanceOfAxeTravel)
         {
@@ -216,10 +213,10 @@ public class AxeThrowRaw : MonoBehaviour
         }
     }
 
-    public void GoBackToThePlayerIntantlySinceTheAxeHasTouchedGroundLayer()
+    private void GoBackToThePlayerIntantlySinceTheAxeHasTouchedGroundLayer()
     {
         transform.position = transformOfThePlayer.position;
-        StayWithThePlayer = true;
+        StayWithThePlayerWhileAxeIsNotThrowing = true;
         axeThrowHasBeenPressedOnceBeforeReturnJourney = false;
         goBackToThePlayerAfterAttack = false;
         goToTheEnemyToAttack = false;
