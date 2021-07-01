@@ -75,7 +75,7 @@ public class AxeThrowRaw : MonoBehaviour
 
         if (goToTheEnemyToAttack == true)
         {
-            Vector3 directionToThePositionOfTheMouseClick = positionOfTheMouseClick - transform.position;
+            Vector3 directionToThePositionOfTheMouseClick = positionOfTheMouseClick - transformOfThePlayer.position;
             directionToThePositionOfTheMouseClick.Normalize();
             transform.Translate(directionToThePositionOfTheMouseClick * Time.deltaTime * speedOfAxeThrow);
             CheckIfAxeHasTravelledMaximumDistanceAndIfSoThenGoBackToPlayer();
@@ -129,7 +129,7 @@ public class AxeThrowRaw : MonoBehaviour
             positionOfTheMouseClick = new Vector3(Input.mousePosition.x, Input.mousePosition.y, transform.position.z - Camera.main.transform.position.z);
             positionOfTheMouseClick = Camera.main.ScreenToWorldPoint(positionOfTheMouseClick);
 
-            AddMaxDistanceToMousePositionCoordinatesSoThatItWontStopIfMousePositionIsLessThanMaxDistance();
+            
             positionOfTheMouseClick.z = transform.position.z;
             
             goBackToThePlayerAfterAttack = false;
@@ -143,28 +143,7 @@ public class AxeThrowRaw : MonoBehaviour
     }
 
 
-    private void AddMaxDistanceToMousePositionCoordinatesSoThatItWontStopIfMousePositionIsLessThanMaxDistance()
-    {
-        if((positionOfTheMouseClick.x - transformOfThePlayer.position.x) > 0)
-        {
-            positionOfTheMouseClick.x = positionOfTheMouseClick.x + maxDistanceOfAxeTravel;
-        }
-
-        else if ((positionOfTheMouseClick.x - transformOfThePlayer.position.x) < 0)
-        {
-            positionOfTheMouseClick.x = positionOfTheMouseClick.x - maxDistanceOfAxeTravel;
-        }
-
-        if((positionOfTheMouseClick.y - transformOfThePlayer.position.y) > 0)
-        {
-            positionOfTheMouseClick.y = positionOfTheMouseClick.y + maxDistanceOfAxeTravel;
-        }
-
-        else if((positionOfTheMouseClick.y - transformOfThePlayer.position.y) < 0)
-        {
-            positionOfTheMouseClick.y = positionOfTheMouseClick.y - maxDistanceOfAxeTravel;
-        }
-    }
+   
 
 
     public void DetectRangedAttackButtonPressAndInstantlyTransportTheAxeBackToThePlayer()
