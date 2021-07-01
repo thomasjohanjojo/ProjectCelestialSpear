@@ -198,7 +198,7 @@ public class AxeThrowRaw : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Ground")
+        if (collision.tag == "Ground" )
         {
             GoBackToThePlayerIntantlySinceTheAxeHasTouchedGroundLayer();
         }
