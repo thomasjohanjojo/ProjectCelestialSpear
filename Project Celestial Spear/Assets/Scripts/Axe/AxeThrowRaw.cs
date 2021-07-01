@@ -11,6 +11,7 @@ public class AxeThrowRaw : MonoBehaviour
     public Transform transformOfThisAxe;
 
     public Vector3 positionOfTheMouseClick;
+    
 
     public float maxDistanceOfAxeTravel;
 
@@ -33,6 +34,8 @@ public class AxeThrowRaw : MonoBehaviour
     public bool goToTheEnemyToAttack = false;
     public bool pressingTheRangedAttackButtonIsPossibleAndCanThrowAxe = true;
 
+    private bool StayWithThePlayer;
+
     public bool axeThrowHasBeenPressedOnceBeforeReturnJourney = false;
 
 
@@ -40,6 +43,7 @@ public class AxeThrowRaw : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        StayWithThePlayer = true;
         axeThrowScriptOnOffBoolean = false;
         goBackToThePlayerAfterAttack = false;
         goToTheEnemyToAttack = false;
@@ -52,6 +56,11 @@ public class AxeThrowRaw : MonoBehaviour
     void Update()
     {
         GetAxeThrowButtonInputOnlyForChangingState();
+        if(StayWithThePlayer == true)
+        {
+            transform.position = transformOfThePlayer.position;
+        }
+
         if (axeThrowScriptOnOffBoolean == true)
         {
             AxeThrowMainFunction();
@@ -66,7 +75,9 @@ public class AxeThrowRaw : MonoBehaviour
 
         if (goToTheEnemyToAttack == true)
         {
-            transform.Translate(positionOfTheMouseClick * Time.deltaTime * speedOfAxeThrow);
+            Vector3 directionToThePositionOfTheMouseClick = positionOfTheMouseClick - transform.position;
+            directionToThePositionOfTheMouseClick.Normalize();
+            transform.Translate(directionToThePositionOfTheMouseClick * Time.deltaTime * speedOfAxeThrow);
             CheckIfAxeHasTravelledMaximumDistanceAndIfSoThenGoBackToPlayer();
 
         }
@@ -107,17 +118,20 @@ public class AxeThrowRaw : MonoBehaviour
 
     public void KeepRotationAsSame()
     {
-        transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+        //transform.rotation = Quaternion.Euler(0f, 0f, 0f);
     }
 
     public void DetectMousePositionWheneverFire2ButtonIsPressed()
     {
         if (Input.GetButtonDown("Fire2"))
         {
-            positionOfTheMouseClick = Input.mousePosition;
+            StayWithThePlayer = false;
+            positionOfTheMouseClick = new Vector3(Input.mousePosition.x, Input.mousePosition.y, transform.position.z - Camera.main.transform.position.z);
             positionOfTheMouseClick = Camera.main.ScreenToWorldPoint(positionOfTheMouseClick);
+
+            AddMaxDistanceToMousePositionCoordinatesSoThatItWontStopIfMousePositionIsLessThanMaxDistance();
             positionOfTheMouseClick.z = transform.position.z;
-            positionOfTheMouseClick.Normalize();
+            
             goBackToThePlayerAfterAttack = false;
             goToTheEnemyToAttack = true;
 
@@ -128,11 +142,37 @@ public class AxeThrowRaw : MonoBehaviour
         }
     }
 
+
+    private void AddMaxDistanceToMousePositionCoordinatesSoThatItWontStopIfMousePositionIsLessThanMaxDistance()
+    {
+        if((positionOfTheMouseClick.x - transformOfThePlayer.position.x) > 0)
+        {
+            positionOfTheMouseClick.x = positionOfTheMouseClick.x + maxDistanceOfAxeTravel;
+        }
+
+        else if ((positionOfTheMouseClick.x - transformOfThePlayer.position.x) < 0)
+        {
+            positionOfTheMouseClick.x = positionOfTheMouseClick.x - maxDistanceOfAxeTravel;
+        }
+
+        if((positionOfTheMouseClick.y - transformOfThePlayer.position.y) > 0)
+        {
+            positionOfTheMouseClick.y = positionOfTheMouseClick.y + maxDistanceOfAxeTravel;
+        }
+
+        else if((positionOfTheMouseClick.y - transformOfThePlayer.position.y) < 0)
+        {
+            positionOfTheMouseClick.y = positionOfTheMouseClick.y - maxDistanceOfAxeTravel;
+        }
+    }
+
+
     public void DetectRangedAttackButtonPressAndInstantlyTransportTheAxeBackToThePlayer()
     {
         if (Input.GetButtonDown("Fire2"))
         {
             transform.position = transformOfThePlayer.position;
+            StayWithThePlayer = true;
             axeThrowHasBeenPressedOnceBeforeReturnJourney = false;
             goBackToThePlayerAfterAttack = false;
             goToTheEnemyToAttack = false;
@@ -155,6 +195,7 @@ public class AxeThrowRaw : MonoBehaviour
             axeThrowHasBeenPressedOnceBeforeReturnJourney = false;
             goBackToThePlayerAfterAttack = false;
             goToTheEnemyToAttack = false;
+            StayWithThePlayer = true;
 
             colliderOfTheAxe.enabled = false;
 
@@ -199,6 +240,7 @@ public class AxeThrowRaw : MonoBehaviour
     public void GoBackToThePlayerIntantlySinceTheAxeHasTouchedGroundLayer()
     {
         transform.position = transformOfThePlayer.position;
+        StayWithThePlayer = true;
         axeThrowHasBeenPressedOnceBeforeReturnJourney = false;
         goBackToThePlayerAfterAttack = false;
         goToTheEnemyToAttack = false;

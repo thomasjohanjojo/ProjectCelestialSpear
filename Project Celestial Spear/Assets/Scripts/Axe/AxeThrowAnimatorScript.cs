@@ -14,7 +14,7 @@ public class AxeThrowAnimatorScript : MonoBehaviour
     public string IDLE = "AxeInvisible";
     public string VERTICAL   = "RangedVertical";
     public string HORIZONTAL = "RangedHorizontal";
-    
+    public string AXE_THROW = "AxeThrowAnimation";
 
 
     // Start is called before the first frame update
