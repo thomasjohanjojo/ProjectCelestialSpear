@@ -199,12 +199,12 @@ public class AxeThrowRaw : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Ground" )
+        if (collision.tag == "Ground")
         {
             GoBackToThePlayerIntantlySinceTheAxeHasTouchedGroundLayer();
         }
 
-        else if (collision.tag == "Enemy")
+        if (collision.tag == "Enemy")
         {
             enemyRigidBody = collision.GetComponentInChildren<Rigidbody2D>();
             statusScriptOfTheEnemy = collision.GetComponentInChildren<Statuses>();
