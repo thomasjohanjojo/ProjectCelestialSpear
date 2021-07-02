@@ -17,6 +17,7 @@ public class AxeThrowRaw : MonoBehaviour
     public float maxDistanceOfAxeTravel;
 
     public float speedOfAxeThrow;
+    public float speedOfAxeThrowWhenItIsReturning;
     public int damageOfTheAxeThrow;
 
     public BoxCollider2D colliderOfTheAxe;
@@ -185,7 +186,7 @@ public class AxeThrowRaw : MonoBehaviour
     {
 
         directionToThePlayer.Normalize();
-        transform.Translate(directionToThePlayer * Time.deltaTime * speedOfAxeThrow);
+        transform.Translate(directionToThePlayer * Time.deltaTime * speedOfAxeThrowWhenItIsReturning);
     }
 
     private void CheckIfAxeHasTravelledMaximumDistanceAndIfSoThenGoBackToPlayer()
