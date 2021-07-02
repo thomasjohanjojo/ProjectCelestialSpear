@@ -20,6 +20,9 @@ public class AxeThrowRaw : MonoBehaviour
     public float speedOfAxeThrowWhenItIsReturning;
     public int damageOfTheAxeThrow;
 
+    public int amountToSubtractFromTheComboCounterAfterEachSuccesfulAxeThrow;
+    private bool hasTheAxeDamagedAnyEnemiesInThisThrow;
+
     public BoxCollider2D colliderOfTheAxe;
      
     private Rigidbody2D enemyRigidBody;
@@ -52,6 +55,7 @@ public class AxeThrowRaw : MonoBehaviour
         pressingTheRangedAttackButtonIsPossibleAndCanThrowAxe = true;
         axeThrowHasBeenPressedOnceBeforeReturnJourney = false;
         colliderOfTheAxe.enabled = false;
+        hasTheAxeDamagedAnyEnemiesInThisThrow = false;
     }
 
     // Update is called once per frame
@@ -117,7 +121,18 @@ public class AxeThrowRaw : MonoBehaviour
         }
     }
 
-
+    private void DecreaseTheComboCounterNumberIfTheAxeHasDamagedAnyEnemiesInThisThrow()
+    {
+        if(hasTheAxeDamagedAnyEnemiesInThisThrow == true)
+        {
+            playerAttackScriptReferenceForGettingHitCounterValue.HitCounterInt = playerAttackScriptReferenceForGettingHitCounterValue.HitCounterInt - amountToSubtractFromTheComboCounterAfterEachSuccesfulAxeThrow;
+            if(playerAttackScriptReferenceForGettingHitCounterValue.HitCounterInt <= 0)
+            {
+                playerAttackScriptReferenceForGettingHitCounterValue.HitCounterInt = 0;
+            }
+            hasTheAxeDamagedAnyEnemiesInThisThrow = false;
+        }
+    }
     
 
     private void DetectMousePositionWheneverFire2ButtonIsPressed()
@@ -155,6 +170,7 @@ public class AxeThrowRaw : MonoBehaviour
             goBackToThePlayerAfterAttack = false;
             goToTheEnemyToAttack = false;
             colliderOfTheAxe.enabled = false;
+            DecreaseTheComboCounterNumberIfTheAxeHasDamagedAnyEnemiesInThisThrow();
             playerStateControllerReference.StateExecutionHasCompletedAndTurnOnDefaultState(playerStateControllerReference.PLAYER_STATE_AXE_THROW);
         }
     }
@@ -177,6 +193,7 @@ public class AxeThrowRaw : MonoBehaviour
 
             colliderOfTheAxe.enabled = false;
 
+            DecreaseTheComboCounterNumberIfTheAxeHasDamagedAnyEnemiesInThisThrow();
             playerStateControllerReference.StateExecutionHasCompletedAndTurnOnDefaultState(playerStateControllerReference.PLAYER_STATE_AXE_THROW);
 
         }
@@ -207,6 +224,7 @@ public class AxeThrowRaw : MonoBehaviour
 
         if (collision.tag == "Enemy")
         {
+            hasTheAxeDamagedAnyEnemiesInThisThrow = true;
             enemyRigidBody = collision.GetComponentInChildren<Rigidbody2D>();
             statusScriptOfTheEnemy = collision.GetComponentInChildren<Statuses>();
             statusScriptOfTheEnemy.DecreaseHealthByTheNumber(damageOfTheAxeThrow * playerAttackScriptReferenceForGettingHitCounterValue.HitCounterInt);
@@ -223,6 +241,7 @@ public class AxeThrowRaw : MonoBehaviour
         goBackToThePlayerAfterAttack = false;
         goToTheEnemyToAttack = false;
         colliderOfTheAxe.enabled = false;
+        DecreaseTheComboCounterNumberIfTheAxeHasDamagedAnyEnemiesInThisThrow();
         playerStateControllerReference.StateExecutionHasCompletedAndTurnOnDefaultState(playerStateControllerReference.PLAYER_STATE_AXE_THROW);
     }
 }

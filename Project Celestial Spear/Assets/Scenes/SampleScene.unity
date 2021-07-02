@@ -2030,6 +2030,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SmallEnemy (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 8008500180441162145, guid: bc5277dc08b9d414ca4aaa49e7d9d5e4,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8008500180441162146, guid: bc5277dc08b9d414ca4aaa49e7d9d5e4,
         type: 3}
       propertyPath: m_RootOrder
@@ -43289,7 +43294,7 @@ PrefabInstance:
     - target: {fileID: 6308797756038934553, guid: cf3830357aafb2b4ea3f058dad48d931,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 372
+      value: 61
       objectReference: {fileID: 0}
     - target: {fileID: 6308797756038934553, guid: cf3830357aafb2b4ea3f058dad48d931,
         type: 3}
@@ -46165,7 +46170,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2082018364
 Transform:
   m_ObjectHideFlags: 0
@@ -46552,6 +46557,11 @@ PrefabInstance:
       propertyPath: playerAttackScriptReferenceForGettingHitCounterValue
       value: 
       objectReference: {fileID: 2092842500}
+    - target: {fileID: 8715461815739103935, guid: 0d530f2c0c3b1a0489818441cc4ef933,
+        type: 3}
+      propertyPath: amountToSubtractFromTheComboCounterAfterEachSuccesfulAxeThrow
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d530f2c0c3b1a0489818441cc4ef933, type: 3}
 --- !u!1001 &8897046529838899188
