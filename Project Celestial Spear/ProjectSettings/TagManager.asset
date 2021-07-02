@@ -10,6 +10,7 @@ TagManager:
   - Axe
   - Platform
   - PlayerChild
+  - TestGround
   layers:
   - Default
   - TransparentFX

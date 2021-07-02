@@ -28,7 +28,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8715461815739103932}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -11.1, y: -10.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -103,9 +103,10 @@ MonoBehaviour:
   directionToThePlayer: {x: 0, y: 0, z: 0}
   transformOfThisAxe: {fileID: 8715461815739103929}
   positionOfTheMouseClick: {x: 0, y: 0, z: 0}
+  playerAttackScriptReferenceForGettingHitCounterValue: {fileID: 0}
   maxDistanceOfAxeTravel: 15
   speedOfAxeThrow: 20
-  damageOfTheAxeThrow: 20
+  damageOfTheAxeThrow: 10
   colliderOfTheAxe: {fileID: 8715461815739103934}
   playerStateControllerReference: {fileID: 0}
   axeThrowScriptOnOffBoolean: 0
@@ -126,7 +127,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.07614994, y: 0.3878355}
+  m_Offset: {x: 0.046474457, y: 1.0407052}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.43256474, y: 0.45768833}
@@ -137,7 +138,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.3012295, y: 1.1587124}
+  m_Size: {x: 0.76706314, y: 0.92130566}
   m_EdgeRadius: 0
 --- !u!95 &8715461815739103930
 Animator:

@@ -11,7 +11,8 @@ public class AxeThrowRaw : MonoBehaviour
     public Transform transformOfThisAxe;
 
     public Vector3 positionOfTheMouseClick;
-    
+
+    public PlayerAttack playerAttackScriptReferenceForGettingHitCounterValue;    
 
     public float maxDistanceOfAxeTravel;
 
@@ -207,7 +208,7 @@ public class AxeThrowRaw : MonoBehaviour
         {
             enemyRigidBody = collision.GetComponentInChildren<Rigidbody2D>();
             statusScriptOfTheEnemy = collision.GetComponentInChildren<Statuses>();
-            statusScriptOfTheEnemy.DecreaseHealthByTheNumber(damageOfTheAxeThrow);
+            statusScriptOfTheEnemy.DecreaseHealthByTheNumber(damageOfTheAxeThrow * playerAttackScriptReferenceForGettingHitCounterValue.HitCounterInt);
             statusScriptOfTheEnemy = null;
             enemyRigidBody = null;
         }
