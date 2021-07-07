@@ -2150,6 +2150,7 @@ GameObject:
   - component: {fileID: 613490335}
   - component: {fileID: 613490334}
   - component: {fileID: 613490331}
+  - component: {fileID: 613490332}
   m_Layer: 0
   m_Name: NewEnemy
   m_TagString: Untagged
@@ -2261,6 +2262,25 @@ MonoBehaviour:
   attackGivingColliderScriptReference: {fileID: 0}
   enemyAnimationCustomControllerReference: {fileID: 0}
   EnemyAttackScriptControlBoolean: 0
+--- !u!114 &613490332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 613490327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fb8e402e94999a4f8ab5a294a9491ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementControllerOfTheNewEnemyScriptReference: {fileID: 613490334}
+  enemyAttackSciptReference: {fileID: 613490331}
+  ENEMY_STATE_IDLE_OR_MOVING: IdleOrMoving
+  ENEMY_STATE_ATTACKING: EnemyAttacking
+  isIdleOrMovingStateExecuting: 0
+  isAttackingStateExecuting: 0
+  currentState: 
 --- !u!114 &613490334
 MonoBehaviour:
   m_ObjectHideFlags: 0
