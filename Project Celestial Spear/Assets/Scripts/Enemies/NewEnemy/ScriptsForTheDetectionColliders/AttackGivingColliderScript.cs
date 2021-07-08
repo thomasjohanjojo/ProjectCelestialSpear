@@ -11,17 +11,30 @@ public class AttackGivingColliderScript : MonoBehaviour
     public GameObject gameObjectOfThePlayer;
     public Statuses statusScriptOfThePlayer;
 
+    public bool damageHasBeenGivenToThePlayerNowTurnTheColliderOff;
+
     // Start is called before the first frame update
     void Start()
     {
         damageGivingBoxCollider.enabled = false;
+        damageHasBeenGivenToThePlayerNowTurnTheColliderOff = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        IfDamageHasBeenGivenToThePlayerThenTurnOffTheCollider();
     }
+
+    public void IfDamageHasBeenGivenToThePlayerThenTurnOffTheCollider()
+    {
+        if(damageHasBeenGivenToThePlayerNowTurnTheColliderOff == true)
+        {
+            damageHasBeenGivenToThePlayerNowTurnTheColliderOff = false;
+            damageGivingBoxCollider.enabled = false;
+        }
+    }
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

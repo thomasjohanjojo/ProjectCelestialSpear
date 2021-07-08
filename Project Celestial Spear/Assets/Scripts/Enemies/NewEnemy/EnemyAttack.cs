@@ -50,7 +50,7 @@ public class EnemyAttack : MonoBehaviour
         {
             attackGivingColliderScriptReference.damageGivingBoxCollider.enabled = true;
             DamageThePlayerUsingTheCollider();
-            attackGivingColliderScriptReference.damageGivingBoxCollider.enabled = false;
+            
             enemyStateControllerReference.StateExecutionHasCompletedAndTurnOnDefaultState(enemyStateControllerReference.ENEMY_STATE_ATTACKING);
         }
     }
@@ -62,10 +62,11 @@ public class EnemyAttack : MonoBehaviour
         {
             if(attackGivingColliderScriptReference.statusScriptOfThePlayer)
             {
+                
                 attackGivingColliderScriptReference.statusScriptOfThePlayer.DecreaseHealthByTheNumber(damageOfTheAttack);
                 attackGivingColliderScriptReference.statusScriptOfThePlayer = null;
                 attackGivingColliderScriptReference.gameObjectOfThePlayer = null;
-                attackGivingColliderScriptReference.damageGivingBoxCollider.enabled = false;
+                attackGivingColliderScriptReference.damageHasBeenGivenToThePlayerNowTurnTheColliderOff = true;
             }
         }
     }
