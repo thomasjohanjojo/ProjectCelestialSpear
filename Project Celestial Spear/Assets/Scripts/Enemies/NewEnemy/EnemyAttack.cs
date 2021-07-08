@@ -50,6 +50,7 @@ public class EnemyAttack : MonoBehaviour
         {
             attackGivingColliderScriptReference.damageGivingBoxCollider.enabled = true;
             DamageThePlayerUsingTheCollider();
+            attackGivingColliderScriptReference.damageGivingBoxCollider.enabled = false;
             enemyStateControllerReference.StateExecutionHasCompletedAndTurnOnDefaultState(enemyStateControllerReference.ENEMY_STATE_ATTACKING);
         }
     }
