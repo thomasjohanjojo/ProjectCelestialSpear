@@ -10,14 +10,24 @@ public class MovementControllerOfNewEnemy : MonoBehaviour
 
     public EnemyAnimationCustomController enemyAnimationCustomControllerReference;
 
+    public EnemyStateController enemyStateControllerScriptReference;
+
     public bool movementControllerOfTheEnemyScriptControlBoolean;
 
+    public float movementSpeedOfTheEnemy;
+
+    [SerializeField] private Rigidbody2D rigidbodyOfTheEnemy;
+
+    private float facingDirectionOfTheEnemy;
+
+    
     
 
     // Start is called before the first frame update
     void Start()
     {
         movementControllerOfTheEnemyScriptControlBoolean = true;
+        facingDirectionOfTheEnemy = 1;
     }
 
     // Update is called once per frame
@@ -50,8 +60,9 @@ public class MovementControllerOfNewEnemy : MonoBehaviour
     {
         if (detectionRangeColliderScriptReference.gameObjectOfPlayerWhenHeGetsDetected)
         {
-            Vector2 positionOfPlayer = new Vector2(detectionRangeColliderScriptReference.gameObjectOfPlayerWhenHeGetsDetected.transform.position.x, detectionRangeColliderScriptReference.gameObjectOfPlayerWhenHeGetsDetected.transform.position.y);
-            transform.position = Vector2.MoveTowards(transform.position, positionOfPlayer, 1f * Time.deltaTime);
+            Vector2 newPositionOfTheEnemy = new Vector2(transform.position.x + (facingDirectionOfTheEnemy * movementSpeedOfTheEnemy * Time.deltaTime), transform.position.y);
+            rigidbodyOfTheEnemy.MovePosition(newPositionOfTheEnemy);
+            
         }
     }
 
@@ -63,12 +74,14 @@ public class MovementControllerOfNewEnemy : MonoBehaviour
             if (detectionRangeColliderScriptReference.gameObjectOfPlayerWhenHeGetsDetected.transform.position.x > gameObject.transform.position.x)
             {
                 gameObject.transform.rotation = Quaternion.Euler(transform.rotation.x, 0f, transform.rotation.z);
+                facingDirectionOfTheEnemy = 1;
 
             }
 
             else if (detectionRangeColliderScriptReference.gameObjectOfPlayerWhenHeGetsDetected.transform.position.x < gameObject.transform.position.x)
             {
                 gameObject.transform.rotation = Quaternion.Euler(transform.rotation.x, 180f, transform.rotation.z);
+                facingDirectionOfTheEnemy = -1;
             }
         }
     }

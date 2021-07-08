@@ -14,6 +14,10 @@ public class EnemyAnimationCustomController : MonoBehaviour
     public string ENEMY_IDLE_ANIMATION = "Enemy_idle";
     public string ENEMY_ATTACK_ANIMATION = "Enemy_attack";
 
+    public float ENEMY_ATTACK_ANIMATION_DURATION;
+
+    private bool theAnimationHasStartedAndTheStartingTimeHasBeenNoted;
+    private float startingTimeOfTheAnimation;
 
     // Start is called before the first frame update
     void Start()
@@ -40,6 +44,41 @@ public class EnemyAnimationCustomController : MonoBehaviour
             myAnimator.Play(newState);
 
             currentState = newState;
+        }
+    }
+
+
+    public bool CheckIfAnimationHasCompleted(float duration)
+    {
+        if(theAnimationHasStartedAndTheStartingTimeHasBeenNoted == false)
+        {
+            startingTimeOfTheAnimation = Time.time;
+            theAnimationHasStartedAndTheStartingTimeHasBeenNoted = true;
+            return false;
+        }
+
+        if(theAnimationHasStartedAndTheStartingTimeHasBeenNoted == true)
+        {
+            if(Time.time - startingTimeOfTheAnimation > duration)
+            {
+                theAnimationHasStartedAndTheStartingTimeHasBeenNoted = false;
+                return true;
+            }
+
+            else if(Time.time - startingTimeOfTheAnimation < duration)
+            {
+                return false;
+            }
+
+            else
+            {
+                return false;
+            }
+        }
+
+        else
+        {
+            return false;
         }
     }
 }

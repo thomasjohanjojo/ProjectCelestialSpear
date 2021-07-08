@@ -2151,6 +2151,8 @@ GameObject:
   - component: {fileID: 613490334}
   - component: {fileID: 613490331}
   - component: {fileID: 613490332}
+  - component: {fileID: 613490333}
+  - component: {fileID: 613490336}
   m_Layer: 0
   m_Name: NewEnemy
   m_TagString: Untagged
@@ -2218,7 +2220,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 613490327}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -16.11, y: -5.24692, z: 0}
+  m_LocalPosition: {x: -22.97, y: -5.24692, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 173685983}
@@ -2258,10 +2260,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f708bb7a21a39c849a1c00a6df28bff4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackRangeDetectionColliderScriptReference: {fileID: 0}
-  attackGivingColliderScriptReference: {fileID: 0}
-  enemyAnimationCustomControllerReference: {fileID: 0}
+  attackRangeDetectionColliderScriptReference: {fileID: 932839810}
+  attackGivingColliderScriptReference: {fileID: 1029415202}
+  enemyStateControllerReference: {fileID: 613490332}
+  enemyAnimationCustomControllerReference: {fileID: 613490335}
   EnemyAttackScriptControlBoolean: 0
+  damageOfTheAttack: 10
 --- !u!114 &613490332
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2281,6 +2285,27 @@ MonoBehaviour:
   isIdleOrMovingStateExecuting: 0
   isAttackingStateExecuting: 0
   currentState: 
+--- !u!50 &613490333
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 613490327}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!114 &613490334
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2295,7 +2320,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   detectionRangeColliderScriptReference: {fileID: 173685984}
   enemyAnimationCustomControllerReference: {fileID: 613490335}
+  enemyStateControllerScriptReference: {fileID: 613490332}
   movementControllerOfTheEnemyScriptControlBoolean: 0
+  movementSpeedOfTheEnemy: 7
+  rigidbodyOfTheEnemy: {fileID: 613490333}
 --- !u!114 &613490335
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2312,6 +2340,33 @@ MonoBehaviour:
   ENEMY_WALK_ANIMATION: Enemy_walk
   ENEMY_IDLE_ANIMATION: Enemy_idle
   ENEMY_ATTACK_ANIMATION: Enemy_attack
+  ENEMY_ATTACK_ANIMATION_DURATION: 1
+--- !u!61 &613490336
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 613490327}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.057291627, y: 0.03124988}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.4758772, y: 0.48958337}
+    oldSize: {x: 2.375, y: 3}
+    newSize: {x: 2.375, y: 3}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2.375, y: 3}
+  m_EdgeRadius: 0
 --- !u!1 &684980871
 GameObject:
   m_ObjectHideFlags: 0
@@ -2425,9 +2480,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 026877a3d84994d4e83bf02ab301e563, type: 3}
+  m_audioClip: {fileID: 8300000, guid: d06bab057479cc44dbc5d28b85e0f6d4, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.395
+  m_Volume: 0.154
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -42939,7 +42994,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 2.613057, y: 0.6660733}
+  m_Offset: {x: 2.018981, y: 0.6660733}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -42950,7 +43005,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.5370927, y: 2.7420397}
+  m_Size: {x: 1.3489408, y: 2.7420397}
   m_EdgeRadius: 0
 --- !u!1001 &934270819
 PrefabInstance:
@@ -43529,6 +43584,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a25230bf44ab5e343ac7b9b6af3127de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyAttackScriptReferenceForGettingDamageOfTheAttack: {fileID: 613490331}
+  damageGivingBoxCollider: {fileID: 1029415203}
 --- !u!61 &1029415203
 BoxCollider2D:
   m_ObjectHideFlags: 0

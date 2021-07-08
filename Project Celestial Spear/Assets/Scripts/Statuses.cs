@@ -43,7 +43,7 @@ public class Statuses : MonoBehaviour
         {
             healthbar.Sethealth(health);
         }
-        if (health <= 0.0f)
+       /* if (health <= 0.0f)
         {
             if (this.transform.parent)
             {
@@ -87,6 +87,6 @@ public class Statuses : MonoBehaviour
                 }
 
             }
-        }
+        }*/
     }
 }
