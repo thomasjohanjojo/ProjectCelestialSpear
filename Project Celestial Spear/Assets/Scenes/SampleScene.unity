@@ -968,7 +968,7 @@ PrefabInstance:
     - target: {fileID: 2204384637875850911, guid: fe4467b2fb1a6f042880d64f91ac1f12,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2204384638448781040, guid: fe4467b2fb1a6f042880d64f91ac1f12,
         type: 3}
@@ -1068,12 +1068,17 @@ PrefabInstance:
     - target: {fileID: 2204384638451112359, guid: fe4467b2fb1a6f042880d64f91ac1f12,
         type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2204384638453528328, guid: fe4467b2fb1a6f042880d64f91ac1f12,
         type: 3}
       propertyPath: m_TagString
       value: PlayerChild
+      objectReference: {fileID: 0}
+    - target: {fileID: 2204384638453528341, guid: fe4467b2fb1a6f042880d64f91ac1f12,
+        type: 3}
+      propertyPath: layerMaskOfEnemy.m_Bits
+      value: 256
       objectReference: {fileID: 0}
     - target: {fileID: 2204384638453528341, guid: fe4467b2fb1a6f042880d64f91ac1f12,
         type: 3}
@@ -1083,7 +1088,7 @@ PrefabInstance:
     - target: {fileID: 2204384638453528343, guid: fe4467b2fb1a6f042880d64f91ac1f12,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2204384638749814336, guid: fe4467b2fb1a6f042880d64f91ac1f12,
         type: 3}
@@ -1258,7 +1263,7 @@ PrefabInstance:
     - target: {fileID: 2204384639090746828, guid: fe4467b2fb1a6f042880d64f91ac1f12,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2204384639090746829, guid: fe4467b2fb1a6f042880d64f91ac1f12,
         type: 3}
@@ -2153,9 +2158,9 @@ GameObject:
   - component: {fileID: 613490332}
   - component: {fileID: 613490333}
   - component: {fileID: 613490336}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: NewEnemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2340,7 +2345,7 @@ MonoBehaviour:
   ENEMY_WALK_ANIMATION: Enemy_walk
   ENEMY_IDLE_ANIMATION: Enemy_idle
   ENEMY_ATTACK_ANIMATION: Enemy_attack
-  ENEMY_ATTACK_ANIMATION_DURATION: 1
+  ENEMY_ATTACK_ANIMATION_DURATION: 0.4
 --- !u!61 &613490336
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -43553,7 +43558,7 @@ GameObject:
   - component: {fileID: 1029415202}
   m_Layer: 0
   m_Name: BoxColliderForGivingDamageToThePlayer
-  m_TagString: Untagged
+  m_TagString: CanDamagePlayer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -43584,8 +43589,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a25230bf44ab5e343ac7b9b6af3127de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyAttackScriptReferenceForGettingDamageOfTheAttack: {fileID: 613490331}
   damageGivingBoxCollider: {fileID: 1029415203}
+  gameObjectOfThePlayer: {fileID: 0}
+  statusScriptOfThePlayer: {fileID: 0}
+  damageHasBeenGivenToThePlayerNowTurnTheColliderOff: 0
 --- !u!61 &1029415203
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -45868,11 +45875,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1953812701}
     m_Modifications:
-    - target: {fileID: 8340181330334018318, guid: e07fe97e4bc26b4419ab9c97d7f120f7,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 8340181330334018319, guid: e07fe97e4bc26b4419ab9c97d7f120f7,
         type: 3}
       propertyPath: m_RootOrder

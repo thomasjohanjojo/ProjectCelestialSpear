@@ -9,7 +9,7 @@ public class RangedAttackColliderScript : MonoBehaviour
 
     public int damageOfTheAttack;
     private Rigidbody2D enemyRigidBody;
-    private Statuses statusScriptOfTheEnemy;
+    private EnemyStatusScript statusScriptOfTheEnemy;
 
     // Start is called before the first frame update
     void Start()
@@ -31,7 +31,7 @@ public class RangedAttackColliderScript : MonoBehaviour
         if (collision.tag == "Enemy")
         {
             enemyRigidBody = collision.GetComponentInChildren<Rigidbody2D>();
-            statusScriptOfTheEnemy = collision.GetComponentInChildren<Statuses>();
+            statusScriptOfTheEnemy = collision.GetComponentInChildren<EnemyStatusScript>();
             statusScriptOfTheEnemy.DecreaseHealthByTheNumber(damageOfTheAttack * playerAttackReferenceForGettingHitCounter.HitCounterInt);
             statusScriptOfTheEnemy = null;
             enemyRigidBody = null;

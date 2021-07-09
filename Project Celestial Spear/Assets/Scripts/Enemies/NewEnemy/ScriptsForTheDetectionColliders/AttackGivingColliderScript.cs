@@ -23,7 +23,7 @@ public class AttackGivingColliderScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        IfDamageHasBeenGivenToThePlayerThenTurnOffTheCollider();
+        
     }
 
     public void IfDamageHasBeenGivenToThePlayerThenTurnOffTheCollider()
@@ -54,13 +54,5 @@ public class AttackGivingColliderScript : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if(collision.tag == "Player")
-        {
-            statusScriptOfThePlayer = null;
-            gameObjectOfThePlayer = null;
-            damageGivingBoxCollider.enabled = false;
-        }
-    }
+    
 }

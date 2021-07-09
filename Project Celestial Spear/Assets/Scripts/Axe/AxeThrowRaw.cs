@@ -27,7 +27,7 @@ public class AxeThrowRaw : MonoBehaviour
      
     private Rigidbody2D enemyRigidBody;
 
-    private Statuses statusScriptOfTheEnemy;
+    private EnemyStatusScript statusScriptOfTheEnemy;
 
     public PlayerStateController playerStateControllerReference;
 
@@ -226,7 +226,7 @@ public class AxeThrowRaw : MonoBehaviour
         {
             hasTheAxeDamagedAnyEnemiesInThisThrow = true;
             enemyRigidBody = collision.GetComponentInChildren<Rigidbody2D>();
-            statusScriptOfTheEnemy = collision.GetComponentInChildren<Statuses>();
+            statusScriptOfTheEnemy = collision.GetComponentInChildren<EnemyStatusScript>();
             statusScriptOfTheEnemy.DecreaseHealthByTheNumber(damageOfTheAxeThrow * playerAttackScriptReferenceForGettingHitCounterValue.HitCounterInt);
             statusScriptOfTheEnemy = null;
             enemyRigidBody = null;

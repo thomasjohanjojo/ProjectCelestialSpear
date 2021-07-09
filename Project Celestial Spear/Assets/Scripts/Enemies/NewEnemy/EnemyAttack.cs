@@ -13,11 +13,16 @@ public class EnemyAttack : MonoBehaviour
     public bool EnemyAttackScriptControlBoolean;
 
     public int damageOfTheAttack;
+
+    private bool oneInstanceOfTheCoRoutineIsRunningAlready;
+
+    
     
 
     // Start is called before the first frame update
     void Start()
     {
+        oneInstanceOfTheCoRoutineIsRunningAlready = false;
         
     }
 
@@ -35,24 +40,36 @@ public class EnemyAttack : MonoBehaviour
         {
             EnemyAttackMainFunction();
         }
-                
+
+        
     }
 
     private void EnemyAttackMainFunction()
     {
-        AttackTheEnemyByTurningOnTheAnimationAndTheAttackColliders();
+        if (oneInstanceOfTheCoRoutineIsRunningAlready == false)
+        {
+            StartCoroutine(AttackTheEnemyByTurningOnTheAnimationAndTheAttackColliders());
+        }
     }
     
-    private void AttackTheEnemyByTurningOnTheAnimationAndTheAttackColliders()
+    private IEnumerator AttackTheEnemyByTurningOnTheAnimationAndTheAttackColliders()
     {
+        
+        oneInstanceOfTheCoRoutineIsRunningAlready = true;
+
+        attackGivingColliderScriptReference.damageGivingBoxCollider.enabled = false;
         enemyAnimationCustomControllerReference.ChangeAnimationState(enemyAnimationCustomControllerReference.ENEMY_ATTACK_ANIMATION);
-        if (enemyAnimationCustomControllerReference.CheckIfAnimationHasCompleted(enemyAnimationCustomControllerReference.ENEMY_ATTACK_ANIMATION_DURATION) == true)
-        {
-            attackGivingColliderScriptReference.damageGivingBoxCollider.enabled = true;
-            DamageThePlayerUsingTheCollider();
-            
-            enemyStateControllerReference.StateExecutionHasCompletedAndTurnOnDefaultState(enemyStateControllerReference.ENEMY_STATE_ATTACKING);
-        }
+        yield return new WaitForSeconds(enemyAnimationCustomControllerReference.ENEMY_ATTACK_ANIMATION_DURATION);
+        attackGivingColliderScriptReference.damageGivingBoxCollider.enabled = true;
+        DamageThePlayerUsingTheCollider();
+
+        yield return new WaitForSeconds(3f);
+
+        enemyStateControllerReference.StateExecutionHasCompletedAndTurnOnDefaultState(enemyStateControllerReference.ENEMY_STATE_ATTACKING);
+
+        oneInstanceOfTheCoRoutineIsRunningAlready = false;
+        
+        
     }
    
 
@@ -62,11 +79,12 @@ public class EnemyAttack : MonoBehaviour
         {
             if(attackGivingColliderScriptReference.statusScriptOfThePlayer)
             {
+
                 
-                attackGivingColliderScriptReference.statusScriptOfThePlayer.DecreaseHealthByTheNumber(damageOfTheAttack);
+                attackGivingColliderScriptReference.statusScriptOfThePlayer.DecreaseHealthByTheNumber(damageOfTheAttack, attackGivingColliderScriptReference.damageGivingBoxCollider);
                 attackGivingColliderScriptReference.statusScriptOfThePlayer = null;
                 attackGivingColliderScriptReference.gameObjectOfThePlayer = null;
-                attackGivingColliderScriptReference.damageHasBeenGivenToThePlayerNowTurnTheColliderOff = true;
+                
             }
         }
     }

@@ -14,7 +14,7 @@ public class PlayerDodge : MonoBehaviour
 
     public Rigidbody2D myRigidbody2D;
     public BoxCollider2D myBoxCollider2D;
-    //public CircleCollider2D circleColliderForSmootheningWalking;
+    
     public DodgeHitDetectionColliderScript dodgeHitDetectionColliderScriptReference;
     public PlayerAnimationController playerAnimationControllerScriptReference;
     public PlayerStateController playerStateControllerReference;
@@ -103,9 +103,11 @@ public class PlayerDodge : MonoBehaviour
         isInInvincibilityPeriod = true;
 
         playerAnimationControllerScriptReference.ChangeAnimationState(playerAnimationControllerScriptReference.INVINCIBLE_STAGE_ANIMATION);
+        playerStatusScript.playerCanBeDamaged = false;
         dodgeHitDetectionColliderScriptReference.boxColliderForDetectingDodgeHits.enabled = true;
         yield return new WaitForSeconds(thatMillisecondsOfTimeOfTheInvincibilityPeriod);
         dodgeHitDetectionColliderScriptReference.boxColliderForDetectingDodgeHits.enabled = false;
+        playerStatusScript.playerCanBeDamaged = true;
 
         isInInvincibilityPeriod = false;
 

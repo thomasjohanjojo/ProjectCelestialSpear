@@ -146,7 +146,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 5
   m_Sprite: {fileID: 4626191106825014032, guid: 26b3fa78a32019e44994182bdd768ab3,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -223,8 +223,10 @@ MonoBehaviour:
   durationOfTheGoingInAnimation: 1.4
   damageToBeGivenToVictim: 50
   victimIsInDamageArea: 0
+  damageGivingBoxColliderOfTheTrap: {fileID: 8340181330334018320}
   theTrapCoroutineIsPlaying: 0
-  statusScriptOfTheVictim: {fileID: 0}
+  statusScriptOfThePlayer: {fileID: 0}
+  statusScriptOfTheEnemy: {fileID: 0}
   gameObjectOfTheVictim: {fileID: 0}
 --- !u!114 &8340181330334018317
 MonoBehaviour:

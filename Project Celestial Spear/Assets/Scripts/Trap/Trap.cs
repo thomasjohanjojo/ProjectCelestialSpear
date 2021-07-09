@@ -17,11 +17,13 @@ public class Trap : MonoBehaviour
 
     public bool victimIsInDamageArea;
 
+    public BoxCollider2D damageGivingBoxColliderOfTheTrap;
+
     public bool theTrapCoroutineIsPlaying;
 
-    public Statuses statusScriptOfTheVictim;
+    public Statuses statusScriptOfThePlayer;
 
-    
+    public EnemyStatusScript statusScriptOfTheEnemy;       
 
     public GameObject gameObjectOfTheVictim;
 
@@ -30,6 +32,7 @@ public class Trap : MonoBehaviour
     {
         victimIsInDamageArea = false;
         theTrapCoroutineIsPlaying = false;
+        damageGivingBoxColliderOfTheTrap.enabled = false;
     }
 
     // Update is called once per frame
@@ -62,7 +65,7 @@ public class Trap : MonoBehaviour
 
             if (gameObjectOfTheVictim.GetComponent<Statuses>())
             {
-                statusScriptOfTheVictim = gameObjectOfTheVictim.GetComponent<Statuses>();
+                statusScriptOfThePlayer = gameObjectOfTheVictim.GetComponent<Statuses>();
             }
 
             victimIsInDamageArea = true;
@@ -73,9 +76,9 @@ public class Trap : MonoBehaviour
         {
             gameObjectOfTheVictim = collision.gameObject;
 
-            if (gameObjectOfTheVictim.GetComponentInChildren<Statuses>())
+            if (gameObjectOfTheVictim.GetComponentInChildren<EnemyStatusScript>())
             {
-                statusScriptOfTheVictim = gameObjectOfTheVictim.GetComponentInChildren<Statuses>();
+                statusScriptOfTheEnemy = gameObjectOfTheVictim.GetComponentInChildren<EnemyStatusScript>();
             }
 
             victimIsInDamageArea = true;
@@ -87,7 +90,8 @@ public class Trap : MonoBehaviour
         if(collision.gameObject.tag == "Player" || collision.gameObject.tag == "Enemy")
         {
             gameObjectOfTheVictim = null;
-            statusScriptOfTheVictim = null;
+            statusScriptOfThePlayer = null;
+            statusScriptOfTheEnemy = null;
             victimIsInDamageArea = false;
         }
     }
@@ -100,19 +104,28 @@ public class Trap : MonoBehaviour
         yield return new WaitForSeconds(durationOfTheComingOutAnimation);
         trapAnimationControllerScriptReference.ChangeAnimationState(trapAnimationControllerScriptReference.TRAP_IS_AT_THE_TOP_MOST);
 
+        damageGivingBoxColliderOfTheTrap.enabled = true;
+
         if (victimIsInDamageArea)
         {
             if(gameObjectOfTheVictim)
             {
-                if(statusScriptOfTheVictim)
+                if(statusScriptOfThePlayer)
                 {
-                    statusScriptOfTheVictim.DecreaseHealthByTheNumber(damageToBeGivenToVictim);
+                    statusScriptOfThePlayer.DecreaseHealthByTheNumber(damageToBeGivenToVictim, damageGivingBoxColliderOfTheTrap);
                 }
+
+                if(statusScriptOfTheEnemy)
+                {
+                    statusScriptOfTheEnemy.DecreaseHealthByTheNumber(damageToBeGivenToVictim);
+                }
+
             }
         }
 
         yield return new WaitForSeconds(durationOfTheWaitTimeBetweenAnimation);
 
+        damageGivingBoxColliderOfTheTrap.enabled = false;
         trapAnimationControllerScriptReference.ChangeAnimationState(trapAnimationControllerScriptReference.TRAP_COMING_IN_ANIMATION);
         yield return new WaitForSeconds(durationOfTheGoingInAnimation);
         

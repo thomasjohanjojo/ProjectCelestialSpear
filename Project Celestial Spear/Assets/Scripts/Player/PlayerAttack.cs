@@ -11,7 +11,7 @@ public class PlayerAttack : MonoBehaviour
 
     public AttackColliderScript attackColliderScriptReference;
 
-    private Statuses statusSciptOfEnemy;
+    private EnemyStatusScript statusSciptOfEnemy;
     private Rigidbody2D enemyRigidBody;
 
 

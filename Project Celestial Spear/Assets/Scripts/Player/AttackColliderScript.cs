@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AttackColliderScript : MonoBehaviour
 {
-    public Statuses statusSciptOfEnemy;
+    public EnemyStatusScript statusSciptOfEnemy;
     public Rigidbody2D enemyRigidBody;
 
     // Start is called before the first frame update
@@ -30,7 +30,7 @@ public class AttackColliderScript : MonoBehaviour
 
             if (enemyRigidBody)
             {
-                statusSciptOfEnemy = collision.gameObject.GetComponentInChildren<Statuses>();
+                statusSciptOfEnemy = collision.gameObject.GetComponentInChildren<EnemyStatusScript>();
             }
 
         }

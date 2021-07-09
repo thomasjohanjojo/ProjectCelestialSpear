@@ -14,18 +14,26 @@ public class Statuses : MonoBehaviour
     public int health = 100;
     public HealthBarScript healthbar;
     public PlayerAttack playerAttackScriptReference;
+    public bool playerCanBeDamaged;
 
     private GameObject parentGameObject;
 
-    public void DecreaseHealthByTheNumber(int healthToBeDecreased)
+    public void DecreaseHealthByTheNumber(int healthToBeDecreased, BoxCollider2D theBoxColliderWhichDealsTheAttack)
     {
-        health = health - healthToBeDecreased;
-       
+        
 
-        if(this.gameObject.tag == "Player")
+        if (playerCanBeDamaged == true)
         {
-            playerAttackScriptReference.HitCounterInt = 0;
+            health = health - healthToBeDecreased;
+
+
+            if (this.gameObject.tag == "Player")
+            {
+                playerAttackScriptReference.HitCounterInt = 0;
+            }
         }
+
+        theBoxColliderWhichDealsTheAttack.enabled = false;
 
     }
     
@@ -33,7 +41,8 @@ public class Statuses : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-         // simply for testing    
+        // simply for testing    
+        playerCanBeDamaged = true;
     }
 
     // Update is called once per frame
