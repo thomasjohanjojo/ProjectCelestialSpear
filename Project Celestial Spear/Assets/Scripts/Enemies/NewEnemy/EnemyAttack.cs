@@ -63,6 +63,7 @@ public class EnemyAttack : MonoBehaviour
         attackGivingColliderScriptReference.damageGivingBoxCollider.enabled = true;
         DamageThePlayerUsingTheCollider();
 
+        enemyAnimationCustomControllerReference.ChangeAnimationState(enemyAnimationCustomControllerReference.ENEMY_IDLE_ANIMATION);
         yield return new WaitForSeconds(3f);
 
         enemyStateControllerReference.StateExecutionHasCompletedAndTurnOnDefaultState(enemyStateControllerReference.ENEMY_STATE_ATTACKING);
