@@ -6,15 +6,19 @@ public class EnemyStateController : MonoBehaviour
 {
     public MovementControllerOfNewEnemy movementControllerOfTheNewEnemyScriptReference;
     public EnemyAttack enemyAttackSciptReference;
+    public IntervalBetweenEnemyAttacksScript intervalBetweenEnemyAttackScriptReference;
 
     public string ENEMY_STATE_IDLE_OR_MOVING = "IdleOrMoving";
     public string ENEMY_STATE_ATTACKING = "EnemyAttacking";
+    public string ENEMY_STATE_INTERVAL = "EnemyStateInterval";
 
     private int STATE_PRIORITY_ID_IDLE_OR_MOVING;
     private int STATE_PRIORITY_ID_ATTACKING;
+    private int STATE_PRIORITY_ID_INTERVAL;
 
     public bool isIdleOrMovingStateExecuting;
     public bool isAttackingStateExecuting;
+    public bool isIntervalStateExecuting;
 
     public string currentState;
     private string defaultState;
@@ -28,6 +32,7 @@ public class EnemyStateController : MonoBehaviour
     {
         STATE_PRIORITY_ID_IDLE_OR_MOVING = 1;
         STATE_PRIORITY_ID_ATTACKING = 2;
+        STATE_PRIORITY_ID_INTERVAL = 3;
 
         defaultState = ENEMY_STATE_IDLE_OR_MOVING;
         currentState = ENEMY_STATE_IDLE_OR_MOVING;
@@ -94,15 +99,25 @@ public class EnemyStateController : MonoBehaviour
             isAttackingStateExecuting = false;
             TurnOnState(defaultState);
         }
+
+        else if(state == ENEMY_STATE_INTERVAL)
+        {
+            intervalBetweenEnemyAttackScriptReference.IntervalBetweenEnemyAttackScriptControlBoolean = false;
+            isIntervalStateExecuting = false;
+            TurnOnState(defaultState);
+        }
+
     }
 
     private void TurnOnState(string state)
     {
         movementControllerOfTheNewEnemyScriptReference.movementControllerOfTheEnemyScriptControlBoolean = false;
         enemyAttackSciptReference.EnemyAttackScriptControlBoolean = false;
+        intervalBetweenEnemyAttackScriptReference.IntervalBetweenEnemyAttackScriptControlBoolean = false;
 
         isIdleOrMovingStateExecuting = false;
         isAttackingStateExecuting = false;
+        isIntervalStateExecuting = false;
 
         if(state == ENEMY_STATE_IDLE_OR_MOVING)
         {
@@ -118,6 +133,13 @@ public class EnemyStateController : MonoBehaviour
             currentState = ENEMY_STATE_ATTACKING;
         }
 
+        if(state == ENEMY_STATE_INTERVAL)
+        {
+            intervalBetweenEnemyAttackScriptReference.IntervalBetweenEnemyAttackScriptControlBoolean = true;
+            isIntervalStateExecuting = true;
+            currentState = ENEMY_STATE_INTERVAL;
+        }
+
     }
 
     private bool ReturnStateExecutionStatus(string state)
@@ -130,6 +152,11 @@ public class EnemyStateController : MonoBehaviour
         if(state == ENEMY_STATE_ATTACKING)
         {
             return isAttackingStateExecuting;
+        }
+
+        if(state == ENEMY_STATE_INTERVAL)
+        {
+            return isIntervalStateExecuting;
         }
 
 
@@ -149,6 +176,11 @@ public class EnemyStateController : MonoBehaviour
         if(state == ENEMY_STATE_ATTACKING)
         {
             return STATE_PRIORITY_ID_ATTACKING;
+        }
+
+        if(state == ENEMY_STATE_INTERVAL)
+        {
+            return STATE_PRIORITY_ID_INTERVAL;
         }
 
         else

@@ -2158,6 +2158,7 @@ GameObject:
   - component: {fileID: 613490332}
   - component: {fileID: 613490333}
   - component: {fileID: 613490336}
+  - component: {fileID: 613490337}
   m_Layer: 8
   m_Name: NewEnemy
   m_TagString: Enemy
@@ -2285,10 +2286,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementControllerOfTheNewEnemyScriptReference: {fileID: 613490334}
   enemyAttackSciptReference: {fileID: 613490331}
+  intervalBetweenEnemyAttackScriptReference: {fileID: 613490337}
   ENEMY_STATE_IDLE_OR_MOVING: IdleOrMoving
   ENEMY_STATE_ATTACKING: EnemyAttacking
+  ENEMY_STATE_INTERVAL: EnemyStateInterval
   isIdleOrMovingStateExecuting: 0
   isAttackingStateExecuting: 0
+  isIntervalStateExecuting: 0
   currentState: 
 --- !u!50 &613490333
 Rigidbody2D:
@@ -2345,7 +2349,7 @@ MonoBehaviour:
   ENEMY_WALK_ANIMATION: Enemy_walk
   ENEMY_IDLE_ANIMATION: Enemy_idle
   ENEMY_ATTACK_ANIMATION: Enemy_attack
-  ENEMY_ATTACK_ANIMATION_DURATION: 0.4
+  ENEMY_ATTACK_ANIMATION_DURATION: 2
 --- !u!61 &613490336
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2372,6 +2376,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.375, y: 3}
   m_EdgeRadius: 0
+--- !u!114 &613490337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 613490327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 072ed2a3da18e7949a1ad50af548f665, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyAnimationCustomControllerReference: {fileID: 613490335}
+  durationOfTheInterval: 3
+  enemyStateControllerReference: {fileID: 613490332}
+  IntervalBetweenEnemyAttackScriptControlBoolean: 0
 --- !u!1 &684980871
 GameObject:
   m_ObjectHideFlags: 0
