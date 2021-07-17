@@ -61,9 +61,12 @@ public class EnemyAttack : MonoBehaviour
         enemyAnimationCustomControllerReference.ChangeAnimationState(enemyAnimationCustomControllerReference.ENEMY_ATTACK_ANIMATION);
         yield return new WaitForSeconds(enemyAnimationCustomControllerReference.ENEMY_ATTACK_ANIMATION_DURATION);
         attackGivingColliderScriptReference.damageGivingBoxCollider.enabled = true;
+
         yield return new WaitForFixedUpdate();
         DamageThePlayerUsingTheCollider();
+        yield return new WaitForFixedUpdate();
 
+        attackGivingColliderScriptReference.damageGivingBoxCollider.enabled = false;
         
 
         enemyStateControllerReference.StateExecutionHasCompletedAndTurnOnDefaultState(enemyStateControllerReference.ENEMY_STATE_ATTACKING);
@@ -91,9 +94,6 @@ public class EnemyAttack : MonoBehaviour
             }
         }
 
-        else
-        {
-            Debug.Log("NO game object ");
-        }
+        
     }
 }

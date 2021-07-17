@@ -1167,8 +1167,13 @@ PrefabInstance:
       objectReference: {fileID: 342869145}
     - target: {fileID: 2204384638749814346, guid: fe4467b2fb1a6f042880d64f91ac1f12,
         type: 3}
+      propertyPath: thatMillisecondsOfTimeBeforeInvincibility
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2204384638749814346, guid: fe4467b2fb1a6f042880d64f91ac1f12,
+        type: 3}
       propertyPath: thatMillisecondsOfTimeOfTheInvincibilityPeriod
-      value: 0.45
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 2204384638749814346, guid: fe4467b2fb1a6f042880d64f91ac1f12,
         type: 3}
@@ -2366,8 +2371,8 @@ BoxCollider2D:
   m_Offset: {x: 0.057291627, y: 0.03124988}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.51315796, y: 0.38157895}
-    oldSize: {x: 2.25, y: 4}
+    pivot: {x: 0.4758772, y: 0.48958337}
+    oldSize: {x: 2.375, y: 3}
     newSize: {x: 2.375, y: 3}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
