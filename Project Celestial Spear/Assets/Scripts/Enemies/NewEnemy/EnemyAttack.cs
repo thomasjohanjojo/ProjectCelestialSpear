@@ -61,6 +61,7 @@ public class EnemyAttack : MonoBehaviour
         enemyAnimationCustomControllerReference.ChangeAnimationState(enemyAnimationCustomControllerReference.ENEMY_ATTACK_ANIMATION);
         yield return new WaitForSeconds(enemyAnimationCustomControllerReference.ENEMY_ATTACK_ANIMATION_DURATION);
         attackGivingColliderScriptReference.damageGivingBoxCollider.enabled = true;
+        yield return new WaitForFixedUpdate();
         DamageThePlayerUsingTheCollider();
 
         
