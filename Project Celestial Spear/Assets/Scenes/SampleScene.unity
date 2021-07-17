@@ -2349,7 +2349,7 @@ MonoBehaviour:
   ENEMY_WALK_ANIMATION: Enemy_walk
   ENEMY_IDLE_ANIMATION: Enemy_idle
   ENEMY_ATTACK_ANIMATION: Enemy_attack
-  ENEMY_ATTACK_ANIMATION_DURATION: 2
+  ENEMY_ATTACK_ANIMATION_DURATION: 0.5
 --- !u!61 &613490336
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2366,8 +2366,8 @@ BoxCollider2D:
   m_Offset: {x: 0.057291627, y: 0.03124988}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.4758772, y: 0.48958337}
-    oldSize: {x: 2.375, y: 3}
+    pivot: {x: 0.51315796, y: 0.38157895}
+    oldSize: {x: 2.25, y: 4}
     newSize: {x: 2.375, y: 3}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

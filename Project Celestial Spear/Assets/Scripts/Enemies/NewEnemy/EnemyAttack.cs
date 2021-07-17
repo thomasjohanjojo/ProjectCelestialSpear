@@ -68,6 +68,7 @@ public class EnemyAttack : MonoBehaviour
         enemyStateControllerReference.StateExecutionHasCompletedAndTurnOnDefaultState(enemyStateControllerReference.ENEMY_STATE_ATTACKING);
         enemyStateControllerReference.ChangeStateAccordingToPriority(enemyStateControllerReference.ENEMY_STATE_INTERVAL);
 
+
         oneInstanceOfTheCoRoutineIsRunningAlready = false;
         
         
@@ -87,6 +88,11 @@ public class EnemyAttack : MonoBehaviour
                 attackGivingColliderScriptReference.gameObjectOfThePlayer = null;
                 
             }
+        }
+
+        else
+        {
+            Debug.Log("NO game object ");
         }
     }
 }
