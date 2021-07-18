@@ -140,7 +140,7 @@ public class PlayerAttack : MonoBehaviour
     {
         if (attackColliderScriptReference.enemyRigidBody)
         {
-            //Debug.Log("Entered in player script loop");
+            
             
             enemyRigidBody = attackColliderScriptReference.enemyRigidBody;
             statusSciptOfEnemy = attackColliderScriptReference.statusSciptOfEnemy;

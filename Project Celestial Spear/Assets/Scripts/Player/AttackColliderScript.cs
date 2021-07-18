@@ -30,7 +30,11 @@ public class AttackColliderScript : MonoBehaviour
 
             if (enemyRigidBody)
             {
-                statusSciptOfEnemy = collision.gameObject.GetComponentInChildren<EnemyStatusScript>();
+                if (collision.gameObject.GetComponentInChildren<EnemyStatusScript>())
+                {
+                    statusSciptOfEnemy = collision.gameObject.GetComponentInChildren<EnemyStatusScript>();
+                    
+                }
             }
 
         }

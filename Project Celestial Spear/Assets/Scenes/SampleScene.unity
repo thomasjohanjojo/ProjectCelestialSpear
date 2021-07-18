@@ -2164,6 +2164,7 @@ GameObject:
   - component: {fileID: 613490333}
   - component: {fileID: 613490336}
   - component: {fileID: 613490337}
+  - component: {fileID: 613490338}
   m_Layer: 8
   m_Name: NewEnemy
   m_TagString: Enemy
@@ -2397,6 +2398,20 @@ MonoBehaviour:
   durationOfTheInterval: 3
   enemyStateControllerReference: {fileID: 613490332}
   IntervalBetweenEnemyAttackScriptControlBoolean: 0
+--- !u!114 &613490338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 613490327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e65c743fca7be714f93f1759ac20c449, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  healthbar: {fileID: 0}
 --- !u!1 &684980871
 GameObject:
   m_ObjectHideFlags: 0
