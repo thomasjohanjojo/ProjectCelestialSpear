@@ -24,6 +24,10 @@ public class PlayerDodge : MonoBehaviour
     private bool isInInvincibilityPeriod;
     private bool DoTheDodge;
 
+
+    private bool oneInstanceOfWaitBeforeDodgingCoroutineIsAlreadyExecuting;
+    private bool oneInstanceOfHitHasBeenDetectedDuringInvincibilityCoroutineIsAlreadyExecuting;
+
     public bool dodgeScriptOnOffBoolean;
 
     private float playerFacingDirection;
@@ -33,6 +37,8 @@ public class PlayerDodge : MonoBehaviour
        
         DoTheDodge = false;
         dodgeScriptOnOffBoolean = false;
+        oneInstanceOfWaitBeforeDodgingCoroutineIsAlreadyExecuting = false;
+        oneInstanceOfHitHasBeenDetectedDuringInvincibilityCoroutineIsAlreadyExecuting = false;
     }
 
     // Update is called once per frame
@@ -80,8 +86,10 @@ public class PlayerDodge : MonoBehaviour
 
         if (Input.GetKeyDown((KeyCode.LeftShift)) == true)
         {
-            StartCoroutine(waitBeforeDodging());
-
+            if (oneInstanceOfWaitBeforeDodgingCoroutineIsAlreadyExecuting == false)
+            {
+                StartCoroutine(waitBeforeDodging());
+            }
             
         }
 
@@ -90,7 +98,8 @@ public class PlayerDodge : MonoBehaviour
 
     IEnumerator waitBeforeDodging()
     {
-        
+
+        oneInstanceOfWaitBeforeDodgingCoroutineIsAlreadyExecuting = true;        
 
         HoldBeforeTheDodge = true;
         comboCounterNumberToRestoreTheComboCounterNumberAfterASuccesfulDodge = playerAttackScriptForMaintainingTheComboCounterNumberInCaseOfASuccessfulDodge.HitCounterInt;
@@ -117,15 +126,20 @@ public class PlayerDodge : MonoBehaviour
             playerStateControllerReference.StateExecutionHasCompletedAndTurnOnDefaultState(playerStateControllerReference.PLAYER_STATE_DODGING);
         }
 
+        oneInstanceOfWaitBeforeDodgingCoroutineIsAlreadyExecuting = false;
+
     }
 
     void CheckIfHitHasBeenDetectedDuringInvincibilityPhaseAndCallTheDodgeAppropriately()
     {
         if(isInInvincibilityPeriod == true && dodgeHitDetectionColliderScriptReference.hasAHitBeenDetectedDuringInvincibilityPhase == true)
         {
-            StartCoroutine(IfHitHasBeenDetectedDuringTheInvincibilityPeriodThenAskToDoTheDodge());
-            dodgeHitDetectionColliderScriptReference.boxColliderForDetectingDodgeHits.enabled = false;
-            dodgeHitDetectionColliderScriptReference.hasAHitBeenDetectedDuringInvincibilityPhase = false;
+            if (oneInstanceOfHitHasBeenDetectedDuringInvincibilityCoroutineIsAlreadyExecuting == false)
+            {
+                StartCoroutine(IfHitHasBeenDetectedDuringTheInvincibilityPeriodThenAskToDoTheDodge());
+                dodgeHitDetectionColliderScriptReference.boxColliderForDetectingDodgeHits.enabled = false;
+                dodgeHitDetectionColliderScriptReference.hasAHitBeenDetectedDuringInvincibilityPhase = false;
+            }
         }
     }
 
@@ -133,21 +147,24 @@ public class PlayerDodge : MonoBehaviour
 
     IEnumerator IfHitHasBeenDetectedDuringTheInvincibilityPeriodThenAskToDoTheDodge()
     {
-        
+
+        oneInstanceOfHitHasBeenDetectedDuringInvincibilityCoroutineIsAlreadyExecuting = true;
 
         DoTheDodge = true;
         playerAnimationControllerScriptReference.ChangeAnimationState(playerAnimationControllerScriptReference.THE_ACTUAL_DODGE_ANIMATION);
         yield return new WaitForSeconds(theDurationOfTheDodge);
         DoTheDodge = false;
         FlipThePlayerToTheOppositeFacingSideAfterDodging();
-        playerStatusScript.health = playerStatusScript.health + 20;
+        
         playerAttackScriptForMaintainingTheComboCounterNumberInCaseOfASuccessfulDodge.HitCounterInt = comboCounterNumberToRestoreTheComboCounterNumberAfterASuccesfulDodge;
 
         myBoxCollider2D.enabled = true;
-        //circleColliderForSmootheningWalking.enabled = true;
+        
         myRigidbody2D.gravityScale = 1;
 
         playerStateControllerReference.StateExecutionHasCompletedAndTurnOnDefaultState(playerStateControllerReference.PLAYER_STATE_DODGING);
+
+        oneInstanceOfHitHasBeenDetectedDuringInvincibilityCoroutineIsAlreadyExecuting = false;
     }
 
     void TurnOffColliderAndGravityAndDoTheDodgeWheneverTheBooleanIsTrueAndDoTheOppositeWhenItIsFalse()
@@ -156,7 +173,7 @@ public class PlayerDodge : MonoBehaviour
         {
             myRigidbody2D.gravityScale = 0;
             myBoxCollider2D.enabled = false;
-            //circleColliderForSmootheningWalking.enabled = false;
+            
 
             Vector2 forceToAddWhenDodging = new Vector2(dodgeSpeed * playerFacingDirection, 0f);
             myRigidbody2D.AddForce(forceToAddWhenDodging, ForceMode2D.Force);
@@ -171,7 +188,7 @@ public class PlayerDodge : MonoBehaviour
         if (DoTheDodge == false)
         {
             myBoxCollider2D.enabled = true;
-           // circleColliderForSmootheningWalking.enabled = true;
+           
             myRigidbody2D.gravityScale = 1;
         }
     }
