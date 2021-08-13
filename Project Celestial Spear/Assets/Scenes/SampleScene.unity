@@ -2165,6 +2165,7 @@ GameObject:
   - component: {fileID: 613490336}
   - component: {fileID: 613490337}
   - component: {fileID: 613490338}
+  - component: {fileID: 613490339}
   m_Layer: 8
   m_Name: NewEnemy
   m_TagString: Enemy
@@ -2411,7 +2412,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
-  healthbar: {fileID: 0}
+  hasBeenAttacked: 0
+--- !u!114 &613490339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 613490327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f14eba0f846217b4694af1c53de14faf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyStatusScriptReference: {fileID: 613490338}
+  millisecondsForStayingRedDuringFlashing: 0.3
+  spriteRendererReference: {fileID: 613490328}
+  colorWhenFlashingRed: {r: 1, g: 0, b: 0.06400013, a: 1}
+  normalColor: {r: 1, g: 1, b: 1, a: 1}
+  oneInstanceOfTheCoroutineIsAlreadyRunning: 0
 --- !u!1 &684980871
 GameObject:
   m_ObjectHideFlags: 0
