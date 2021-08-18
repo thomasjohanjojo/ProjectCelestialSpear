@@ -11,6 +11,8 @@ public class EnemyHealthUIDisplayScript : MonoBehaviour
 
     public Transform transformOfThisEnemy;
 
+    public EnemyStatusScript enemyStatusScriptReference;
+
     public Camera mainCamera;
 
     public float verticalOffsetOfTheTextFromTheHeadOfTheEnemy;
@@ -26,6 +28,7 @@ public class EnemyHealthUIDisplayScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        UpdateTheHealthNumberOnTheDisplayElement();
         UpdateThePositionOfTheUIHealthDisplayElement();
     }
 
@@ -41,4 +44,16 @@ public class EnemyHealthUIDisplayScript : MonoBehaviour
         position.y = position.y + offset;
         return position;
     }
+
+    private void UpdateTheHealthNumberOnTheDisplayElement()
+    {
+        textMeshProOfTheUIElement.text = ChangeTheHealthDataTypeFromIntToString(enemyStatusScriptReference.health);
+    }
+
+    private string ChangeTheHealthDataTypeFromIntToString(int health)
+    {
+        string healthConvertedToString = "" +  health;
+        return healthConvertedToString;
+    }
+
 }

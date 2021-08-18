@@ -2446,6 +2446,7 @@ MonoBehaviour:
   rectTransformOfTheUIHealthDisplayObject: {fileID: 1368760883}
   textMeshProOfTheUIElement: {fileID: 1368760884}
   transformOfThisEnemy: {fileID: 613490329}
+  enemyStatusScriptReference: {fileID: 613490338}
   mainCamera: {fileID: 519420031}
   verticalOffsetOfTheTextFromTheHeadOfTheEnemy: 2
 --- !u!1 &684980871
