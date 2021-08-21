@@ -10,11 +10,21 @@ public class EnemyStatusScript : MonoBehaviour
 
     private GameObject parentGameObject;
 
+    public bool healthHasReachedZero;
+
     public void DecreaseHealthByTheNumber(int healthToBeDecreased)
     {
         hasBeenAttacked = true;
-        health = health - healthToBeDecreased;
-                     
+        if (health != 0)
+        {
+            health = health - healthToBeDecreased;
+        }
+        
+        if(health <= 0)
+        {
+            healthHasReachedZero = true;
+        }
+
 
     }
 
@@ -23,6 +33,7 @@ public class EnemyStatusScript : MonoBehaviour
     void Start()
     {
         hasBeenAttacked = false;
+        healthHasReachedZero = false;
         
     }
 
