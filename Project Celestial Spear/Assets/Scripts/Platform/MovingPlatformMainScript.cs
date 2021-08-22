@@ -77,7 +77,7 @@ public class MovingPlatformMainScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag != "Axe")
+        if (collision.tag != "Axe" || collision.tag != "ChildOfSomeOtherObject" || collision.tag != "CanDamagePlayer" || collision.tag != "PlayerChild")
         {
             collision.transform.SetParent(transform);
         }
@@ -85,7 +85,7 @@ public class MovingPlatformMainScript : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.tag != "Axe")
+        if (collision.tag != "Axe" || collision.tag != "ChildOfSomeOtherObject" || collision.tag != "CanDamagePlayer" || collision.tag != "PlayerChild")
         {
             collision.transform.SetParent(null);
         }
