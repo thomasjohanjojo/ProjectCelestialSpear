@@ -7,6 +7,7 @@ public class EnemyStatusScript : MonoBehaviour
     public int health = 100;
 
     public bool hasBeenAttacked;
+    public bool hasBeenInterrupted;
 
     private GameObject parentGameObject;
 
@@ -34,6 +35,7 @@ public class EnemyStatusScript : MonoBehaviour
     {
         hasBeenAttacked = false;
         healthHasReachedZero = false;
+        hasBeenInterrupted = false;
         
     }
 

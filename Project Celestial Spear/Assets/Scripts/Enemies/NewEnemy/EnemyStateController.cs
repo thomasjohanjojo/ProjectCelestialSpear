@@ -7,18 +7,22 @@ public class EnemyStateController : MonoBehaviour
     public MovementControllerOfNewEnemy movementControllerOfTheNewEnemyScriptReference;
     public EnemyAttack enemyAttackSciptReference;
     public IntervalBetweenEnemyAttacksScript intervalBetweenEnemyAttackScriptReference;
+    public EnemyGetsInterruptedUponPlayerAttack enemyGetsInterruptedUponPlayerAttackScriptReference;
 
     public string ENEMY_STATE_IDLE_OR_MOVING = "IdleOrMoving";
     public string ENEMY_STATE_ATTACKING = "EnemyAttacking";
     public string ENEMY_STATE_INTERVAL = "EnemyStateInterval";
+    public string ENEMY_STATE_INTERRUPTED = "EnemyStateInterrupted";
 
     private int STATE_PRIORITY_ID_IDLE_OR_MOVING;
     private int STATE_PRIORITY_ID_ATTACKING;
     private int STATE_PRIORITY_ID_INTERVAL;
+    private int STATE_PRIORITY_ID_INTERRUPTED;
 
     public bool isIdleOrMovingStateExecuting;
     public bool isAttackingStateExecuting;
     public bool isIntervalStateExecuting;
+    public bool isInterruptedStateExecuting;
 
     public string currentState;
     private string defaultState;
@@ -33,6 +37,7 @@ public class EnemyStateController : MonoBehaviour
         STATE_PRIORITY_ID_IDLE_OR_MOVING = 1;
         STATE_PRIORITY_ID_ATTACKING = 2;
         STATE_PRIORITY_ID_INTERVAL = 3;
+        STATE_PRIORITY_ID_INTERRUPTED = 4;
 
         defaultState = ENEMY_STATE_IDLE_OR_MOVING;
         currentState = ENEMY_STATE_IDLE_OR_MOVING;
@@ -107,6 +112,14 @@ public class EnemyStateController : MonoBehaviour
             TurnOnState(defaultState);
         }
 
+        else if(state == ENEMY_STATE_INTERRUPTED)
+        {
+            enemyGetsInterruptedUponPlayerAttackScriptReference.enemyGetsInterruptedFromPlayerAttackScriptControlBoolean = false;
+            isInterruptedStateExecuting = false;
+            TurnOnState(defaultState);
+        }
+
+
     }
 
     private void TurnOnState(string state)
@@ -114,10 +127,12 @@ public class EnemyStateController : MonoBehaviour
         movementControllerOfTheNewEnemyScriptReference.movementControllerOfTheEnemyScriptControlBoolean = false;
         enemyAttackSciptReference.EnemyAttackScriptControlBoolean = false;
         intervalBetweenEnemyAttackScriptReference.IntervalBetweenEnemyAttackScriptControlBoolean = false;
+        enemyGetsInterruptedUponPlayerAttackScriptReference.enemyGetsInterruptedFromPlayerAttackScriptControlBoolean = false;
 
         isIdleOrMovingStateExecuting = false;
         isAttackingStateExecuting = false;
         isIntervalStateExecuting = false;
+        isInterruptedStateExecuting = false;
 
         if(state == ENEMY_STATE_IDLE_OR_MOVING)
         {
@@ -140,6 +155,13 @@ public class EnemyStateController : MonoBehaviour
             currentState = ENEMY_STATE_INTERVAL;
         }
 
+        if(state == ENEMY_STATE_INTERRUPTED)
+        {
+            enemyGetsInterruptedUponPlayerAttackScriptReference.enemyGetsInterruptedFromPlayerAttackScriptControlBoolean = true;
+            isInterruptedStateExecuting = true;
+            currentState = ENEMY_STATE_INTERRUPTED;
+        }
+
     }
 
     private bool ReturnStateExecutionStatus(string state)
@@ -157,6 +179,11 @@ public class EnemyStateController : MonoBehaviour
         if(state == ENEMY_STATE_INTERVAL)
         {
             return isIntervalStateExecuting;
+        }
+
+        if(state == ENEMY_STATE_INTERRUPTED)
+        {
+            return isInterruptedStateExecuting;
         }
 
 
@@ -181,6 +208,11 @@ public class EnemyStateController : MonoBehaviour
         if(state == ENEMY_STATE_INTERVAL)
         {
             return STATE_PRIORITY_ID_INTERVAL;
+        }
+
+        if(state == ENEMY_STATE_INTERRUPTED)
+        {
+            return STATE_PRIORITY_ID_INTERRUPTED;
         }
 
         else

@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: 4554041484808301139}
   - component: {fileID: -1445336995469131338}
   - component: {fileID: -8828433724905474655}
+  - component: {fileID: 606006078038826580}
   m_Layer: 8
   m_Name: NewEnemy
   m_TagString: Enemy
@@ -258,12 +259,15 @@ MonoBehaviour:
   movementControllerOfTheNewEnemyScriptReference: {fileID: 4554041484808301161}
   enemyAttackSciptReference: {fileID: 4554041484808301164}
   intervalBetweenEnemyAttackScriptReference: {fileID: 4554041484808301142}
+  enemyGetsInterruptedUponPlayerAttackScriptReference: {fileID: 606006078038826580}
   ENEMY_STATE_IDLE_OR_MOVING: IdleOrMoving
   ENEMY_STATE_ATTACKING: EnemyAttacking
   ENEMY_STATE_INTERVAL: EnemyStateInterval
+  ENEMY_STATE_INTERRUPTED: EnemyStateInterrupted
   isIdleOrMovingStateExecuting: 0
   isAttackingStateExecuting: 0
   isIntervalStateExecuting: 0
+  isInterruptedStateExecuting: 0
   currentState: 
 --- !u!50 &4554041484808301162
 Rigidbody2D:
@@ -342,6 +346,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   hasBeenAttacked: 0
+  hasBeenInterrupted: 0
   healthHasReachedZero: 0
 --- !u!114 &4554041484808301140
 MonoBehaviour:
@@ -412,6 +417,23 @@ MonoBehaviour:
   canvasReference: {fileID: 0}
   mainCamera: {fileID: 0}
   enemyHealthElementObjectReference: {fileID: 0}
+--- !u!114 &606006078038826580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4554041484808301152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3bcbc7768132864e984bf438d2188e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyAnimationCustomControllerReference: {fileID: 4554041484808301160}
+  durationOfTheInterruption: 2
+  enemyStateControllerReference: {fileID: 4554041484808301163}
+  enemyStatusScriptReference: {fileID: 4554041484808301141}
+  enemyGetsInterruptedFromPlayerAttackScriptControlBoolean: 0
 --- !u!1 &4554041485060683127
 GameObject:
   m_ObjectHideFlags: 0

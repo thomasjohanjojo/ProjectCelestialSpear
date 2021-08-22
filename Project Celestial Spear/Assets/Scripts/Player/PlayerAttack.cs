@@ -207,6 +207,7 @@ public class PlayerAttack : MonoBehaviour
                 if (statusSciptOfEnemy)
                 {
                     statusSciptOfEnemy.DecreaseHealthByTheNumber(damageOfFirstAttack);
+                    statusSciptOfEnemy.hasBeenInterrupted = true;
                     HitCounterInt++;
                 }
 
