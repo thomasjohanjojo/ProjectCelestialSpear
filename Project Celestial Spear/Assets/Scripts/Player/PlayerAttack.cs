@@ -13,6 +13,7 @@ public class PlayerAttack : MonoBehaviour
 
     private EnemyStatusScript statusSciptOfEnemy;
     private Rigidbody2D enemyRigidBody;
+    private Rigidbody2D enemyRigidBodyForPushing;
 
 
     private bool canAttack = true;
@@ -106,6 +107,7 @@ public class PlayerAttack : MonoBehaviour
     {
         if (enemyRigidBody)
         {
+            enemyRigidBodyForPushing = enemyRigidBody;
             DoThePushThroughTheBooleanByTurningItOn();
 
 
@@ -126,12 +128,12 @@ public class PlayerAttack : MonoBehaviour
     {
         if (doThePushBoolean == true)
         {
-            if (enemyRigidBody)
+            if (enemyRigidBodyForPushing)
             {
                 Vector2 pushBackForceToAddAsVector = new Vector2(playerFacingDirection * pushBackForceOfFirstAttack, 0f);
-                enemyRigidBody.AddForce(pushBackForceToAddAsVector, ForceMode2D.Impulse);
+                enemyRigidBodyForPushing.AddForce(pushBackForceToAddAsVector, ForceMode2D.Impulse);
                 doThePushBoolean = false;
-                enemyRigidBody = null;
+                enemyRigidBodyForPushing = null;
             }
         }
     }
@@ -214,6 +216,8 @@ public class PlayerAttack : MonoBehaviour
                 timeStampWhenAttackButtonWasLastPressed = Time.time;
 
                 statusSciptOfEnemy = null;
+
+                enemyRigidBody = null;
 
                 canAttack = true;
             }
