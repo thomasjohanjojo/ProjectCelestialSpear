@@ -21,6 +21,8 @@ public class WaveScript : MonoBehaviour
     private GameObject enemyHealthTemporaryObject;
     private EnemyHealthUIDisplayScript enemyHealthUIDisplayScriptTemporaryReference;
 
+    public bool WaveScriptControlBoolean;
+
     public bool HasFinishedInstantiatingEnemiesProgressionBoolean;
     public bool HasAllEnemiesBeenKilledProgressionBoolean;
     public bool HasWaveFinishedProgressionBoolean;
@@ -28,6 +30,7 @@ public class WaveScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        WaveScriptControlBoolean = false;
         HasFinishedInstantiatingEnemiesProgressionBoolean = false;
         HasAllEnemiesBeenKilledProgressionBoolean = false;
         HasWaveFinishedProgressionBoolean = false;
@@ -36,7 +39,11 @@ public class WaveScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        MainFunctionAccordingToTheProgresionOnTheBasisOfProgressionBooleans();
+
+        if (WaveScriptControlBoolean == true)
+        {
+            MainFunctionAccordingToTheProgresionOnTheBasisOfProgressionBooleans();
+        }
     }
 
     private void MainFunctionAccordingToTheProgresionOnTheBasisOfProgressionBooleans()
