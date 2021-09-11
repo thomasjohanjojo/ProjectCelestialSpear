@@ -22,7 +22,7 @@ TagManager:
   - Damageable
   - Ground
   - Enemy
-  - 
+  - EnemyChild
   - 
   - 
   - 
