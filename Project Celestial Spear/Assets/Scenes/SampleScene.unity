@@ -46267,7 +46267,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   listOfSpawningLocations:
   - {fileID: 1666034634}
-  - {fileID: 892352138}
   MidSizeEnemy: {fileID: 4554041484808301152, guid: 4a8c5729daa1b2045a81aba614235019,
     type: 3}
   canvasReference: {fileID: 684980874}

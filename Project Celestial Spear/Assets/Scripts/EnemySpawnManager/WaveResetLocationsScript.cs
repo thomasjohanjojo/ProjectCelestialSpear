@@ -35,6 +35,8 @@ public class WaveResetLocationsScript : MonoBehaviour
 
             else if(ifThisIsTrueThisLocationWouldStartWavesOtherwiseResetWaves == false)
             {
+                StartTheWavesIfNotStarted();
+
                 RestartTheWavesIfFinished();
             }
         }
