@@ -10,30 +10,36 @@ public class WaveMasterScript : MonoBehaviour
 
     public int currentWaveNumber;
 
-    public bool HasStartedTheWaves;
-    public bool HasFinishedAllWaves;
+    public bool waveMasterScriptControlBoolean;
+
+    public bool hasStartedTheWaves;
+    public bool hasFinishedAllWaves;
     // Start is called before the first frame update
     void Start()
     {
         currentWaveNumber = 0;
-        HasStartedTheWaves = false;
-        HasFinishedAllWaves = false;
+        hasStartedTheWaves = false;
+        hasFinishedAllWaves = false;
+        waveMasterScriptControlBoolean = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        WaveMasterScriptMainFunction();
+        if (waveMasterScriptControlBoolean == true)
+        {
+            WaveMasterScriptMainFunction();
+        }
     }
 
     private void WaveMasterScriptMainFunction()
     {
-        if(HasStartedTheWaves == false)
+        if(hasStartedTheWaves == false)
         {
             StartTheFirstWave();
         }
 
-        else if(HasStartedTheWaves == true && HasFinishedAllWaves == false)
+        else if(hasStartedTheWaves == true && hasFinishedAllWaves == false)
         {
             LoadTheNextWaveIfTheCurrentWaveHasFinished();
         }
@@ -49,7 +55,7 @@ public class WaveMasterScript : MonoBehaviour
 
         waveScriptOfTheCurrentWave.WaveScriptControlBoolean = true;
 
-        HasStartedTheWaves = true;
+        hasStartedTheWaves = true;
     }
 
     private void LoadTheNextWaveIfTheCurrentWaveHasFinished()
@@ -60,15 +66,46 @@ public class WaveMasterScript : MonoBehaviour
 
             if(currentWaveNumber >= listOfWaves.Length)
             {
-                HasFinishedAllWaves = true;
+                hasFinishedAllWaves = true;
+                waveMasterScriptControlBoolean = false;
             }
 
             else
             {
+                
+
                 waveScriptOfTheCurrentWave = listOfWaves[currentWaveNumber].GetComponent<WaveScript>();
 
                 waveScriptOfTheCurrentWave.WaveScriptControlBoolean = true;
             }
+        }
+    }
+
+
+    public void ResetAllPropertiesAndRestartTheWaves()
+    {
+        ResetAllWaves();
+
+        ResetAllMasterScriptProperties();
+
+        waveMasterScriptControlBoolean = true;
+
+    }
+
+    private void ResetAllMasterScriptProperties()
+    {
+        currentWaveNumber = 0;
+        hasStartedTheWaves = false;
+        hasFinishedAllWaves = false;
+    }
+
+    private void ResetAllWaves()
+    {
+        WaveScript wave;
+        foreach(GameObject waveObject in listOfWaves)
+        {
+            wave = waveObject.GetComponent<WaveScript>();
+            wave.ResetAllPropertiesOfTheWave();
         }
     }
 

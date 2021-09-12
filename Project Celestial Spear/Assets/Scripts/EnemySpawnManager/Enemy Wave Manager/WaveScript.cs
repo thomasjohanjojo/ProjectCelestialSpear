@@ -60,6 +60,7 @@ public class WaveScript : MonoBehaviour
             {
                 HasAllEnemiesBeenKilledProgressionBoolean = true;
                 HasWaveFinishedProgressionBoolean = true;
+                WaveScriptControlBoolean = false;
             }
         }
 
@@ -103,4 +104,14 @@ public class WaveScript : MonoBehaviour
     {
         numberOfEnemyObjectsCurrectlyAlive--;
     }
+
+
+    public void ResetAllPropertiesOfTheWave()
+    {
+        HasFinishedInstantiatingEnemiesProgressionBoolean = false;
+        HasAllEnemiesBeenKilledProgressionBoolean = false;
+        HasWaveFinishedProgressionBoolean = false;
+        numberOfEnemyObjectsCurrectlyAlive = 0;
+    }
+
 }
