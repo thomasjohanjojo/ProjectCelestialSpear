@@ -15,10 +15,10 @@ public class PlayerStateController : MonoBehaviour
     public string PLAYER_STATE_AXE_THROW = "AxeThrow";
     public string PLAYER_STATE_DODGING = "Dodging";
 
-    private int STATE_PRIORITY_ID_IDLE_OR_MOVING;
-    private int STATE_PRIORITY_ID_ATTACKING;
-    private int STATE_PRIORITY_ID_AXE_THROW;
-    private int STATE_PRIORITY_ID_DODGING;
+    [SerializeField]private int STATE_PRIORITY_ID_IDLE_OR_MOVING;
+    [SerializeField]private int STATE_PRIORITY_ID_ATTACKING;
+    [SerializeField]private int STATE_PRIORITY_ID_AXE_THROW;
+    [SerializeField]private int STATE_PRIORITY_ID_DODGING;
 
     public bool isIdleOrMovingStateIsExecuting;
     public bool isAttackStateIsExecuting;
@@ -179,6 +179,7 @@ public class PlayerStateController : MonoBehaviour
         else if (state == PLAYER_STATE_ATTACKING)
         {
             playerAttackScriptReference.PlayerAttackScriptOnOffBoolean = false;
+            playerAttackScriptReference.CancelCurrentAttackIfAny();
             isAttackStateIsExecuting = false;
             TurnOnState(defaultState);
         }

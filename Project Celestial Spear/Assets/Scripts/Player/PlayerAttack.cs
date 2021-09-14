@@ -18,14 +18,13 @@ public class PlayerAttack : MonoBehaviour
 
     private bool canAttack = true;
     public bool PlayerAttackScriptOnOffBoolean;
-    public bool isAttacking;
     private int attackIDCounterWhichIsUsedToControlWhichAttackIsToBeExecuted = 10; // In case the user doesn't input a number. This represents the number of attacks, starting from zero
     public float playerFacingDirection;
     private bool doThePushBoolean;
 
 
     public float maximumAllowedDelayBetweenAttackButtonPresses = 1f;
-    private float timeStampWhenAttackButtonWasLastPressed = 0f;
+    private float timeStampOfTheLastTimeAnAttackWasPerformed = 0f;
 
 
     public float pushBackForceOfFirstAttack;
@@ -213,7 +212,7 @@ public class PlayerAttack : MonoBehaviour
                     HitCounterInt++;
                 }
 
-                timeStampWhenAttackButtonWasLastPressed = Time.time;
+                timeStampOfTheLastTimeAnAttackWasPerformed = Time.time;
 
                 statusSciptOfEnemy = null;
 
@@ -236,7 +235,7 @@ public class PlayerAttack : MonoBehaviour
                     HitCounterInt++;
                 }
 
-                timeStampWhenAttackButtonWasLastPressed = Time.time;
+                timeStampOfTheLastTimeAnAttackWasPerformed = Time.time;
 
                 statusSciptOfEnemy = null;
 
@@ -258,7 +257,7 @@ public class PlayerAttack : MonoBehaviour
                     HitCounterInt++;
                 }
 
-                timeStampWhenAttackButtonWasLastPressed = Time.time;
+                timeStampOfTheLastTimeAnAttackWasPerformed = Time.time;
 
 
 
@@ -283,7 +282,7 @@ public class PlayerAttack : MonoBehaviour
                     HitCounterInt++;
                 }
 
-                timeStampWhenAttackButtonWasLastPressed = Time.time;
+                timeStampOfTheLastTimeAnAttackWasPerformed = Time.time;
 
 
 
@@ -300,7 +299,7 @@ public class PlayerAttack : MonoBehaviour
 
     private void ResetAttackIDCounterToZeroIfTooMuchDelayBetweenButtonPresses()
     {
-        if (Time.time - timeStampWhenAttackButtonWasLastPressed > maximumAllowedDelayBetweenAttackButtonPresses)
+        if (Time.time - timeStampOfTheLastTimeAnAttackWasPerformed > maximumAllowedDelayBetweenAttackButtonPresses)
         {
             attackIDCounterWhichIsUsedToControlWhichAttackIsToBeExecuted = 0;
         }
@@ -314,5 +313,29 @@ public class PlayerAttack : MonoBehaviour
     void SetMainCharacterVelocityToZeroToStopTheLeftOverMovementWhenCanMoveIsTurnedOff()
     {
         playerControllerReferenceWhichHasATurnOnAndTurnOffBoolean.SetMainCharacterVelocityToZeroWhenCalled();
+    }
+
+    public void CancelCurrentAttackIfAny()
+    {
+        ResetAnyBooleansAndVariablesWhichWasSupposedToBeResetByTheCoroutineCompletion();
+        StopAllAttackRelatedCoroutines();
+        ReleaseAnyEnemyRelatedReferencesSetBeforeAttackAnimationCompleted();
+
+    }
+
+    private void ResetAnyBooleansAndVariablesWhichWasSupposedToBeResetByTheCoroutineCompletion()
+    {
+        canAttack = true;
+    }
+
+    private void StopAllAttackRelatedCoroutines()
+    {
+        StopCoroutine(AttackWhenverAttackButtonIsPressedAndEnemyRigidbodyWithAnAttachedStatusScriptIsAvailable());
+    }
+
+    private void ReleaseAnyEnemyRelatedReferencesSetBeforeAttackAnimationCompleted()
+    {
+        enemyRigidBody = null;
+        statusSciptOfEnemy = null;
     }
 }

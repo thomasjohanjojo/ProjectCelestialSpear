@@ -101,6 +101,7 @@ public class EnemyStateController : MonoBehaviour
         else if (state == ENEMY_STATE_ATTACKING)
         {
             enemyAttackSciptReference.EnemyAttackScriptControlBoolean = false;
+            enemyAttackSciptReference.CancelEnemyAttackIfAny();
             isAttackingStateExecuting = false;
             TurnOnState(defaultState);
         }

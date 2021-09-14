@@ -96,4 +96,23 @@ public class EnemyAttack : MonoBehaviour
 
         
     }
+
+    public void CancelEnemyAttackIfAny()
+    {
+        ResetVariablesAndBooleans();
+        StopAnyAttackRelatedCoroutines();
+    }
+
+    private void ResetVariablesAndBooleans()
+    {
+        attackGivingColliderScriptReference.damageGivingBoxCollider.enabled = false;
+        oneInstanceOfTheCoRoutineIsRunningAlready = false;
+        attackGivingColliderScriptReference.statusScriptOfThePlayer = null;
+        attackGivingColliderScriptReference.gameObjectOfThePlayer = null;
+    }
+
+    private void StopAnyAttackRelatedCoroutines()
+    {
+        StopCoroutine(AttackTheEnemyByTurningOnTheAnimationAndTheAttackColliders());
+    }
 }
