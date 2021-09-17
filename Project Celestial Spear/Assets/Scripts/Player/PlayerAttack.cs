@@ -15,6 +15,8 @@ public class PlayerAttack : MonoBehaviour
     private Rigidbody2D enemyRigidBody;
     private Rigidbody2D enemyRigidBodyForPushing;
 
+    public bool CanPush = false;
+    public int numberToSubtractFromHitCounterOnASuccesfullPush;
 
     private bool canAttack = true;
     public bool PlayerAttackScriptOnOffBoolean;
@@ -133,6 +135,12 @@ public class PlayerAttack : MonoBehaviour
                 enemyRigidBodyForPushing.AddForce(pushBackForceToAddAsVector, ForceMode2D.Impulse);
                 doThePushBoolean = false;
                 enemyRigidBodyForPushing = null;
+                
+                HitCounterInt = HitCounterInt - numberToSubtractFromHitCounterOnASuccesfullPush;
+                if(HitCounterInt < 0)
+                {
+                    HitCounterInt = 0;
+                }
             }
         }
     }
@@ -201,8 +209,11 @@ public class PlayerAttack : MonoBehaviour
 
                 playerAnimationControllerReference.ChangeAnimationState(playerAnimationControllerReference.PUNCH_AND_PUSH_ANIMATION);
                 yield return new WaitForSeconds(windingUpTimeOfFirstAttack);
-                IfEnemyHasBeenDetectedThenPushTheEnemy();
 
+                if (CanPush == true)
+                {
+                    IfEnemyHasBeenDetectedThenPushTheEnemy();
+                }
 
 
                 if (statusSciptOfEnemy)

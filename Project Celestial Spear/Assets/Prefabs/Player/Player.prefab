@@ -188,6 +188,7 @@ GameObject:
   - component: {fileID: 2204384638749814346}
   - component: {fileID: 2204384638749814359}
   - component: {fileID: 6761424114593443132}
+  - component: {fileID: 962246247012315214}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -392,6 +393,8 @@ MonoBehaviour:
   playerControllerReferenceWhichHasATurnOnAndTurnOffBoolean: {fileID: 2204384638749814350}
   playerAnimationControllerReference: {fileID: 2204384638749814347}
   attackColliderScriptReference: {fileID: 2204384639090746826}
+  CanPush: 0
+  numberToSubtractFromHitCounterOnASuccesfullPush: 2
   PlayerAttackScriptOnOffBoolean: 0
   playerFacingDirection: 0
   maximumAllowedDelayBetweenAttackButtonPresses: 1
@@ -493,6 +496,19 @@ MonoBehaviour:
   spriteRendererReference: {fileID: 2204384638749814336}
   colorWhenFlashingRed: {r: 1, g: 0, b: 0, a: 1}
   normalColor: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &962246247012315214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2204384638749814338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56387b1b021aa2741b6a8291858e26dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerAttackScriptReference: {fileID: 2204384638749814345}
 --- !u!1 &2204384639090746829
 GameObject:
   m_ObjectHideFlags: 0
