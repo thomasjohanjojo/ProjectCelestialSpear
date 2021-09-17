@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2204384637875850910}
   m_Layer: 0
   m_Name: DodgeHitDetectionCollider
-  m_TagString: Untagged
+  m_TagString: PlayerChild
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -45,7 +45,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 3.9067144, y: -0.3131181}
+  m_Offset: {x: 1.2959499, y: -0.39695096}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -56,7 +56,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 8.460653, y: 3.6867535}
+  m_Size: {x: 3.3512936, y: 3.8544192}
   m_EdgeRadius: 0
 --- !u!114 &2204384637875850910
 MonoBehaviour:
@@ -84,11 +84,11 @@ GameObject:
   - component: {fileID: 2204384638451112358}
   m_Layer: 0
   m_Name: CircleColliderForSmoothMovement
-  m_TagString: Untagged
+  m_TagString: PlayerChild
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2204384638451112359
 Transform:
   m_ObjectHideFlags: 0
@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 2204384638453528341}
   m_Layer: 0
   m_Name: DetectionColliderToCheckForObstructionInFrontOfPlayer
-  m_TagString: Untagged
+  m_TagString: PlayerChild
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -163,11 +163,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ObstructionInFront: 0
-  detectionDistanceOfRaycast: 1.5
+  detectionDistanceOfRaycast: 2
   playerAttackScriptReference: {fileID: 2204384638749814345}
   layerMaskOfEnemy:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 256
 --- !u!1 &2204384638749814338
 GameObject:
   m_ObjectHideFlags: 0
@@ -253,10 +253,10 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 5
   m_Sprite: {fileID: -3145328045451892686, guid: 638b0ca75b69ce047a2f3d388f05f1f2,
     type: 3}
-  m_Color: {r: 0.9245283, g: 0.8844073, b: 0.8948946, a: 1}
+  m_Color: {r: 0.9433962, g: 0.9433962, b: 0.9433962, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -397,7 +397,7 @@ MonoBehaviour:
   numberToSubtractFromHitCounterOnASuccesfullPush: 2
   PlayerAttackScriptOnOffBoolean: 0
   playerFacingDirection: 0
-  maximumAllowedDelayBetweenAttackButtonPresses: 1
+  maximumAllowedDelayBetweenAttackButtonPresses: 2
   pushBackForceOfFirstAttack: 5
   damageOfFirstAttack: 5
   windingUpTimeOfFirstAttack: 0.5
@@ -405,8 +405,8 @@ MonoBehaviour:
   windingUpTimeOfSecondAttack: 0.9
   damageOfThirdAttack: 30
   windingUpTimeOfThirdAttack: 1.1
-  damageOfFourthAttack: 0
-  windingUpTimeOfFourthAttack: 0
+  damageOfFourthAttack: 35
+  windingUpTimeOfFourthAttack: 0.5
   HitCounterInt: 0
 --- !u!114 &2204384638749814344
 MonoBehaviour:
@@ -422,7 +422,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   healthbar: {fileID: 0}
-  playerAttackScriptReference: {fileID: 0}
+  playerAttackScriptReference: {fileID: 2204384638749814345}
   playerCanBeDamaged: 0
   playerHasBeenDamaged: 0
 --- !u!114 &2204384638749814346
@@ -438,17 +438,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dodgeSpeed: 100
-  thatMillisecondsOfTimeBeforeInvincibility: 0
-  thatMillisecondsOfTimeOfTheInvincibilityPeriod: 0.5
+  thatMillisecondsOfTimeBeforeInvincibility: 0.1
+  thatMillisecondsOfTimeOfTheInvincibilityPeriod: 0.4
   theDurationOfTheDodge: 0.2
-  playerStatusScript: {fileID: 0}
-  playerAttackScriptForMaintainingTheComboCounterNumberInCaseOfASuccessfulDodge: {fileID: 0}
+  playerStatusScript: {fileID: 2204384638749814344}
+  playerAttackScriptForMaintainingTheComboCounterNumberInCaseOfASuccessfulDodge: {fileID: 2204384638749814345}
   myRigidbody2D: {fileID: 2204384638749814348}
   myBoxCollider2D: {fileID: 2204384638749814349}
   dodgeHitDetectionColliderScriptReference: {fileID: 2204384637875850910}
   playerAnimationControllerScriptReference: {fileID: 2204384638749814347}
   playerStateControllerReference: {fileID: 2204384638749814359}
-  mainCharacterBasicMovementScriptForEnsuringMeleeComboContinuationAfterDodging: {fileID: 0}
+  mainCharacterBasicMovementScriptForEnsuringMeleeComboContinuationAfterDodging: {fileID: 2204384638749814350}
   dodgeScriptOnOffBoolean: 0
 --- !u!114 &2204384638749814359
 MonoBehaviour:
@@ -470,10 +470,10 @@ MonoBehaviour:
   PLAYER_STATE_ATTACKING: PlayerStateAttacking
   PLAYER_STATE_AXE_THROW: PlayerStateAxeThrow
   PLAYER_STATE_DODGING: PlayerStateDodging
-  STATE_PRIORITY_ID_IDLE_OR_MOVING: 0
-  STATE_PRIORITY_ID_ATTACKING: 0
-  STATE_PRIORITY_ID_AXE_THROW: 0
-  STATE_PRIORITY_ID_DODGING: 0
+  STATE_PRIORITY_ID_IDLE_OR_MOVING: 1
+  STATE_PRIORITY_ID_ATTACKING: 2
+  STATE_PRIORITY_ID_AXE_THROW: 3
+  STATE_PRIORITY_ID_DODGING: 3
   isIdleOrMovingStateIsExecuting: 0
   isAttackStateIsExecuting: 0
   isAxeThrowStateIsExecuting: 0
@@ -509,6 +509,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerAttackScriptReference: {fileID: 2204384638749814345}
+  pushPowerUIObject: {fileID: 0}
 --- !u!1 &2204384639090746829
 GameObject:
   m_ObjectHideFlags: 0
@@ -522,7 +523,7 @@ GameObject:
   - component: {fileID: 2204384639090746827}
   m_Layer: 0
   m_Name: AttackCollider
-  m_TagString: Untagged
+  m_TagString: PlayerChild
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -568,7 +569,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 1.7244701, y: -0.7664312}
+  m_Offset: {x: 2.0626411, y: -0.1915406}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -579,5 +580,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.7664299, y: 1.3832157}
+  m_Size: {x: 2.442772, y: 2.532997}
   m_EdgeRadius: 0
