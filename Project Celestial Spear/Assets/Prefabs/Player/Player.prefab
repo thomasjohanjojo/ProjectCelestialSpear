@@ -187,6 +187,7 @@ GameObject:
   - component: {fileID: 2204384638749814344}
   - component: {fileID: 2204384638749814346}
   - component: {fileID: 2204384638749814359}
+  - component: {fileID: 6761424114593443132}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -392,7 +393,6 @@ MonoBehaviour:
   playerAnimationControllerReference: {fileID: 2204384638749814347}
   attackColliderScriptReference: {fileID: 2204384639090746826}
   PlayerAttackScriptOnOffBoolean: 0
-  isAttacking: 0
   playerFacingDirection: 0
   maximumAllowedDelayBetweenAttackButtonPresses: 1
   pushBackForceOfFirstAttack: 5
@@ -420,6 +420,8 @@ MonoBehaviour:
   health: 100
   healthbar: {fileID: 0}
   playerAttackScriptReference: {fileID: 0}
+  playerCanBeDamaged: 0
+  playerHasBeenDamaged: 0
 --- !u!114 &2204384638749814346
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -465,11 +467,32 @@ MonoBehaviour:
   PLAYER_STATE_ATTACKING: PlayerStateAttacking
   PLAYER_STATE_AXE_THROW: PlayerStateAxeThrow
   PLAYER_STATE_DODGING: PlayerStateDodging
+  STATE_PRIORITY_ID_IDLE_OR_MOVING: 0
+  STATE_PRIORITY_ID_ATTACKING: 0
+  STATE_PRIORITY_ID_AXE_THROW: 0
+  STATE_PRIORITY_ID_DODGING: 0
   isIdleOrMovingStateIsExecuting: 0
   isAttackStateIsExecuting: 0
   isAxeThrowStateIsExecuting: 0
   isDodgeStateIsExecuting: 0
   currentState: 
+--- !u!114 &6761424114593443132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2204384638749814338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b36163d4887b9d4e90379143cfc0a18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerStatusScriptReference: {fileID: 2204384638749814344}
+  millisecondsForStayingRedDuringFlashing: 0.3
+  spriteRendererReference: {fileID: 2204384638749814336}
+  colorWhenFlashingRed: {r: 1, g: 0, b: 0, a: 1}
+  normalColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &2204384639090746829
 GameObject:
   m_ObjectHideFlags: 0

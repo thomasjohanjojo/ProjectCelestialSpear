@@ -16,6 +16,8 @@ public class Statuses : MonoBehaviour
     public PlayerAttack playerAttackScriptReference;
     public bool playerCanBeDamaged;
 
+    public bool playerHasBeenDamaged;
+
     private GameObject parentGameObject;
 
     public void DecreaseHealthByTheNumber(int healthToBeDecreased, BoxCollider2D theBoxColliderWhichDealsTheAttack)
@@ -31,6 +33,8 @@ public class Statuses : MonoBehaviour
             {
                 playerAttackScriptReference.HitCounterInt = 0;
             }
+
+            playerHasBeenDamaged = true;
         }
 
         theBoxColliderWhichDealsTheAttack.enabled = false;
@@ -43,6 +47,7 @@ public class Statuses : MonoBehaviour
     {
         // simply for testing    
         playerCanBeDamaged = true;
+        playerHasBeenDamaged = false;
     }
 
     // Update is called once per frame
