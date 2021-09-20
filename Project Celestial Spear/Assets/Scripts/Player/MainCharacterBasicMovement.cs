@@ -82,7 +82,7 @@ public class MainCharacterBasicMovement : MonoBehaviour
             {
                 if (obstructionDetectionColliderScriptReference.ObstructionInFront == false)
                 {
-                    MovePlayerHorizontally();
+                    MoveRigidBodyHorizontallyOnTheBasisOfInputAndMovementSpeedRequired(maincharacterRigidbody, playerHorizontalInputValue, playerSpeed);
                 }
                 else
                 {
@@ -99,29 +99,53 @@ public class MainCharacterBasicMovement : MonoBehaviour
         playerHorizontalInputValue = Input.GetAxisRaw("Horizontal");
     }
 
-    void MovePlayerHorizontally()
+
+
+
+
+
+    public void MoveRigidBodyHorizontallyOnTheBasisOfInputAndMovementSpeedRequired(Rigidbody2D rigidbody, float horizontalInputValue, float maximumMovementSpeed)
     {
-        Vector2 forceToAddWhenMoving = new Vector2(playerHorizontalInputValue * playerSpeed, 0f);
-        maincharacterRigidbody.AddForce(forceToAddWhenMoving, ForceMode2D.Impulse);
+        AddForceToTheRigidBodyOnTheBasisOfHorizontalInputValueAndMaxMovementSpeed(rigidbody, horizontalInputValue, maximumMovementSpeed);
+        BringTheSpeedOfTheRigidbodyToZeroIfThereIsNoHorizontalInput(rigidbody, horizontalInputValue);
+        LimitTheSpeedOfTheBodyToMaximumSpeedWhenThereIsInputAndTheAmountOfForceExceedsMaximumSpeed(rigidbody, horizontalInputValue, maximumMovementSpeed);
+    }
 
-        if(playerHorizontalInputValue == 0)
-        {
-            maincharacterRigidbody.velocity = new Vector3(0f, maincharacterRigidbody.velocity.y, 0f);
-        }
 
-        if(Mathf.Abs( maincharacterRigidbody.velocity.x ) > playerSpeed)
+    private void LimitTheSpeedOfTheBodyToMaximumSpeedWhenThereIsInputAndTheAmountOfForceExceedsMaximumSpeed(Rigidbody2D rigidbody, float horizontalInputValue, float maximumMovementSpeed)
+    {
+        if (Mathf.Abs(rigidbody.velocity.x) > maximumMovementSpeed)
         {
-            if(playerHorizontalInputValue > 0)
+            if (horizontalInputValue > 0)
             {
-                maincharacterRigidbody.velocity = new Vector3(playerSpeed, maincharacterRigidbody.velocity.y, 0f);
+                rigidbody.velocity = new Vector3(maximumMovementSpeed, rigidbody.velocity.y, 0f);
             }
 
             else
             {
-                maincharacterRigidbody.velocity = new Vector3(-playerSpeed, maincharacterRigidbody.velocity.y, 0f);
+                rigidbody.velocity = new Vector3(-maximumMovementSpeed, rigidbody.velocity.y, 0f);
             }
         }
     }
+
+    private  void BringTheSpeedOfTheRigidbodyToZeroIfThereIsNoHorizontalInput(Rigidbody2D rigidbody, float horizontalInputValue)
+    {
+        if (horizontalInputValue == 0)
+        {
+            rigidbody.velocity = new Vector3(0f, rigidbody.velocity.y, 0f);
+        }
+    }
+
+    private void AddForceToTheRigidBodyOnTheBasisOfHorizontalInputValueAndMaxMovementSpeed(Rigidbody2D rigidbody,float horizontalInputValue, float maximumMovementSpeed)
+    {
+        Vector2 forceToAddWhenMoving = new Vector2(horizontalInputValue * maximumMovementSpeed, 0f);
+        rigidbody.AddForce(forceToAddWhenMoving, ForceMode2D.Impulse);
+    }
+
+
+
+
+
 
     void FlipPlayerFacingDirectionAccordingToDirectionOfInput()
     {
