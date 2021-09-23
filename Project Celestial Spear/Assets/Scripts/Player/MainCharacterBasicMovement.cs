@@ -112,7 +112,7 @@ public class MainCharacterBasicMovement : MonoBehaviour
     }
 
 
-    private void LimitTheSpeedOfTheBodyToMaximumSpeedWhenThereIsInputAndTheAmountOfForceExceedsMaximumSpeed(Rigidbody2D rigidbody, float horizontalInputValue, float maximumMovementSpeed)
+    public void LimitTheSpeedOfTheBodyToMaximumSpeedWhenThereIsInputAndTheAmountOfForceExceedsMaximumSpeed(Rigidbody2D rigidbody, float horizontalInputValue, float maximumMovementSpeed)
     {
         if (Mathf.Abs(rigidbody.velocity.x) > maximumMovementSpeed)
         {
@@ -128,7 +128,7 @@ public class MainCharacterBasicMovement : MonoBehaviour
         }
     }
 
-    private  void BringTheSpeedOfTheRigidbodyToZeroIfThereIsNoHorizontalInput(Rigidbody2D rigidbody, float horizontalInputValue)
+    public  void BringTheSpeedOfTheRigidbodyToZeroIfThereIsNoHorizontalInput(Rigidbody2D rigidbody, float horizontalInputValue)
     {
         if (horizontalInputValue == 0)
         {
@@ -136,7 +136,7 @@ public class MainCharacterBasicMovement : MonoBehaviour
         }
     }
 
-    private void AddForceToTheRigidBodyOnTheBasisOfHorizontalInputValueAndMaxMovementSpeed(Rigidbody2D rigidbody,float horizontalInputValue, float maximumMovementSpeed)
+    public void AddForceToTheRigidBodyOnTheBasisOfHorizontalInputValueAndMaxMovementSpeed(Rigidbody2D rigidbody,float horizontalInputValue, float maximumMovementSpeed)
     {
         Vector2 forceToAddWhenMoving = new Vector2(horizontalInputValue * maximumMovementSpeed, 0f);
         rigidbody.AddForce(forceToAddWhenMoving, ForceMode2D.Impulse);
@@ -149,32 +149,72 @@ public class MainCharacterBasicMovement : MonoBehaviour
 
     void FlipPlayerFacingDirectionAccordingToDirectionOfInput()
     {
-        
-        if (Input.GetAxisRaw("Horizontal") > 0)
-        {
-            gameObject.transform.rotation = Quaternion.Euler(transform.rotation.x, 0f, transform.rotation.z);
-            currentFacingDirection = 1;
-            ResetTheAttackIfThePlayerHasTrulyBeenFlippedBasedOnTheCurrentFacingDirectionAndTheLastFacingDirection();
+        RotateGameObjectToFaceAccordingToTheHorizontalInput(gameObject, Input.GetAxisRaw("Horizontal"));
+        currentFacingDirection = ReturnTheValueOfFacingDirectionAccordingToTheHorizontalInput(Input.GetAxisRaw("Horizontal"), currentFacingDirection);
 
-            
-            
-        }
-
-        else if (Input.GetAxisRaw("Horizontal") < 0)
-        {
-            gameObject.transform.rotation = Quaternion.Euler(transform.rotation.x, 180f, transform.rotation.z);
-            currentFacingDirection = -1;
-            ResetTheAttackIfThePlayerHasTrulyBeenFlippedBasedOnTheCurrentFacingDirectionAndTheLastFacingDirection();
-
-            
-           
-        }
-        else if (Input.GetAxisRaw("Horizontal") == 0)
-        {
-            gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x, gameObject.transform.localScale.y, gameObject.transform.localScale.z);
-        }
-
+        ResetTheAttackIfThePlayerHasTrulyBeenFlippedBasedOnTheCurrentFacingDirectionAndTheLastFacingDirection();     
     }
+
+    public  void RotateGameObjectToFaceAccordingToTheHorizontalInput(GameObject gameObjectToModify, float horizontalInputValueRaw)
+    {
+        if (horizontalInputValueRaw > 0)
+        {
+            gameObjectToModify.transform.rotation = Quaternion.Euler(transform.rotation.x, 0f, transform.rotation.z);
+
+        }
+
+        else if (horizontalInputValueRaw < 0)
+        {
+            gameObjectToModify.transform.rotation = Quaternion.Euler(transform.rotation.x, 180f, transform.rotation.z);
+        }
+        else if (horizontalInputValueRaw == 0)
+        {
+            gameObjectToModify.transform.localScale = new Vector3(gameObjectToModify.transform.localScale.x, gameObjectToModify.transform.localScale.y, gameObjectToModify.transform.localScale.z);
+        }
+    }
+
+    public int ReturnTheValueOfFacingDirectionAccordingToTheHorizontalInput(float horizontalInputValueRaw, int currentFacingDirectionToReturnBackUnchangedInCaseOfInputBeingZero)
+    {
+        int facingDirection; // 1 is right, -1 is left
+
+        if(horizontalInputValueRaw > 0)
+        {
+            facingDirection = 1;
+            return facingDirection;
+        }
+
+        else if(horizontalInputValueRaw < 0)
+        {
+            facingDirection = -1;
+            return facingDirection;
+        }
+
+        else
+        {
+            return currentFacingDirectionToReturnBackUnchangedInCaseOfInputBeingZero;
+        }
+    }
+
+    private void ResetTheAttackIfThePlayerHasTrulyBeenFlippedBasedOnTheCurrentFacingDirectionAndTheLastFacingDirection()
+    {
+        if (currentFacingDirection != lastFacingDirection)
+        {
+            lastFacingDirection = currentFacingDirection;
+            playerAttackScriptReference.ResetAttackIDCounterToRightBeforeZeroWheneverRequired();
+
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
 
     void CheckIfPlayerIsMovingAndCallTheAppropriateMovementAnimation()
     {
@@ -195,15 +235,7 @@ public class MainCharacterBasicMovement : MonoBehaviour
     }
 
 
-    void ResetTheAttackIfThePlayerHasTrulyBeenFlippedBasedOnTheCurrentFacingDirectionAndTheLastFacingDirection()
-    {
-        if(currentFacingDirection != lastFacingDirection)
-        {
-            lastFacingDirection = currentFacingDirection;
-            playerAttackScriptReference.ResetAttackIDCounterToRightBeforeZeroWheneverRequired();
-            
-        }
-    }
+   
 
     void ChangeCanMoveToAlternateBooleanValue()
     {
