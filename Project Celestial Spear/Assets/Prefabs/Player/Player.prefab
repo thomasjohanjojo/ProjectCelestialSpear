@@ -189,6 +189,7 @@ GameObject:
   - component: {fileID: 2204384638749814359}
   - component: {fileID: 6761424114593443132}
   - component: {fileID: 962246247012315214}
+  - component: {fileID: 7278632419583122029}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -425,6 +426,7 @@ MonoBehaviour:
   playerAttackScriptReference: {fileID: 2204384638749814345}
   playerCanBeDamaged: 0
   playerHasBeenDamaged: 0
+  playerHasBeenStunned: 0
 --- !u!114 &2204384638749814346
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -466,18 +468,22 @@ MonoBehaviour:
   playerAttackScriptReference: {fileID: 2204384638749814345}
   mainCharacterBasicMovementScriptReference: {fileID: 2204384638749814350}
   playerDodgeScriptReference: {fileID: 2204384638749814346}
+  playerGetsStunnedWhenDamagedScriptReference: {fileID: 7278632419583122029}
   PLAYER_STATE_IDLE_OR_MOVING: PlayerStateIdleOrMoving
   PLAYER_STATE_ATTACKING: PlayerStateAttacking
   PLAYER_STATE_AXE_THROW: PlayerStateAxeThrow
   PLAYER_STATE_DODGING: PlayerStateDodging
+  PLAYER_STATE_STUNNED: Stunned
   STATE_PRIORITY_ID_IDLE_OR_MOVING: 1
   STATE_PRIORITY_ID_ATTACKING: 2
   STATE_PRIORITY_ID_AXE_THROW: 3
   STATE_PRIORITY_ID_DODGING: 3
+  STATE_PRIORITY_ID_STUNNED: 0
   isIdleOrMovingStateIsExecuting: 0
   isAttackStateIsExecuting: 0
   isAxeThrowStateIsExecuting: 0
   isDodgeStateIsExecuting: 0
+  isStunnedStateExecuting: 0
   currentState: 
 --- !u!114 &6761424114593443132
 MonoBehaviour:
@@ -510,6 +516,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerAttackScriptReference: {fileID: 2204384638749814345}
   pushPowerUIObject: {fileID: 0}
+--- !u!114 &7278632419583122029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2204384638749814338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6957607c9d1ae6a4cb967e567ecba244, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerStateControllerScriptReference: {fileID: 2204384638749814359}
+  playerAnimationControllerScriptReference: {fileID: 2204384638749814347}
+  playerStatusScriptReference: {fileID: 2204384638749814344}
+  durationOfBeingStunned: 5
+  playerGetsStunnedWhenDamagedScriptControlBoolean: 0
 --- !u!1 &2204384639090746829
 GameObject:
   m_ObjectHideFlags: 0

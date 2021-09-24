@@ -17,6 +17,7 @@ public class Statuses : MonoBehaviour
     public bool playerCanBeDamaged;
 
     public bool playerHasBeenDamaged;
+    public bool playerHasBeenStunned;
 
     private GameObject parentGameObject;
 
@@ -35,6 +36,7 @@ public class Statuses : MonoBehaviour
             }
 
             playerHasBeenDamaged = true;
+            playerHasBeenStunned = true;
         }
 
         theBoxColliderWhichDealsTheAttack.enabled = false;
@@ -48,6 +50,7 @@ public class Statuses : MonoBehaviour
         // simply for testing    
         playerCanBeDamaged = true;
         playerHasBeenDamaged = false;
+        playerHasBeenStunned = false;
     }
 
     // Update is called once per frame

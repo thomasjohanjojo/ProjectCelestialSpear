@@ -9,21 +9,25 @@ public class PlayerStateController : MonoBehaviour
     public PlayerAttack playerAttackScriptReference;
     public MainCharacterBasicMovement mainCharacterBasicMovementScriptReference;
     public PlayerDodge playerDodgeScriptReference;
+    public PlayerGetsStunnedWhenDamaged playerGetsStunnedWhenDamagedScriptReference;
 
     public string PLAYER_STATE_IDLE_OR_MOVING = "IdleOrMoving";
     public string PLAYER_STATE_ATTACKING = "Attacking";
     public string PLAYER_STATE_AXE_THROW = "AxeThrow";
     public string PLAYER_STATE_DODGING = "Dodging";
+    public string PLAYER_STATE_STUNNED = "Stunned";
 
-    [SerializeField]private int STATE_PRIORITY_ID_IDLE_OR_MOVING;
-    [SerializeField]private int STATE_PRIORITY_ID_ATTACKING;
-    [SerializeField]private int STATE_PRIORITY_ID_AXE_THROW;
-    [SerializeField]private int STATE_PRIORITY_ID_DODGING;
+    [SerializeField] private int STATE_PRIORITY_ID_IDLE_OR_MOVING;
+    [SerializeField] private int STATE_PRIORITY_ID_ATTACKING;
+    [SerializeField] private int STATE_PRIORITY_ID_AXE_THROW;
+    [SerializeField] private int STATE_PRIORITY_ID_DODGING;
+    [SerializeField] private int STATE_PRIORITY_ID_STUNNED;
 
     public bool isIdleOrMovingStateIsExecuting;
     public bool isAttackStateIsExecuting;
     public bool isAxeThrowStateIsExecuting;
     public bool isDodgeStateIsExecuting;
+    public bool isStunnedStateExecuting;
 
 
     public string currentState;
@@ -38,6 +42,7 @@ public class PlayerStateController : MonoBehaviour
         STATE_PRIORITY_ID_ATTACKING = 2;
         STATE_PRIORITY_ID_AXE_THROW = 3;
         STATE_PRIORITY_ID_DODGING = 3;
+        STATE_PRIORITY_ID_STUNNED = 3;
 
         defaultState = PLAYER_STATE_IDLE_OR_MOVING;
         currentState = PLAYER_STATE_IDLE_OR_MOVING;
@@ -93,11 +98,13 @@ public class PlayerStateController : MonoBehaviour
         playerAttackScriptReference.PlayerAttackScriptOnOffBoolean = false;
         axeThrowScriptReference.axeThrowScriptOnOffBoolean = false;
         playerDodgeScriptReference.dodgeScriptOnOffBoolean = false;
+        playerGetsStunnedWhenDamagedScriptReference.playerGetsStunnedWhenDamagedScriptControlBoolean = false;
 
         isIdleOrMovingStateIsExecuting = false;
         isAttackStateIsExecuting = false;
         isAxeThrowStateIsExecuting = false;
         isDodgeStateIsExecuting = false;
+        isStunnedStateExecuting = false;
 
         if (state == PLAYER_STATE_IDLE_OR_MOVING)
         {
@@ -127,6 +134,13 @@ public class PlayerStateController : MonoBehaviour
             currentState = PLAYER_STATE_DODGING;
         }
 
+        if(state == PLAYER_STATE_STUNNED)
+        {
+            playerGetsStunnedWhenDamagedScriptReference.playerGetsStunnedWhenDamagedScriptControlBoolean = true;
+            isStunnedStateExecuting = true;
+            currentState = PLAYER_STATE_STUNNED;
+        }
+
     }
 
 
@@ -150,6 +164,11 @@ public class PlayerStateController : MonoBehaviour
         if (state == PLAYER_STATE_DODGING)
         {
             return isDodgeStateIsExecuting;
+        }
+
+        if(state == PLAYER_STATE_STUNNED)
+        {
+            return isStunnedStateExecuting;
         }
 
         else
@@ -197,6 +216,13 @@ public class PlayerStateController : MonoBehaviour
             isDodgeStateIsExecuting = false;
             TurnOnState(defaultState);
         }
+
+        else if(state == PLAYER_STATE_STUNNED)
+        {
+            playerGetsStunnedWhenDamagedScriptReference.playerGetsStunnedWhenDamagedScriptControlBoolean = false;
+            isStunnedStateExecuting = false;
+            TurnOnState(defaultState);
+        }
     }
 
 
@@ -221,6 +247,11 @@ public class PlayerStateController : MonoBehaviour
         if(state == PLAYER_STATE_DODGING)
         {
             return STATE_PRIORITY_ID_DODGING;
+        }
+
+        if(state == PLAYER_STATE_STUNNED)
+        {
+            return STATE_PRIORITY_ID_STUNNED;
         }
 
         else
