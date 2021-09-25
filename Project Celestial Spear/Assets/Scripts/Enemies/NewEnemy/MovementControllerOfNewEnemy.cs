@@ -18,7 +18,7 @@ public class MovementControllerOfNewEnemy : MonoBehaviour
 
     [SerializeField] private Rigidbody2D rigidbodyOfTheEnemy;
 
-    private float facingDirectionOfTheEnemy;
+    public float facingDirectionOfTheEnemy;
 
     
     

@@ -8,13 +8,18 @@ public class EnemyAttack : MonoBehaviour
     public AttackRangeDetectionColliderScript attackRangeDetectionColliderScriptReference;
     public AttackGivingColliderScript attackGivingColliderScriptReference;
     public EnemyStateController enemyStateControllerReference;
+    public FacingDirectionDeterminationScript facingDirectionDeterminationScriptReference;
 
     public EnemyAnimationCustomController enemyAnimationCustomControllerReference;
     public bool EnemyAttackScriptControlBoolean;
 
     public int damageOfTheAttack;
 
+    public float pushBackForce;
+
     private bool oneInstanceOfTheCoRoutineIsRunningAlready;
+    private bool doThePushBoolean;
+    private Rigidbody2D rigidbodyOfThePlayerForPushing;
 
     
     
@@ -43,6 +48,13 @@ public class EnemyAttack : MonoBehaviour
 
         
     }
+
+
+    private void FixedUpdate()
+    {
+        PushThePlayerInTheFixedUpdate();
+    }
+
 
     private void EnemyAttackMainFunction()
     {
@@ -88,6 +100,7 @@ public class EnemyAttack : MonoBehaviour
 
                 
                 attackGivingColliderScriptReference.statusScriptOfThePlayer.DecreaseHealthByTheNumber(damageOfTheAttack, attackGivingColliderScriptReference.damageGivingBoxCollider);
+                PushThePlayer();
                 attackGivingColliderScriptReference.statusScriptOfThePlayer = null;
                 attackGivingColliderScriptReference.gameObjectOfThePlayer = null;
                 
@@ -96,6 +109,45 @@ public class EnemyAttack : MonoBehaviour
 
         
     }
+
+    private void PushThePlayer()
+    {
+        if (attackGivingColliderScriptReference.gameObjectOfThePlayer)
+        {
+            if (attackGivingColliderScriptReference.statusScriptOfThePlayer)
+            {
+
+                if(attackGivingColliderScriptReference.statusScriptOfThePlayer.playerCanBeDamaged == true)
+                {
+                    rigidbodyOfThePlayerForPushing = attackGivingColliderScriptReference.gameObjectOfThePlayer.GetComponent<Rigidbody2D>();
+                    DoThePushInTheFixedUpdateByTurningOnDoThePushBoolean();
+                }
+               
+
+            }
+        }
+    }
+
+    private void DoThePushInTheFixedUpdateByTurningOnDoThePushBoolean()
+    {
+        doThePushBoolean = true;
+    }
+
+    private void PushThePlayerInTheFixedUpdate()
+    {
+        if(doThePushBoolean == true)
+        {
+            if(rigidbodyOfThePlayerForPushing)
+            {
+                Vector2 pushBackForceToAddAsVector = new Vector2(facingDirectionDeterminationScriptReference.facingDirection * pushBackForce, 0f);
+                rigidbodyOfThePlayerForPushing.AddForce(pushBackForceToAddAsVector, ForceMode2D.Impulse);
+                doThePushBoolean = false;
+                rigidbodyOfThePlayerForPushing = null;
+            }
+        }
+    }
+
+
 
     public void CancelEnemyAttackIfAny()
     {
