@@ -43,11 +43,14 @@ public class AxeThrowRaw : MonoBehaviour
 
     public bool axeThrowHasBeenPressedOnceBeforeReturnJourney = false;
 
+    public bool canDetectInputFromPlayerControlBoolean;
+
 
 
     // Start is called before the first frame update
     void Start()
     {
+        
         StayWithThePlayerWhileAxeIsNotThrowing = true;
         axeThrowScriptOnOffBoolean = false;
         goBackToThePlayerAfterAttack = false;
@@ -113,7 +116,7 @@ public class AxeThrowRaw : MonoBehaviour
 
     private void GetAxeThrowButtonInputOnlyForChangingState()
     {
-        if (Input.GetButtonDown("Fire2"))
+        if (Input.GetButtonDown("Fire2") && canDetectInputFromPlayerControlBoolean == true)
         {
 
             playerStateControllerReference.ChangeStateAccordingToPriority(playerStateControllerReference.PLAYER_STATE_AXE_THROW);

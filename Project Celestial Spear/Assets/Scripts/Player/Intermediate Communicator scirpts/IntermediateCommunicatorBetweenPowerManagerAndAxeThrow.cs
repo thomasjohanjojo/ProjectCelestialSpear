@@ -17,6 +17,14 @@ public class IntermediateCommunicatorBetweenPowerManagerAndAxeThrow : MonoBehavi
     // Update is called once per frame
     void Update()
     {
-        
+        if(powerManagerScriptReference.canUsePowers == true)
+        {
+            axeThrowRawScriptReference.canDetectInputFromPlayerControlBoolean = true;
+        }
+
+        else if(powerManagerScriptReference.canUsePowers == false)
+        {
+            axeThrowRawScriptReference.canDetectInputFromPlayerControlBoolean = false;
+        }
     }
 }

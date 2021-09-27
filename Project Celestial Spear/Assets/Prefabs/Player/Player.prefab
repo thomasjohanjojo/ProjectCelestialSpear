@@ -190,6 +190,7 @@ GameObject:
   - component: {fileID: 6761424114593443132}
   - component: {fileID: 962246247012315214}
   - component: {fileID: 7278632419583122029}
+  - component: {fileID: 2990591107145484704}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -212,6 +213,7 @@ Transform:
   - {fileID: 2204384637875850911}
   - {fileID: 2204384638453528343}
   - {fileID: 2204384638451112359}
+  - {fileID: 3625004042861964234}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -445,6 +447,7 @@ MonoBehaviour:
   theDurationOfTheDodge: 0.2
   playerStatusScript: {fileID: 2204384638749814344}
   playerAttackScriptForMaintainingTheComboCounterNumberInCaseOfASuccessfulDodge: {fileID: 2204384638749814345}
+  dodgeHasBeenPerformedAnnoucerBoolean: 0
   myRigidbody2D: {fileID: 2204384638749814348}
   myBoxCollider2D: {fileID: 2204384638749814349}
   dodgeHitDetectionColliderScriptReference: {fileID: 2204384637875850910}
@@ -478,7 +481,7 @@ MonoBehaviour:
   STATE_PRIORITY_ID_ATTACKING: 2
   STATE_PRIORITY_ID_AXE_THROW: 3
   STATE_PRIORITY_ID_DODGING: 3
-  STATE_PRIORITY_ID_STUNNED: 0
+  STATE_PRIORITY_ID_STUNNED: 3
   isIdleOrMovingStateIsExecuting: 0
   isAttackStateIsExecuting: 0
   isAxeThrowStateIsExecuting: 0
@@ -531,8 +534,23 @@ MonoBehaviour:
   playerStateControllerScriptReference: {fileID: 2204384638749814359}
   playerAnimationControllerScriptReference: {fileID: 2204384638749814347}
   playerStatusScriptReference: {fileID: 2204384638749814344}
-  durationOfBeingStunned: 5
+  durationOfBeingStunned: 2
   playerGetsStunnedWhenDamagedScriptControlBoolean: 0
+--- !u!114 &2990591107145484704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2204384638749814338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef851f9d2f5efb14eba3a8bb02696e42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canUsePowers: 0
+  timePeriodDuringWhichPowersCanUsed: 1.3
+  turnOnThePowerUsagePeriodTimer: 0
 --- !u!1 &2204384639090746829
 GameObject:
   m_ObjectHideFlags: 0
@@ -605,3 +623,63 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.442772, y: 2.532997}
   m_EdgeRadius: 0
+--- !u!1 &6808597172736870018
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3625004042861964234}
+  - component: {fileID: 8205783892043626182}
+  - component: {fileID: 3089750163360115930}
+  m_Layer: 0
+  m_Name: IntermediateCommunicatorScriptsOfPlayer
+  m_TagString: PlayerChild
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3625004042861964234
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6808597172736870018}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2204384638749814351}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8205783892043626182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6808597172736870018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8c855d73712c954ab283f9922282b12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerManagerScriptReference: {fileID: 2990591107145484704}
+  axeThrowRawScriptReference: {fileID: 0}
+--- !u!114 &3089750163360115930
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6808597172736870018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 602d589a925835c48911d83efbfac7bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerManagerScriptReference: {fileID: 2990591107145484704}
+  playerDodgeScriptReference: {fileID: 2204384638749814346}

@@ -943,16 +943,16 @@ PrefabInstance:
       propertyPath: axeThrowScriptReference
       value: 
       objectReference: {fileID: 726589250}
-    - target: {fileID: 2204384638749814359, guid: fe4467b2fb1a6f042880d64f91ac1f12,
+    - target: {fileID: 2990591107145484704, guid: fe4467b2fb1a6f042880d64f91ac1f12,
         type: 3}
-      propertyPath: STATE_PRIORITY_ID_STUNNED
-      value: 3
+      propertyPath: timePeriodDuringWhichPowersCanUsed
+      value: 0.3
       objectReference: {fileID: 0}
-    - target: {fileID: 7278632419583122029, guid: fe4467b2fb1a6f042880d64f91ac1f12,
+    - target: {fileID: 8205783892043626182, guid: fe4467b2fb1a6f042880d64f91ac1f12,
         type: 3}
-      propertyPath: durationOfBeingStunned
-      value: 2
-      objectReference: {fileID: 0}
+      propertyPath: axeThrowRawScriptReference
+      value: 
+      objectReference: {fileID: 726589250}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fe4467b2fb1a6f042880d64f91ac1f12, type: 3}
 --- !u!114 &215061804 stripped
