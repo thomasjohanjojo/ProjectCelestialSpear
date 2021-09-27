@@ -12,6 +12,8 @@ public class PlayerDodge : MonoBehaviour
     public PlayerAttack playerAttackScriptForMaintainingTheComboCounterNumberInCaseOfASuccessfulDodge;
     private int comboCounterNumberToRestoreTheComboCounterNumberAfterASuccesfulDodge;
 
+    public bool dodgeHasBeenPerformedAnnoucerBoolean;
+
     public Rigidbody2D myRigidbody2D;
     public BoxCollider2D myBoxCollider2D;
     
@@ -34,7 +36,7 @@ public class PlayerDodge : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       
+        dodgeHasBeenPerformedAnnoucerBoolean = false;
         DoTheDodge = false;
         dodgeScriptOnOffBoolean = false;
         oneInstanceOfWaitBeforeDodgingCoroutineIsAlreadyExecuting = false;
@@ -177,6 +179,8 @@ public class PlayerDodge : MonoBehaviour
 
             Vector2 forceToAddWhenDodging = new Vector2(dodgeSpeed * playerFacingDirection, 0f);
             myRigidbody2D.AddForce(forceToAddWhenDodging, ForceMode2D.Force);
+
+            dodgeHasBeenPerformedAnnoucerBoolean = true;
             
             
 
