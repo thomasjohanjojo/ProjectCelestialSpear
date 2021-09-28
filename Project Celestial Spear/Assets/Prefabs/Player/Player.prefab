@@ -549,7 +549,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canUsePowers: 0
-  timePeriodDuringWhichPowersCanUsed: 2
+  timePeriodDuringWhichPowersCanUsed: 0.3
   turnOnThePowerUsagePeriodTimer: 0
 --- !u!1 &2204384639090746829
 GameObject:
