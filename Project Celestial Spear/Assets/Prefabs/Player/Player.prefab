@@ -397,7 +397,7 @@ MonoBehaviour:
   playerAnimationControllerReference: {fileID: 2204384638749814347}
   attackColliderScriptReference: {fileID: 2204384639090746826}
   canPush: 0
-  numberToSubtractFromHitCounterOnASuccesfullPush: 2
+  numberToSubtractFromHitCounterOnASuccesfullPush: 1
   PlayerAttackScriptOnOffBoolean: 0
   playerFacingDirection: 0
   maximumAllowedDelayBetweenAttackButtonPresses: 2

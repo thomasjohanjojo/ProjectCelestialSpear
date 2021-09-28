@@ -315,36 +315,38 @@ public class PlayerAttack : MonoBehaviour
 
     public IEnumerator PushAttack()
     {
-        
-        attackIDCounterWhichIsUsedToControlWhichAttackIsToBeExecuted = 0;
-
-        SetMainCharacterVelocityToZeroToStopTheLeftOverMovementWhenCanMoveIsTurnedOff();
-
-        canAttack = false;
-
-
-        playerAnimationControllerReference.ChangeAnimationState(playerAnimationControllerReference.PUNCH_AND_PUSH_ANIMATION);
-        yield return new WaitForSeconds(windingUpTimeOfFirstAttack);
-        
-        
-        IfEnemyHasBeenDetectedThenPushTheEnemy();
-        
-
-
-        if (statusSciptOfEnemy)
+        if ((HitCounterInt - numberToSubtractFromHitCounterOnASuccesfullPush) >= 0)
         {
-            statusSciptOfEnemy.DecreaseHealthByTheNumber(damageOfFirstAttack);
-            statusSciptOfEnemy.hasBeenInterrupted = true;
-            HitCounterInt++;
+            attackIDCounterWhichIsUsedToControlWhichAttackIsToBeExecuted = 0;
+
+            SetMainCharacterVelocityToZeroToStopTheLeftOverMovementWhenCanMoveIsTurnedOff();
+
+            canAttack = false;
+
+
+            playerAnimationControllerReference.ChangeAnimationState(playerAnimationControllerReference.PUNCH_AND_PUSH_ANIMATION);
+            yield return new WaitForSeconds(windingUpTimeOfFirstAttack);
+
+
+            IfEnemyHasBeenDetectedThenPushTheEnemy();
+
+
+
+            if (statusSciptOfEnemy)
+            {
+                statusSciptOfEnemy.DecreaseHealthByTheNumber(damageOfFirstAttack);
+                statusSciptOfEnemy.hasBeenInterrupted = true;
+                
+            }
+
+            timeStampOfTheLastTimeAnAttackWasPerformed = Time.time;
+
+            statusSciptOfEnemy = null;
+
+            enemyRigidBody = null;
+
+            canAttack = true;
         }
-
-        timeStampOfTheLastTimeAnAttackWasPerformed = Time.time;
-
-        statusSciptOfEnemy = null;
-
-        enemyRigidBody = null;
-
-        canAttack = true;
 
         playerStateControllerReference.StateExecutionHasCompletedAndTurnOnDefaultState(playerStateControllerReference.PLAYER_STATE_ATTACKING);
     }
