@@ -15,7 +15,7 @@ public class PlayerAttack : MonoBehaviour
     private Rigidbody2D enemyRigidBody;
     private Rigidbody2D enemyRigidBodyForPushing;
 
-    public bool CanPush = false;
+    public bool canPush = false;
     public int numberToSubtractFromHitCounterOnASuccesfullPush;
 
     private bool canAttack = true;
@@ -69,7 +69,7 @@ public class PlayerAttack : MonoBehaviour
 
     private void GetAttackButtonInputForStateChanging()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0) == true)
+        if (Input.GetKeyDown(KeyCode.Mouse0) == true || canPush == true)
         {
 
             playerStateControllerReference.ChangeStateAccordingToPriority(playerStateControllerReference.PLAYER_STATE_ATTACKING);
@@ -85,6 +85,12 @@ public class PlayerAttack : MonoBehaviour
         if (canAttack)
         {
             StartCoroutine(AttackWhenverAttackButtonIsPressedAndEnemyRigidbodyWithAnAttachedStatusScriptIsAvailable());
+        }
+
+        if(canAttack && canPush)
+        {
+            canPush = false;
+            StartCoroutine(pushAttack());
         }
     }
 
@@ -210,10 +216,7 @@ public class PlayerAttack : MonoBehaviour
                 playerAnimationControllerReference.ChangeAnimationState(playerAnimationControllerReference.PUNCH_AND_PUSH_ANIMATION);
                 yield return new WaitForSeconds(windingUpTimeOfFirstAttack);
 
-                if (CanPush == true)
-                {
-                    IfEnemyHasBeenDetectedThenPushTheEnemy();
-                }
+                
 
 
                 if (statusSciptOfEnemy)
@@ -308,6 +311,42 @@ public class PlayerAttack : MonoBehaviour
         playerStateControllerReference.StateExecutionHasCompletedAndTurnOnDefaultState(playerStateControllerReference.PLAYER_STATE_ATTACKING);
     }
 
+
+    public IEnumerator pushAttack()
+    {
+        attackIDCounterWhichIsUsedToControlWhichAttackIsToBeExecuted = 0;
+
+        SetMainCharacterVelocityToZeroToStopTheLeftOverMovementWhenCanMoveIsTurnedOff();
+
+        canAttack = false;
+
+
+        playerAnimationControllerReference.ChangeAnimationState(playerAnimationControllerReference.PUNCH_AND_PUSH_ANIMATION);
+        yield return new WaitForSeconds(windingUpTimeOfFirstAttack);
+
+        
+        IfEnemyHasBeenDetectedThenPushTheEnemy();
+        
+
+
+        if (statusSciptOfEnemy)
+        {
+            statusSciptOfEnemy.DecreaseHealthByTheNumber(damageOfFirstAttack);
+            statusSciptOfEnemy.hasBeenInterrupted = true;
+            HitCounterInt++;
+        }
+
+        timeStampOfTheLastTimeAnAttackWasPerformed = Time.time;
+
+        statusSciptOfEnemy = null;
+
+        enemyRigidBody = null;
+
+        canAttack = true;
+
+        playerStateControllerReference.StateExecutionHasCompletedAndTurnOnDefaultState(playerStateControllerReference.PLAYER_STATE_ATTACKING);
+    }
+
     private void ResetAttackIDCounterToZeroIfTooMuchDelayBetweenButtonPresses()
     {
         if (Time.time - timeStampOfTheLastTimeAnAttackWasPerformed > maximumAllowedDelayBetweenAttackButtonPresses)
@@ -337,11 +376,13 @@ public class PlayerAttack : MonoBehaviour
     private void ResetAnyBooleansAndVariablesWhichWasSupposedToBeResetByTheCoroutineCompletion()
     {
         canAttack = true;
+        canPush = false;
     }
 
     private void StopAllAttackRelatedCoroutines()
     {
         StopCoroutine(AttackWhenverAttackButtonIsPressedAndEnemyRigidbodyWithAnAttachedStatusScriptIsAvailable());
+        StopCoroutine(pushAttack());
     }
 
     private void ReleaseAnyEnemyRelatedReferencesSetBeforeAttackAnimationCompleted()

@@ -396,7 +396,7 @@ MonoBehaviour:
   playerControllerReferenceWhichHasATurnOnAndTurnOffBoolean: {fileID: 2204384638749814350}
   playerAnimationControllerReference: {fileID: 2204384638749814347}
   attackColliderScriptReference: {fileID: 2204384639090746826}
-  CanPush: 0
+  canPush: 0
   numberToSubtractFromHitCounterOnASuccesfullPush: 2
   PlayerAttackScriptOnOffBoolean: 0
   playerFacingDirection: 0
@@ -441,7 +441,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f924de34652663f46a8c65ed5cb7534e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dodgeSpeed: 100
+  dodgeSpeed: 70
   thatMillisecondsOfTimeBeforeInvincibility: 0.1
   thatMillisecondsOfTimeOfTheInvincibilityPeriod: 0.4
   theDurationOfTheDodge: 0.2
@@ -518,7 +518,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerAttackScriptReference: {fileID: 2204384638749814345}
-  pushPowerUIObject: {fileID: 0}
+  canDoThePowerAttackControlBoolean: 0
 --- !u!114 &7278632419583122029
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -549,7 +549,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canUsePowers: 0
-  timePeriodDuringWhichPowersCanUsed: 1.3
+  timePeriodDuringWhichPowersCanUsed: 2
   turnOnThePowerUsagePeriodTimer: 0
 --- !u!1 &2204384639090746829
 GameObject:
@@ -634,6 +634,7 @@ GameObject:
   - component: {fileID: 3625004042861964234}
   - component: {fileID: 8205783892043626182}
   - component: {fileID: 3089750163360115930}
+  - component: {fileID: 5042687157660194760}
   m_Layer: 0
   m_Name: IntermediateCommunicatorScriptsOfPlayer
   m_TagString: PlayerChild
@@ -683,3 +684,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   powerManagerScriptReference: {fileID: 2990591107145484704}
   playerDodgeScriptReference: {fileID: 2204384638749814346}
+--- !u!114 &5042687157660194760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6808597172736870018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0509124e077e264080bebe57eefbb58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerManagerScriptReference: {fileID: 2990591107145484704}
+  pushPowerControlScriptReference: {fileID: 962246247012315214}

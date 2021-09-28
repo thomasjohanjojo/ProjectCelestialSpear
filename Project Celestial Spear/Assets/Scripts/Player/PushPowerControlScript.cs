@@ -7,7 +7,7 @@ public class PushPowerControlScript : MonoBehaviour
 
     public PlayerAttack playerAttackScriptReference;
 
-    public GameObject pushPowerUIObject;
+    public bool canDoThePowerAttackControlBoolean;
 
     // Start is called before the first frame update
     void Start()
@@ -18,19 +18,10 @@ public class PushPowerControlScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.E))
+        if(Input.GetKeyDown(KeyCode.E) && canDoThePowerAttackControlBoolean)
         {
-            playerAttackScriptReference.CanPush = !playerAttackScriptReference.CanPush;
-
-            if (playerAttackScriptReference.CanPush == true)
-            {
-                pushPowerUIObject.SetActive(true);
-            }
-
-            else if (playerAttackScriptReference.CanPush == false)
-            {
-                pushPowerUIObject.SetActive(false);
-            }
+            playerAttackScriptReference.canPush = true;
+                       
         }
 
         
