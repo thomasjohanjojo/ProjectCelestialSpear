@@ -15,7 +15,7 @@ public class PlayerAttack : MonoBehaviour
     private Rigidbody2D enemyRigidBody;
     private Rigidbody2D enemyRigidBodyForPushing;
 
-    public bool canPush = false;
+    public bool canPush;
     public int numberToSubtractFromHitCounterOnASuccesfullPush;
 
     private bool canAttack = true;
@@ -88,6 +88,10 @@ public class PlayerAttack : MonoBehaviour
             StartCoroutine(AttackWhenverAttackButtonIsPressedAndEnemyRigidbodyWithAnAttachedStatusScriptIsAvailable());
         }
 
+        Debug.Log("canAttack=");
+        Debug.Log(canAttack);
+        Debug.Log("Canpush=");
+        Debug.Log(canPush);
         if(canAttack && canPush)
         {
             Debug.Log("Has entered the if case");
@@ -380,7 +384,7 @@ public class PlayerAttack : MonoBehaviour
     private void ResetAnyBooleansAndVariablesWhichWasSupposedToBeResetByTheCoroutineCompletion()
     {
         canAttack = true;
-        canPush = false;
+        
     }
 
     private void StopAllAttackRelatedCoroutines()
