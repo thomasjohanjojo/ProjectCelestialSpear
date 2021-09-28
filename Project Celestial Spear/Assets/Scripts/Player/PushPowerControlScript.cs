@@ -20,6 +20,7 @@ public class PushPowerControlScript : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.E) && canDoThePowerAttackControlBoolean)
         {
+            Debug.Log("HasEnteredPushPowerScript");
             playerAttackScriptReference.canPush = true;
                        
         }
