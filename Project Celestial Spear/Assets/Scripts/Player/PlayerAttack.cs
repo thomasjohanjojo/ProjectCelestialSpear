@@ -71,7 +71,6 @@ public class PlayerAttack : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Mouse0) == true || canPush == true)
         {
-            Debug.Log("Has entered the attack function");
             playerStateControllerReference.ChangeStateAccordingToPriority(playerStateControllerReference.PLAYER_STATE_ATTACKING);
 
         }
@@ -82,21 +81,16 @@ public class PlayerAttack : MonoBehaviour
 
     private void CheckIfPlayerCanAttackAndExecuteAttackIfThePlayerCan()
     {
-        Debug.Log("Has entered the check if function");
-        if (canAttack)
-        {
-            StartCoroutine(AttackWhenverAttackButtonIsPressedAndEnemyRigidbodyWithAnAttachedStatusScriptIsAvailable());
-        }
-
-        Debug.Log("canAttack=");
-        Debug.Log(canAttack);
-        Debug.Log("Canpush=");
-        Debug.Log(canPush);
+        
         if(canAttack && canPush)
         {
-            Debug.Log("Has entered the if case");
             canPush = false;
             StartCoroutine(PushAttack());
+        }
+
+        else if (canAttack)
+        {
+            StartCoroutine(AttackWhenverAttackButtonIsPressedAndEnemyRigidbodyWithAnAttachedStatusScriptIsAvailable());
         }
     }
 
@@ -135,7 +129,7 @@ public class PlayerAttack : MonoBehaviour
     private void DoThePushThroughTheBooleanByTurningItOn()
     {
         doThePushBoolean = true;
-        Debug.Log("Push has been initiated");
+        
     }
 
     private void DoThePushInTheFixedUpdateWheneverTheDoThePushBooleanIsTrue()
@@ -312,16 +306,16 @@ public class PlayerAttack : MonoBehaviour
                 canAttack = true;
             }
 
-
+            playerStateControllerReference.StateExecutionHasCompletedAndTurnOnDefaultState(playerStateControllerReference.PLAYER_STATE_ATTACKING);
         }
 
-        playerStateControllerReference.StateExecutionHasCompletedAndTurnOnDefaultState(playerStateControllerReference.PLAYER_STATE_ATTACKING);
+        
     }
 
 
     public IEnumerator PushAttack()
     {
-        Debug.Log("Has entered the push attack function");
+        
         attackIDCounterWhichIsUsedToControlWhichAttackIsToBeExecuted = 0;
 
         SetMainCharacterVelocityToZeroToStopTheLeftOverMovementWhenCanMoveIsTurnedOff();
@@ -331,7 +325,7 @@ public class PlayerAttack : MonoBehaviour
 
         playerAnimationControllerReference.ChangeAnimationState(playerAnimationControllerReference.PUNCH_AND_PUSH_ANIMATION);
         yield return new WaitForSeconds(windingUpTimeOfFirstAttack);
-
+        
         
         IfEnemyHasBeenDetectedThenPushTheEnemy();
         
