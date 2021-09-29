@@ -365,7 +365,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyAnimationCustomControllerReference: {fileID: 4554041484808301160}
-  durationOfTheInterval: 3
+  durationOfTheInterval: 1.7
   enemyStateControllerReference: {fileID: 4554041484808301163}
   IntervalBetweenEnemyAttackScriptControlBoolean: 0
 --- !u!114 &4554041484808301141

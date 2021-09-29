@@ -442,8 +442,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dodgeSpeed: 70
-  thatMillisecondsOfTimeBeforeInvincibility: 0.1
-  thatMillisecondsOfTimeOfTheInvincibilityPeriod: 0.4
+  thatMillisecondsOfTimeBeforeInvincibility: 0.07
+  thatMillisecondsOfTimeOfTheInvincibilityPeriod: 0.43
   theDurationOfTheDodge: 0.2
   playerStatusScript: {fileID: 2204384638749814344}
   playerAttackScriptForMaintainingTheComboCounterNumberInCaseOfASuccessfulDodge: {fileID: 2204384638749814345}
@@ -534,7 +534,7 @@ MonoBehaviour:
   playerStateControllerScriptReference: {fileID: 2204384638749814359}
   playerAnimationControllerScriptReference: {fileID: 2204384638749814347}
   playerStatusScriptReference: {fileID: 2204384638749814344}
-  durationOfBeingStunned: 2
+  durationOfBeingStunned: 0.5
   playerGetsStunnedWhenDamagedScriptControlBoolean: 0
 --- !u!114 &2990591107145484704
 MonoBehaviour:
