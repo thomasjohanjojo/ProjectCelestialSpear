@@ -16,6 +16,8 @@ public class AxeThrowRaw : MonoBehaviour
 
     public float maxDistanceOfAxeTravel;
 
+    public float playerFacingDirectionToBeObtainedFromSomeOtherScript;
+
     public float speedOfAxeThrow;
     public float speedOfAxeThrowWhenItIsReturning;
     public int damageOfTheAxeThrow;
@@ -72,6 +74,7 @@ public class AxeThrowRaw : MonoBehaviour
 
         if (axeThrowScriptOnOffBoolean == true)
         {
+            
             AxeThrowMainFunction();
         }
     }
@@ -84,9 +87,8 @@ public class AxeThrowRaw : MonoBehaviour
 
         if (goToTheEnemyToAttack == true)
         {
-            Vector3 directionToThePositionOfTheMouseClick = positionOfTheMouseClick - transformOfThePlayer.position;
-            directionToThePositionOfTheMouseClick.Normalize();
-            transform.Translate(directionToThePositionOfTheMouseClick * Time.deltaTime * speedOfAxeThrow);
+            Vector3 directionToTravel = new Vector3(playerFacingDirectionToBeObtainedFromSomeOtherScript, 0, 0);
+            transform.Translate(directionToTravel * Time.deltaTime * speedOfAxeThrow);
             CheckIfAxeHasTravelledMaximumDistanceAndIfSoThenGoBackToPlayer();
 
         }
@@ -143,11 +145,7 @@ public class AxeThrowRaw : MonoBehaviour
         if (Input.GetButtonDown("Fire2"))
         {
             StayWithThePlayerWhileAxeIsNotThrowing = false;
-            positionOfTheMouseClick = new Vector3(Input.mousePosition.x, Input.mousePosition.y, transform.position.z - Camera.main.transform.position.z);
-            positionOfTheMouseClick = Camera.main.ScreenToWorldPoint(positionOfTheMouseClick);
-
             
-            positionOfTheMouseClick.z = transform.position.z;
             
             goBackToThePlayerAfterAttack = false;
             goToTheEnemyToAttack = true;
@@ -247,4 +245,7 @@ public class AxeThrowRaw : MonoBehaviour
         DecreaseTheComboCounterNumberIfTheAxeHasDamagedAnyEnemiesInThisThrow();
         playerStateControllerReference.StateExecutionHasCompletedAndTurnOnDefaultState(playerStateControllerReference.PLAYER_STATE_AXE_THROW);
     }
+
+
+    
 }
