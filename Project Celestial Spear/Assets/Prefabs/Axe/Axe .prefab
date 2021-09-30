@@ -107,7 +107,9 @@ MonoBehaviour:
   playerAttackScriptReferenceForGettingHitCounterValue: {fileID: 0}
   maxDistanceOfAxeTravel: 15
   speedOfAxeThrow: 20
+  speedOfAxeThrowWhenItIsReturning: 40
   damageOfTheAxeThrow: 10
+  amountToSubtractFromTheComboCounterAfterEachSuccesfulAxeThrow: 2
   colliderOfTheAxe: {fileID: 8715461815739103934}
   playerStateControllerReference: {fileID: 0}
   axeThrowScriptOnOffBoolean: 0
@@ -115,6 +117,7 @@ MonoBehaviour:
   goToTheEnemyToAttack: 0
   pressingTheRangedAttackButtonIsPossibleAndCanThrowAxe: 1
   axeThrowHasBeenPressedOnceBeforeReturnJourney: 0
+  canDetectInputFromPlayerControlBoolean: 0
 --- !u!61 &8715461815739103934
 BoxCollider2D:
   m_ObjectHideFlags: 0
