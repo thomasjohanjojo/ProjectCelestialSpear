@@ -60,50 +60,10 @@ public class Statuses : MonoBehaviour
         {
             healthbar.Sethealth(health);
         }
-       /* if (health <= 0.0f)
+        
+        if(health <= 0)
         {
-            if (this.transform.parent)
-            {
-                parentGameObject = this.transform.parent.gameObject;
-
-                if (parentGameObject.tag == "Platform")
-                {
-                    
-
-                    Destroy(this.gameObject);
-
-                    if (this.gameObject.tag == "Player")
-                    {
-                        SceneManager.LoadScene(0);
-                    }
-
-                }
-
-                else
-                {
-                    Destroy(this.gameObject);
-                    Destroy(parentGameObject);
-
-                    if (this.gameObject.tag == "Player")
-                    {
-                        SceneManager.LoadScene(0);
-                    }
-                }
-            }
-
-            else
-            {
-                
-
-                Destroy(this.gameObject);
-
-
-                if (this.gameObject.tag == "Player")
-                {
-                    SceneManager.LoadScene(0);
-                }
-
-            }
-        }*/
+            SceneManager.LoadScene(0);
+        }
     }
 }
