@@ -380,7 +380,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e65c743fca7be714f93f1759ac20c449, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 1000
+  health: 500
   hasBeenAttacked: 0
   hasBeenInterrupted: 0
   healthHasReachedZero: 0
