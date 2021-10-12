@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Statuses : MonoBehaviour
 {
@@ -11,21 +12,58 @@ public class Statuses : MonoBehaviour
 
     // The statuses and their respective functions, in that order for each status-functions group
     public int health = 100;
+    public HealthBarScript healthbar;
+    public PlayerAttack playerAttackScriptReference;
+    public bool playerCanBeDamaged;
 
-    public void DecreaseHealthByTheNumber(int healthToBeDecreased)
+    public bool playerHasBeenDamaged;
+    public bool playerHasBeenStunned;
+
+    private GameObject parentGameObject;
+
+    public void DecreaseHealthByTheNumber(int healthToBeDecreased, BoxCollider2D theBoxColliderWhichDealsTheAttack)
     {
-        health = health - healthToBeDecreased;
-    }
+        
 
+        if (playerCanBeDamaged == true)
+        {
+            health = health - healthToBeDecreased;
+
+
+            if (this.gameObject.tag == "Player")
+            {
+                playerAttackScriptReference.HitCounterInt = 0;
+            }
+
+            playerHasBeenDamaged = true;
+            playerHasBeenStunned = true;
+        }
+
+        theBoxColliderWhichDealsTheAttack.enabled = false;
+
+    }
+    
+    
     // Start is called before the first frame update
     void Start()
     {
-        DecreaseHealthByTheNumber(10); // simply for testing    
+        // simply for testing    
+        playerCanBeDamaged = true;
+        playerHasBeenDamaged = false;
+        playerHasBeenStunned = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (healthbar)
+        {
+            healthbar.Sethealth(health);
+        }
         
+        if(health <= 0)
+        {
+            SceneManager.LoadScene(0);
+        }
     }
 }
