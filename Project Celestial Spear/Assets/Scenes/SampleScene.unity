@@ -890,6 +890,11 @@ PrefabInstance:
       objectReference: {fileID: 1298457440}
     - target: {fileID: 2204384638749814346, guid: fe4467b2fb1a6f042880d64f91ac1f12,
         type: 3}
+      propertyPath: thatMillisecondsOfTimeBeforeInvincibility
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 2204384638749814346, guid: fe4467b2fb1a6f042880d64f91ac1f12,
+        type: 3}
       propertyPath: thatMillisecondsOfTimeOfTheInvincibilityPeriod
       value: 0.5
       objectReference: {fileID: 0}
@@ -46584,6 +46589,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8715461815739103935, guid: 0d530f2c0c3b1a0489818441cc4ef933,
         type: 3}
+      propertyPath: speedOfAxeThrow
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 8715461815739103935, guid: 0d530f2c0c3b1a0489818441cc4ef933,
+        type: 3}
       propertyPath: transformOfThePlayer
       value: 
       objectReference: {fileID: 613295198}
@@ -46592,6 +46602,11 @@ PrefabInstance:
       propertyPath: playerStateControllerReference
       value: 
       objectReference: {fileID: 215061804}
+    - target: {fileID: 8715461815739103935, guid: 0d530f2c0c3b1a0489818441cc4ef933,
+        type: 3}
+      propertyPath: speedOfAxeThrowWhenItIsReturning
+      value: 40
+      objectReference: {fileID: 0}
     - target: {fileID: 8715461815739103935, guid: 0d530f2c0c3b1a0489818441cc4ef933,
         type: 3}
       propertyPath: playerAttackScriptReferenceForGettingHitCounterValue
