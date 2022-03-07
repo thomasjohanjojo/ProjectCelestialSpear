@@ -600,7 +600,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 173934869}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.2719965, y: -2.3451543, z: -11}
+  m_LocalPosition: {x: -9.603997, y: -2.3451543, z: -11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1686604021}
@@ -1451,7 +1451,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.2719965, y: -2.3451543, z: -11}
+  m_LocalPosition: {x: -9.603997, y: -2.3451543, z: -11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -46591,6 +46591,11 @@ PrefabInstance:
         type: 3}
       propertyPath: speedOfAxeThrow
       value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 8715461815739103935, guid: 0d530f2c0c3b1a0489818441cc4ef933,
+        type: 3}
+      propertyPath: damageOfTheAxeThrow
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 8715461815739103935, guid: 0d530f2c0c3b1a0489818441cc4ef933,
         type: 3}
