@@ -68,6 +68,8 @@ public class EnemyAttack : MonoBehaviour
     {
         
         oneInstanceOfTheCoRoutineIsRunningAlready = true;
+        enemyAnimationCustomControllerReference.ChangeAnimationState(enemyAnimationCustomControllerReference.ENEMY_IDLE_ANIMATION);
+        yield return new WaitForSeconds(1.5f);
 
         attackGivingColliderScriptReference.damageGivingBoxCollider.enabled = false;
         enemyAnimationCustomControllerReference.ChangeAnimationState(enemyAnimationCustomControllerReference.ENEMY_ATTACK_ANIMATION);
